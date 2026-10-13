@@ -1,0 +1,26 @@
+{
+  "sources": 14,
+  "samples": 468731,
+  "decor": [
+    {
+      "actor": "Plane3",
+      "ignored": true,
+      "attached_sources": 0
+    },
+    {
+      "actor": "Plane4",
+      "ignored": true,
+      "attached_sources": 0
+    },
+    {
+      "actor": "Plane7",
+      "ignored": true,
+      "attached_sources": 0
+    },
+    {
+      "actor": "Plane8",
+      "ignored": true,
+      "attached_sources": 0
+    }
+  ]
+}

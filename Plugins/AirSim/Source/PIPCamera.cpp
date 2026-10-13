@@ -209,13 +209,15 @@ msr::airlib::ProjectionMatrix APIPCamera::getProjectionMatrix() const
     // TODO: This is always the case in current request, might need to change to include annotation if needed
 	ImageType image_type = ImageType::Scene;
 
-    //TODO: avoid the need to override const cast here
-    const_cast<APIPCamera*>(this)->setCameraTypeEnabled(image_type, true);
-    const USceneCaptureComponent2D* capture = const_cast<APIPCamera*>(this)->getCaptureComponent(image_type, false);
-    if (capture) {
+    // Camera metadata must not enable a hidden continuous RGB renderer.
+    // Settings allocate the target even when the capture is inactive.
+    auto* camera = const_cast<APIPCamera*>(this);
+    const USceneCaptureComponent2D* capture = camera->getCaptureComponent(image_type, false);
+    const UTextureRenderTarget2D* target = camera->getRenderTarget(image_type, false);
+    if (capture && target && target->SizeX > 0 && target->SizeY > 0) {
         FMatrix proj_mat_transpose;
 
-        FIntPoint render_target_size(capture->TextureTarget->GetSurfaceWidth(), capture->TextureTarget->GetSurfaceHeight());
+        FIntPoint render_target_size(target->SizeX, target->SizeY);
         float x_axis_multiplier = 1.0f;
         float y_axis_multiplier = render_target_size.X / (float)render_target_size.Y;
 
@@ -1050,6 +1052,7 @@ void APIPCamera::enableCaptureComponent(const APIPCamera::ImageType type, bool i
 
 UTextureRenderTarget2D* APIPCamera::getRenderTarget(const APIPCamera::ImageType type, bool if_active, std::string annotation_name)
 {
+    if (!IsValid(this)) return nullptr;
     if (type == ImageType::ThermalIR) {
     return nullptr;
     }
@@ -1060,6 +1063,7 @@ UTextureRenderTarget2D* APIPCamera::getRenderTarget(const APIPCamera::ImageType 
             return render_targets_[annotator_name_to_index_map_[FString(annotation_name.c_str())]];
     }
     else {
+        if (!render_targets_.IsValidIndex(image_type) || image_type >= camera_type_enabled_.size()) return nullptr;
         if (!if_active || camera_type_enabled_[image_type])
             return render_targets_[image_type];
     }    
@@ -1068,6 +1072,7 @@ UTextureRenderTarget2D* APIPCamera::getRenderTarget(const APIPCamera::ImageType 
 
 UDetectionComponent* APIPCamera::getDetectionComponent(const ImageType type, bool if_active, std::string annotation_name) const
 {
+    if (!IsValid(this)) return nullptr;
     if (type == ImageType::ThermalIR) {
     return nullptr;
     }
@@ -1077,6 +1082,7 @@ UDetectionComponent* APIPCamera::getDetectionComponent(const ImageType type, boo
     }
     else {
         unsigned int image_type = Utils::toNumeric(type);
+        if (!detections_.IsValidIndex(image_type) || image_type >= camera_type_enabled_.size()) return nullptr;
         if (!if_active || camera_type_enabled_[image_type])
             return detections_[image_type];
     }
@@ -1085,6 +1091,7 @@ UDetectionComponent* APIPCamera::getDetectionComponent(const ImageType type, boo
 
 USceneCaptureComponent2D* APIPCamera::getCaptureComponent(const APIPCamera::ImageType type, bool if_active, std::string annotation_name)
 {
+    if (!IsValid(this)) return nullptr;
     if (type == ImageType::ThermalIR) {
     return nullptr;
     }
@@ -1094,6 +1101,7 @@ USceneCaptureComponent2D* APIPCamera::getCaptureComponent(const APIPCamera::Imag
     }
     else {
         unsigned int image_type = Utils::toNumeric(type);
+        if (!captures_.IsValidIndex(image_type) || image_type >= camera_type_enabled_.size()) return nullptr;
         if (!if_active || camera_type_enabled_[image_type])
             return captures_[image_type];
     }

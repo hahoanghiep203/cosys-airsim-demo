@@ -1,0 +1,188 @@
+#include "/Engine/Public/Platform.ush"
+
+struct ThermalSample { float4 PositionMaterial; float4 Normal; };
+struct ThermalReceiver {
+    row_major float4x4 LocalToWorld;
+    row_major float4x4 WorldToLocal;
+    row_major float4x4 NormalToWorld;
+    float4 BoundsMinSpacing;
+    float4 BoundsMax;
+    float4 ActiveMin;
+    float4 ActiveMax;
+    int4 CellMinOffset;
+    int4 CellSize;
+};
+struct ThermalProfile { uint4 Identity; float4 Values; };
+struct ThermalUniform { float4 MinTemperature; float4 MaxEmissivity; };
+
+Texture2D<float4> Segmentation;
+Texture2D<float4> Depth;
+Texture2D<float4> Normals;
+StructuredBuffer<ThermalSample> Samples;
+StructuredBuffer<float2> Temperatures;
+StructuredBuffer<uint2> Cells;
+StructuredBuffer<ThermalReceiver> Receivers;
+StructuredBuffer<ThermalProfile> Profiles;
+StructuredBuffer<uint> Candidates;
+StructuredBuffer<ThermalUniform> UniformSurfaces;
+StructuredBuffer<float> RadianceLut;
+RWTexture2D<float> GrayOutput;
+uint2 ImageSize;
+uint ProfileMask;
+uint UniformCount;
+uint InputSrgbMask;
+float4 CameraOrigin;
+float4 CameraForward;
+float4 CameraRight;
+float4 CameraUp;
+float TanHalfFov;
+float DepthAttenuation;
+float DisplayMin;
+float DisplayMax;
+
+uint HashColor(uint K) { K ^= K >> 16; K *= 2246822519u; return K ^ (K >> 13); }
+uint2 FindCell(uint Receiver, int3 LocalCell) {
+    ThermalReceiver R = Receivers[Receiver];
+    int3 P = LocalCell - R.CellMinOffset.xyz;
+    if (any(P < 0) || any(P >= R.CellSize.xyz)) return uint2(0, 0);
+    uint Slot = R.CellMinOffset.w + (P.z * R.CellSize.y + P.y) * R.CellSize.x + P.x;
+    return Cells[Slot];
+}
+ThermalProfile FindProfile(uint Color) {
+    uint Slot = HashColor(Color) & ProfileMask;
+    [loop] for (uint Probe = 0; Probe <= ProfileMask; ++Probe) {
+        ThermalProfile P = Profiles[Slot];
+        if (P.Identity.x == Color) return P;
+        if (P.Identity.x == 0xffffffffu) break;
+        Slot = (Slot + 1) & ProfileMask;
+    }
+    ThermalProfile Result;
+    Result.Identity = 0;
+    Result.Values = float4(295, .9, 0, 0);
+    return Result;
+}
+float Radiance(float Temperature) {
+    float T = clamp(Temperature, 1, 1999);
+    uint Index = uint(T) - 1;
+    return lerp(RadianceLut[Index], RadianceLut[Index + 1], frac(T));
+}
+float EncodeSrgb(float V) { return V <= .0031308 ? V * 12.92 : 1.055 * pow(V, 1 / 2.4) - .055; }
+float3 RawByteEncoding(float3 V, bool Srgb) {
+    // Texture Load decodes an sRGB SRV; the CPU reference reads stored bytes.
+    if (Srgb) V = float3(EncodeSrgb(V.r), EncodeSrgb(V.g), EncodeSrgb(V.b));
+    return round(saturate(V) * 255);
+}
+bool SurfaceTemperature(float3 Point, float3 WorldNormal, ThermalProfile Profile, out float2 Values) {
+    float Best = 3.402823e38;
+    uint BestSample = 0xffffffffu;
+    uint BestReceiver = 0;
+    [loop] for (uint Candidate = 0; Candidate < Profile.Identity.z; ++Candidate) {
+        uint ReceiverIndex = Candidates[Profile.Identity.y + Candidate];
+        ThermalReceiver R = Receivers[ReceiverIndex];
+        float Spacing = R.BoundsMinSpacing.w;
+        if (any(Point < R.BoundsMinSpacing.xyz - Spacing * 2) || any(Point > R.BoundsMax.xyz + Spacing * 2)) continue;
+        float3 Local = mul(float4(Point, 1), R.WorldToLocal).xyz;
+        if (any(Local < R.ActiveMin.xyz) || any(Local > R.ActiveMax.xyz)) continue;
+        // Move affine work outside the sample loops. Rotation preserves vector
+        // length, so scale metrics reproduce the world distance and normal test.
+        float3 ScaleSquared = float3(dot(R.LocalToWorld[0].xyz, R.LocalToWorld[0].xyz),
+            dot(R.LocalToWorld[1].xyz, R.LocalToWorld[1].xyz), dot(R.LocalToWorld[2].xyz, R.LocalToWorld[2].xyz));
+        float3 NormalScaleSquared = float3(dot(R.NormalToWorld[0].xyz, R.NormalToWorld[0].xyz),
+            dot(R.NormalToWorld[1].xyz, R.NormalToWorld[1].xyz), dot(R.NormalToWorld[2].xyz, R.NormalToWorld[2].xyz));
+        float3 LocalWorldNormal = mul(float4(WorldNormal, 0), transpose(R.NormalToWorld)).xyz;
+        int3 Center = int3(floor(Local / Spacing));
+        [loop] for (int X = -1; X <= 1; ++X) [loop] for (int Y = -1; Y <= 1; ++Y) [loop] for (int Z = -1; Z <= 1; ++Z) {
+            uint2 Range = FindCell(ReceiverIndex, Center + int3(X, Y, Z));
+            [loop] for (uint Index = Range.x; Index < Range.x + Range.y; ++Index) {
+                ThermalSample S = Samples[Index];
+                if (dot(S.Normal.xyz, LocalWorldNormal) * rsqrt(dot(S.Normal.xyz * S.Normal.xyz, NormalScaleSquared)) < .35) continue;
+                float3 LocalDelta = Local - S.PositionMaterial.xyz;
+                if (dot(LocalDelta, LocalDelta) >= Spacing * Spacing * 3.0625 || abs(dot(LocalDelta, S.Normal.xyz)) >= Spacing * .65) continue;
+                float Distance = dot(LocalDelta * LocalDelta, ScaleSquared);
+                if (Distance < Best) { Best = Distance; BestSample = Index; BestReceiver = ReceiverIndex; }
+            }
+        }
+    }
+    Values = float2(295, .9);
+    if (BestSample == 0xffffffffu) return false;
+    Values = Temperatures[BestSample];
+    if (Best < 1.e-10) return true;
+    ThermalReceiver Receiver = Receivers[BestReceiver];
+    ThermalSample Selected = Samples[BestSample];
+    float3 Local = mul(float4(Point, 1), Receiver.WorldToLocal).xyz;
+    float Spacing = Receiver.BoundsMinSpacing.w;
+    int3 Center = int3(floor(Local / Spacing));
+    float WeightedTemperature = 0, WeightSum = 0;
+    [loop] for (int X = -1; X <= 1; ++X) [loop] for (int Y = -1; Y <= 1; ++Y) [loop] for (int Z = -1; Z <= 1; ++Z) {
+        uint2 Range = FindCell(BestReceiver, Center + int3(X, Y, Z));
+        [loop] for (uint Index = Range.x; Index < Range.x + Range.y; ++Index) {
+            ThermalSample S = Samples[Index];
+            if (S.PositionMaterial.w != Selected.PositionMaterial.w || dot(S.Normal.xyz, Selected.Normal.xyz) < .8) continue;
+            if (abs(dot(S.PositionMaterial.xyz - Selected.PositionMaterial.xyz, Selected.Normal.xyz)) > .2) continue;
+            float3 Delta = S.PositionMaterial.xyz - Local;
+            float Distance = dot(Delta, Delta);
+            if (Distance >= Spacing * Spacing * 2.25) continue;
+            float Edge = 1 - sqrt(Distance) / (Spacing * 1.5);
+            float Weight = Edge * Edge / max(.001, Distance);
+            WeightedTemperature += Temperatures[Index].x * Weight; WeightSum += Weight;
+        }
+    }
+    if (WeightSum > 0) Values.x = WeightedTemperature / WeightSum;
+    return true;
+}
+
+[numthreads(8, 8, 1)]
+void ThermalResolveCS(uint3 DispatchId : SV_DispatchThreadID) {
+    uint2 Pixel = DispatchId.xy;
+    if (any(Pixel >= ImageSize)) return;
+    // Mirror ReadSurfaceData's 8-bit encoding, including normal quantization.
+    uint3 RGB = uint3(RawByteEncoding(Segmentation.Load(int3(Pixel, 0)).rgb, (InputSrgbMask & 1) != 0));
+    uint Key = (RGB.x << 16) | (RGB.y << 8) | RGB.z;
+    ThermalProfile Profile = FindProfile(Key);
+    float2 Values = Profile.Values.xy;
+    float D = (InputSrgbMask & 4) != 0 ? Normals.Load(int3(Pixel, 0)).a : Depth.Load(int3(Pixel, 0)).r;
+    if ((InputSrgbMask & 4) != 0 && (!isfinite(D) || D <= 0 || D > 1.e5)) Values = float2(270, 1);
+    if (isfinite(D) && D > 0 && D <= 1.e5) {
+        float Forward = D * 100;
+        float Right = ((Pixel.x + .5) * 2 / ImageSize.x - 1) * TanHalfFov * Forward;
+        float Up = (1 - (Pixel.y + .5) * 2 / ImageSize.y) * TanHalfFov * ImageSize.y / ImageSize.x * Forward;
+        float3 Point = CameraOrigin.xyz + CameraForward.xyz * Forward + CameraRight.xyz * Right + CameraUp.xyz * Up;
+        float3 EncodedNormal = RawByteEncoding(Normals.Load(int3(Pixel, 0)).rgb, (InputSrgbMask & 2) != 0) / 255;
+        float3 Normal = normalize(EncodedNormal * 2 - 1);
+        float2 Simulated;
+        if (SurfaceTemperature(Point, Normal, Profile, Simulated)) Values = Simulated;
+        else if (!Key) [loop] for (uint I = 0; I < UniformCount; ++I) {
+            ThermalUniform U = UniformSurfaces[I];
+            if (all(Point >= U.MinTemperature.xyz) && all(Point <= U.MaxEmissivity.xyz)) {
+                Values = float2(U.MinTemperature.w, U.MaxEmissivity.w); break;
+            }
+        }
+    }
+    float Ambient = Radiance(295);
+    float E = clamp(Values.y, .01, 1);
+    float Rad = E * Radiance(Values.x) + (1 - E) * Ambient;
+    if (isfinite(D) && D > 0) Rad = lerp(Ambient, Rad, 1 / (1 + DepthAttenuation * D));
+    float Count = floor(saturate((Rad - Radiance(DisplayMin)) / (Radiance(DisplayMax) - Radiance(DisplayMin))) * 255 + .5);
+    GrayOutput[Pixel] = 18 + pow(Count / 255, .85) * 220;
+}
+
+Texture2D<float> GrayInput;
+RWTexture2D<float4> DisplayOutput;
+[numthreads(8, 8, 1)]
+void ThermalDisplayCS(uint3 DispatchId : SV_DispatchThreadID) {
+    uint2 Pixel = DispatchId.xy;
+    if (any(Pixel >= ImageSize)) return;
+    float Sum = 0;
+    [unroll] for (int Y = -1; Y <= 1; ++Y) [unroll] for (int X = -1; X <= 1; ++X) {
+        int2 P = clamp(int2(Pixel) + int2(X, Y), int2(0, 0), int2(ImageSize) - 1);
+        float Weight = (X == 0 ? 2 : 1) * (Y == 0 ? 2 : 1);
+        Sum += GrayInput.Load(int3(P, 0)) * Weight;
+    }
+    uint H = (Pixel.y * ImageSize.x + Pixel.x) * 747796405u + 2891336453u;
+    H ^= H >> 16; H *= 2246822519u; H ^= H >> 13;
+    float Noise = (float(H & 1023u) / 1023 - .5) * 3;
+    float Gray = floor(clamp(Sum / 16 + Noise, 0, 255)) / 255;
+    // Float render targets are linear; reproduce the former sRGB upload.
+    float Linear = Gray <= .04045 ? Gray / 12.92 : pow((Gray + .055) / 1.055, 2.4);
+    DisplayOutput[Pixel] = float4(Linear, Linear, Linear, 1);
+}

@@ -328,11 +328,15 @@ UAnnotationComponent::UAnnotationComponent(const FObjectInitializer& ObjectIniti
 	// ParentMeshInfo = MakeShareable(new FParentMeshInfo(nullptr));
 	// This will be invalid until attached to a MeshComponent
 	this->PrimaryComponentTick.bCanEverTick = true;
+    this->PrimaryComponentTick.bStartWithTickEnabled = false;
 }
 
 void UAnnotationComponent::OnRegister()
 {
 	Super::OnRegister();
+    // Static proxies follow their attachment transform and have no per-frame
+    // work. Animated/skinned proxies still tick to refresh or retry MeshObject.
+    SetComponentTickEnabled(Cast<USkinnedMeshComponent>(GetAttachParent()) != nullptr);
 
 	// Ensure the annotation material supports Nanite skeletal mesh shading.
 	// Nanite checks both MATUSAGE_Nanite and MATUSAGE_SkeletalMesh (NaniteResources.cpp:2535).

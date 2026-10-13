@@ -347,6 +347,11 @@ namespace airlib
 
                 double depth_attenuation = 0.01;
 
+                // Fixed radiometric display window for simulated mesh surfaces.
+                // Independent of profile limits and of each frame's histogram.
+                double display_temp_min = 280.0;
+                double display_temp_max = 380.0;
+
                 std::vector<ThermalOverrideSetting> overrides;
             };
 
@@ -1776,6 +1781,10 @@ namespace airlib
             const Settings& settings_json,
             SyntheticCameraSetting& synthetic_camera)
         {
+            // Removed display overrides must restore defaults on settings/PIE
+            // reload, rather than inheriting the previous session's window.
+            synthetic_camera.thermal_ir.display_temp_min = SyntheticCameraSetting::ThermalIRSetting().display_temp_min;
+            synthetic_camera.thermal_ir.display_temp_max = SyntheticCameraSetting::ThermalIRSetting().display_temp_max;
             Settings child_json;
 
             if (settings_json.getChild("SyntheticCameraSettings", child_json)) {
@@ -1803,6 +1812,9 @@ namespace airlib
                             "DepthAttenuation",
                             t.depth_attenuation
                         );
+
+                    t.display_temp_min = thermal_json.getDouble("DisplayTempMin", t.display_temp_min);
+                    t.display_temp_max = thermal_json.getDouble("DisplayTempMax", t.display_temp_max);
 
                     Settings overrides_json;
 

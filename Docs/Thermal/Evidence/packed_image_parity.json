@@ -1,0 +1,23 @@
+[
+  {
+    "view": "packed_car",
+    "mean_abs_counts": 0.8336284756660461,
+    "p95_abs_counts": 2.0,
+    "max_abs_counts": 14.0,
+    "pixels_over_10_counts": 8
+  },
+  {
+    "view": "packed_area",
+    "mean_abs_counts": 0.8093543648719788,
+    "p95_abs_counts": 2.0,
+    "max_abs_counts": 11.0,
+    "pixels_over_10_counts": 5
+  },
+  {
+    "view": "packed_lamp",
+    "mean_abs_counts": 0.7083430886268616,
+    "p95_abs_counts": 1.0,
+    "max_abs_counts": 12.0,
+    "pixels_over_10_counts": 4
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "AirSim Thermal GPU Preview",
+  "Description": "GPU-resident physical ThermalIR preview for Cosys-AirSim.",
+  "Category": "Rendering",
+  "EnabledByDefault": false,
+  "CanContainContent": false,
+  "Installed": true,
+  "Modules": [{"Name": "AirSimThermalGpu", "Type": "Runtime", "LoadingPhase": "PostConfigInit"}]
+}

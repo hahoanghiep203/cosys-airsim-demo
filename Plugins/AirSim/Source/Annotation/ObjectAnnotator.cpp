@@ -768,6 +768,19 @@ FString FObjectAnnotator::GetComponentRGBColor(FString component_id)
 	}
 }
 
+bool FObjectAnnotator::GetComponentRGBColor(UMeshComponent* component, FColor& color)
+{
+    const FString* Name = component_to_name_map_.Find(component);
+    if (!Name) return false;
+    const FString* Rgb = name_to_gammacorrected_color_map_.Find(*Name);
+    if (!Rgb) return false;
+    TArray<FString> Channels;
+    Rgb->ParseIntoArray(Channels, TEXT(","), false);
+    if (Channels.Num() != 3) return false;
+    color = FColor(FCString::Atoi(*Channels[0]), FCString::Atoi(*Channels[1]), FCString::Atoi(*Channels[2]));
+    return true;
+}
+
 float FObjectAnnotator::GetComponentGreyscaleValue(FString component_id)
 {
 	if (name_to_value_map_.Num() == 0)

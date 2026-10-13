@@ -2,6 +2,9 @@
 
 #include "SimMode/SimModeBase.h"
 #include "common/AirSimSettings.hpp"
+#include "ThermalObjectSettings.h"
+#include "Components/MeshComponent.h"
+#include "HAL/PlatformTime.h"
 
 #include <algorithm>
 #include <cmath>
@@ -639,35 +642,141 @@ SyntheticCameraProcessor::ThermalProfile SyntheticCameraProcessor::classifyLabel
     return p;
 }
 
-//native replacement of the ROS node's loadLabelMap CSV: zip the index-aligned
-//instance segmentation name/color lists from the sim (same pairing the
-//CSV-generation scripts use via listInstanceSegmentationObjects +
-//getInstanceSegmentationColorMap)
+// Cache registry identity; refresh mutable settings only for visible objects.
 void SyntheticCameraProcessor::ensureColorProfileMap()
 {
-    if (profile_map_initialized_)
-        return;
-
+    const double Now = FPlatformTime::Seconds();
     ASimModeBase* simmode = ASimModeBase::getSimMode();
     if (simmode == nullptr)
         return; //retry on the next request
 
-    std::vector<std::string> names = simmode->GetAllInstanceSegmentationMeshIDs();
-    std::vector<msr::airlib::Vector3r> colors = simmode->GetInstanceSegmentationColorMap();
-    if (names.empty())
+    static uint32 SimModeId = 0;
+    static size_t ComponentCount = 0;
+    static TMap<uint32, TWeakObjectPtr<UMeshComponent>> ComponentsByColor;
+    const bool Dirty = profile_map_dirty_.exchange(false);
+    const bool SameWorld = SimModeId == simmode->GetUniqueID();
+    if (profile_map_initialized_ && SameWorld && !Dirty && Now - profile_map_refresh_time_ < 1.0) return;
+    // Thousands of spline pieces can share one Landscape actor. Find its
+    // response component once per refresh instead of scanning that actor's
+    // thousands of components once for every road/path piece.
+    TMap<const AActor*, const UThermalReceiverComponent*> ResponseCache;
+    const auto Resolve = [&ResponseCache](const UMeshComponent* C, float T, float E) {
+        const AActor* Owner = C->GetOwner();
+        const UThermalReceiverComponent** Cached = ResponseCache.Find(Owner);
+        if (!Cached) Cached = &ResponseCache.Add(Owner, Owner->FindComponentByClass<UThermalReceiverComponent>());
+        return ThermalObjectSettings::ResolveWithResponse(C, *Cached, T, E);
+    };
+    const size_t RegistryCount = simmode->GetAllInstanceSegmentationMeshIDs().size();
+    if (profile_map_initialized_ && SameWorld && !Dirty && RegistryCount == ComponentCount) {
+        bool Changed = false;
+        if (gpu_profiles_requested_) for (const auto& Entry : ComponentsByColor) {
+            if (!Entry.Value.IsValid()) continue;
+            const auto& Bounds = Entry.Value->Bounds;
+            const FVector Delta = Bounds.Origin - gpu_camera_origin_;
+            const double Radius = Bounds.SphereRadius;
+            // A conservative view cone includes the bounding sphere, including
+            // actors only seen by the IR camera. Avoid a full tag/property
+            // refresh on every object in this large map.
+            if (FVector::DotProduct(Delta, gpu_camera_forward_) + Radius >= Delta.Length() * gpu_camera_cone_cos_)
+                visible_thermal_colors_.insert(Entry.Key);
+        }
+        for (uint32 Key : visible_thermal_colors_) {
+            const auto* Component = ComponentsByColor.Find(Key);
+            if (!Component || !Component->IsValid()) continue;
+            auto Base = base_color_to_profile_.find(Key);
+            if (Base == base_color_to_profile_.end()) continue;
+            ThermalProfile Profile = Base->second;
+            const auto Values = Resolve(Component->Get(), Profile.base_temp_K, Profile.emissivity);
+            Profile.base_temp_K = Values.TemperatureKelvin;
+            Profile.emissivity = Values.Emissivity;
+            const auto Previous = color_to_profile_.find(Key);
+            if (Previous == color_to_profile_.end() || Previous->second.base_temp_K != Profile.base_temp_K ||
+                Previous->second.emissivity != Profile.emissivity) {
+                color_to_profile_[Key] = Profile;
+                flir_rad_cache_.erase(Key);
+                Changed = true;
+            }
+        }
+        if (Changed) flir_lut_.clear();
+        visible_thermal_colors_.clear();
+        profile_map_refresh_time_ = Now;
+        // Unchanged scene settings do not require rebuilding all stencil groups
+        // or uploading a new profile table once every second.
+        if (Changed) ++gpu_profile_revision_;
+        return;
+    }
+
+    const auto Colors = simmode->GetInstanceSegmentationComponentColors();
+    if (Colors.IsEmpty())
         return; //annotator not populated yet; retry on the next request
 
-    size_t count = std::min(names.size(), colors.size());
-    for (size_t i = 0; i < count; ++i) {
-        uint8_t r = static_cast<uint8_t>(colors[i].x());
-        uint8_t g = static_cast<uint8_t>(colors[i].y());
-        uint8_t b = static_cast<uint8_t>(colors[i].z());
-        //the mesh id carries the object name (e.g. bp_kangaroo23_...); the ROS CSV
-        //split it into label/object_name columns which classifyLabel re-joined anyway
-        color_to_profile_[makeColorKey(r, g, b)] = classifyLabel(names[i], "");
+    const auto Components = simmode->GetInstanceSegmentationComponentToNameMap();
+    ComponentsByColor.Reset();
+    base_color_to_profile_.clear();
+    color_to_profile_.clear();
+    flir_rad_cache_.clear();
+    flir_lut_.clear();
+    for (const auto& Entry : Colors) {
+        const FString* Name = Components.Find(Entry.Key);
+        ThermalProfile Profile = classifyLabel(Name ? TCHAR_TO_UTF8(**Name) : "", "");
+        const uint32 Key = makeColorKey(Entry.Value.R, Entry.Value.G, Entry.Value.B);
+        base_color_to_profile_[Key] = Profile;
+        ComponentsByColor.Add(Key, Entry.Key);
+        const auto Values = Resolve(Entry.Key, Profile.base_temp_K, Profile.emissivity);
+        Profile.base_temp_K = Values.TemperatureKelvin;
+        Profile.emissivity = Values.Emissivity;
+        color_to_profile_[Key] = Profile;
     }
 
     profile_map_initialized_ = true;
+    profile_map_refresh_time_ = Now;
+    SimModeId = simmode->GetUniqueID();
+    ComponentCount = RegistryCount;
+    visible_thermal_colors_.clear();
+    ++gpu_profile_revision_;
+}
+
+TSharedPtr<const TArray<FThermalGpuProfile>, ESPMode::ThreadSafe> SyntheticCameraProcessor::gpuThermalProfiles(
+    const FVector& Origin, const FVector& Forward, float TanHalfFov, float Aspect, uint64& Revision)
+{
+    check(IsInGameThread());
+    std::unique_lock<std::mutex> Lock(mutex_, std::try_to_lock);
+    if (!Lock.owns_lock()) { Revision = gpu_profile_revision_; return gpu_profiles_; }
+    gpu_profiles_requested_ = true;
+    gpu_camera_origin_ = Origin; gpu_camera_forward_ = Forward;
+    gpu_camera_cone_cos_ = 1.f / FMath::Sqrt(1.f + FMath::Square(TanHalfFov) * (1.f + 1.f / FMath::Square(FMath::Max(.01f, Aspect))));
+    const uint64 Before = gpu_profile_revision_;
+    ensureColorProfileMap();
+    if (!gpu_profiles_ || Before != gpu_profile_revision_) {
+        gpu_profiles_ = MakeShared<TArray<FThermalGpuProfile>, ESPMode::ThreadSafe>();
+        gpu_profiles_->Reserve(color_to_profile_.size());
+        for (const auto& Entry : color_to_profile_)
+            gpu_profiles_->Add({FUintVector4(Entry.first, 0, 0, 0),
+                FVector4f(Entry.second.base_temp_K, Entry.second.emissivity, 0, 0)});
+    }
+    Revision = gpu_profile_revision_;
+    return gpu_profiles_;
+}
+TSharedPtr<const TArray<float>, ESPMode::ThreadSafe> SyntheticCameraProcessor::gpuThermalRadiance()
+{
+    check(IsInGameThread());
+    std::unique_lock<std::mutex> Lock(mutex_, std::try_to_lock);
+    if (!Lock.owns_lock()) return gpu_radiance_;
+    if (!gpu_radiance_) {
+        ensureSpectralResponse();
+        gpu_radiance_ = MakeShared<TArray<float>, ESPMode::ThreadSafe>();
+        for (int K = 1; K <= 2000; ++K)
+            gpu_radiance_->Add(float(planckBandRadiance(band_, resp_, K, 1.0)));
+    }
+    return gpu_radiance_;
+}
+
+void SyntheticCameraProcessor::prepareThermalProfiles()
+{
+    check(IsInGameThread());
+    std::unique_lock<std::mutex> lock(mutex_, std::try_to_lock);
+    if (!lock.owns_lock()) return; // Retry later rather than blocking the game thread on composition.
+    ensureColorProfileMap();
 }
 
 //port of thermal_image_segmentation_based_node.cpp initLUT (lines 647-777):
@@ -675,7 +784,7 @@ void SyntheticCameraProcessor::ensureColorProfileMap()
 //froze the LUT on the first frame, mapping later-appearing colors to 0), the
 //radiance cache grows as new segmentation colors are encountered and the LUT is
 //renormalized, so objects entering view mid-run still render.
-void SyntheticCameraProcessor::ensureThermalIrLut(const std::vector<uint8_t>& seg_rgb, int width, int height)
+void SyntheticCameraProcessor::ensureSpectralResponse()
 {
     //precomputeSpectralResponse (lines 291-304); note: node B uses lambda <= 14.0
     if (band_.empty()) {
@@ -686,6 +795,11 @@ void SyntheticCameraProcessor::ensureThermalIrLut(const std::vector<uint8_t>& se
         }
     }
 
+}
+
+void SyntheticCameraProcessor::ensureThermalIrLut(const std::vector<uint8_t>& seg_rgb, int width, int height)
+{
+    ensureSpectralResponse();
     const size_t pixel_count = static_cast<size_t>(width) * height;
     std::set<uint32_t> colors;
     for (size_t i = 0; i < pixel_count; ++i)
@@ -752,7 +866,9 @@ void SyntheticCameraProcessor::composeThermalIR(
                                             const std::vector<uint8_t>& normals_rgb,
                                             int width,
                                             int height,
-                                            std::vector<uint8_t>& out_rgb)
+                                            std::vector<uint8_t>& out_rgb,
+                                            const std::vector<float>& surface_temperature_K,
+                                            const std::vector<float>& surface_emissivity)
 {
     std::lock_guard<std::mutex> lock(mutex_);
 
@@ -761,16 +877,55 @@ void SyntheticCameraProcessor::composeThermalIR(
     const bool use_lighting = (lighting_rgb.size() == pixel_count * 3);
     const bool use_normals = (normals_rgb.size() == pixel_count * 3);
 
-    ensureColorProfileMap();
-    ensureThermalIrLut(seg_rgb, width, height);
+    const bool physical_surfaces = surface_temperature_K.size() == pixel_count && surface_emissivity.size() == pixel_count;
+    if (physical_surfaces) ensureSpectralResponse();
+    else ensureThermalIrLut(seg_rgb, width, height);
+    // Cache Planck-band radiance at one-K intervals. Pixel temperatures are
+    // interpolated radiometrically before sensor/display processing, never
+    // painted as an additive glow or summed absolute source temperature.
+    static std::vector<double> temperature_radiance;
+    if (physical_surfaces && temperature_radiance.empty()) {
+        for (int k = 1; k <= 2000; ++k)
+            temperature_radiance.push_back(planckBandRadiance(band_, resp_, k, 1.0));
+    }
+    const auto radiance_at = [](double temperature) {
+        const double t = std::clamp(temperature, 1.0, 1999.0);
+        const size_t index = static_cast<size_t>(t) - 1;
+        const double fraction = t - std::floor(t);
+        return temperature_radiance[index] * (1.0 - fraction) + temperature_radiance[index + 1] * fraction;
+    };
+    // Read display bounds on every composition so settings reloads between PIE
+    // sessions apply without invalidating the temperature-only radiance cache.
+    const double display_min = std::isfinite(cfg.display_temp_min) ? std::clamp(cfg.display_temp_min, 1.0, 1998.0) : 280.0;
+    const double display_max = std::isfinite(cfg.display_temp_max) ? std::clamp(cfg.display_temp_max, display_min + 1.0, 1999.0) : std::max(display_min + 1.0, 380.0);
+    const double reference_cold = physical_surfaces ? radiance_at(display_min) : 0;
+    const double reference_hot = physical_surfaces ? radiance_at(display_max) : 1;
 
     const bool use_depth = (depth_m.size() == pixel_count);
+    const double ambient_radiance = physical_surfaces ? radiance_at(295.0) : 0;
 
     std::vector<uint8_t> thermo(pixel_count);
+    uint32_t LastColor = ~uint32_t(0);
     // std::vector<uint8_t> kangaroo_mask(pixel_count, 0);
 
     for (size_t i = 0; i < pixel_count; ++i) {
         uint32_t key = makeColorKey(seg_rgb[i * 3 + 0], seg_rgb[i * 3 + 1], seg_rgb[i * 3 + 2]);
+        if (key != LastColor) { visible_thermal_colors_.insert(key); LastColor = key; }
+
+        auto itp = color_to_profile_.find(key);
+        if (physical_surfaces) {
+            const ThermalProfile profile = itp != color_to_profile_.end() ? itp->second : ThermalProfile();
+            const bool simulated = std::isfinite(surface_temperature_K[i]);
+            const double temperature = simulated ? surface_temperature_K[i] : profile.base_temp_K;
+            const double emissivity = simulated ? std::clamp(static_cast<double>(surface_emissivity[i]), .01, 1.0) : profile.emissivity;
+            double radiance = emissivity * radiance_at(temperature) + (1.0 - emissivity) * ambient_radiance;
+            if (use_depth && std::isfinite(depth_m[i]) && depth_m[i] > 0) {
+                const double transmission = 1.0 / (1.0 + cfg.depth_attenuation * depth_m[i]);
+                radiance = radiance * transmission + ambient_radiance * (1.0 - transmission);
+            }
+            thermo[i] = saturateU8(255.0 * (radiance - reference_cold) / (reference_hot - reference_cold));
+            continue;
+        }
 
         auto it = flir_lut_.find(key);
         uint8_t base_cnt = (it != flir_lut_.end() ? it->second : 0);
@@ -807,7 +962,6 @@ void SyntheticCameraProcessor::composeThermalIR(
         static_cast<double>(surface_noise)
         * variation_amplitude;
 
-        auto itp = color_to_profile_.find(key);
         if (itp != color_to_profile_.end() && itp->second.is_kangaroo) {
             // Extra boost before colormap so they sit near the very hot end
             if (base_cnt < 245)
@@ -1015,6 +1169,14 @@ void SyntheticCameraProcessor::composeThermalIR(
 
     if (high_level <= low_level) {
         high_level = std::min(255, low_level + 1);
+    }
+
+    if (physical_surfaces) {
+        // Mesh temperatures already map to the configured radiometric window.
+        // Frame histogram stretching would turn a small baseline difference
+        // into a white silhouette and change every pixel when a heater appears.
+        low_level = 0;
+        high_level = 255;
     }
 
 

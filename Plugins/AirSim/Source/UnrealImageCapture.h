@@ -6,6 +6,8 @@
 #include "common/ImageCaptureBase.hpp"
 #include "common/common_utils/UniqueValueMap.hpp"
 
+struct FThermalFrameSnapshot;
+
 class AIRSIM_API UnrealImageCapture : public msr::airlib::ImageCaptureBase
 {
 public:
@@ -18,7 +20,8 @@ public:
 
 private:
     void getSceneCaptureImage(const std::vector<msr::airlib::ImageCaptureBase::ImageRequest>& requests,
-                              std::vector<msr::airlib::ImageCaptureBase::ImageResponse>& responses, bool use_safe_method) const;
+                              std::vector<msr::airlib::ImageCaptureBase::ImageResponse>& responses, bool use_safe_method,
+                              std::vector<FThermalFrameSnapshot>* thermal_snapshots = nullptr) const;
 
     void addScreenCaptureHandler(UWorld* world);
     bool getScreenshotScreen(ImageType image_type, std::vector<uint8_t>& compressedPng);

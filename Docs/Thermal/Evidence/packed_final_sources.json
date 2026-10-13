@@ -1,0 +1,104 @@
+{
+  "source_count": 14,
+  "fixture_count": 7,
+  "sources": [
+    {
+      "name": "BP_EveningParkLampSource_C_21",
+      "class": "BP_EveningParkLampSource_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": true
+    },
+    {
+      "name": "BP_EveningParkLampSource_C_22",
+      "class": "BP_EveningParkLampSource_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": true
+    },
+    {
+      "name": "BP_EveningParkLampSource_C_23",
+      "class": "BP_EveningParkLampSource_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": true
+    },
+    {
+      "name": "BP_EveningStreetLampSource_C_12",
+      "class": "BP_EveningStreetLampSource_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": true
+    },
+    {
+      "name": "BP_EveningStreetLampSource_C_13",
+      "class": "BP_EveningStreetLampSource_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": true
+    },
+    {
+      "name": "BP_EveningStreetLampSource_C_14",
+      "class": "BP_EveningStreetLampSource_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": true
+    },
+    {
+      "name": "BP_EveningStreetLampSource_C_15",
+      "class": "BP_EveningStreetLampSource_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": true
+    },
+    {
+      "name": "HoodHeat_GEN_VARIABLE_BP_HatchbackHoodHeat_C_CAT_0",
+      "class": "BP_HatchbackHoodHeat_C",
+      "temperature_kelvin": 353.1499938964844,
+      "enabled": true,
+      "evening_fixture": false
+    },
+    {
+      "name": "HeadlightHeat_GEN_VARIABLE_BP_HatchbackHeadlightHeat_C_CAT_0",
+      "class": "BP_HatchbackHeadlightHeat_C",
+      "temperature_kelvin": 343.1499938964844,
+      "enabled": true,
+      "evening_fixture": false
+    },
+    {
+      "name": "FrontLeftTireHeat_GEN_VARIABLE_BP_HatchbackTireHeat_C_CAT_0",
+      "class": "BP_HatchbackTireHeat_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": false
+    },
+    {
+      "name": "FrontRightLightHeat_GEN_VARIABLE_BP_HatchbackHeadlightHeat_C_CAT_0",
+      "class": "BP_HatchbackHeadlightHeat_C",
+      "temperature_kelvin": 343.1499938964844,
+      "enabled": true,
+      "evening_fixture": false
+    },
+    {
+      "name": "FrontRightTireHeat_GEN_VARIABLE_BP_HatchbackTireHeat_C_CAT_0",
+      "class": "BP_HatchbackTireHeat_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": false
+    },
+    {
+      "name": "RearLeftTireHeat_GEN_VARIABLE_BP_HatchbackTireHeat_C_CAT_0",
+      "class": "BP_HatchbackTireHeat_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": false
+    },
+    {
+      "name": "RearRightTireHeat_GEN_VARIABLE_BP_HatchbackTireHeat_C_CAT_0",
+      "class": "BP_HatchbackTireHeat_C",
+      "temperature_kelvin": 333.1499938964844,
+      "enabled": true,
+      "evening_fixture": false
+    }
+  ]
+}

@@ -200,6 +200,8 @@ public:
 	std::vector<std::string> GetAllInstanceSegmentationMeshIDs();
     std::vector<msr::airlib::Pose> GetAllInstanceSegmentationMeshPoses(bool ned = true, bool only_visible = false);
     TMap<UMeshComponent*, FString> GetInstanceSegmentationComponentToNameMap();
+    TMap<UMeshComponent*, FColor> GetInstanceSegmentationComponentColors();
+    bool GetInstanceSegmentationComponentColor(UMeshComponent* Component, FColor& Color);
     std::vector<msr::airlib::Vector3r> GetInstanceSegmentationColorMap();
 
 	bool SetMeshInstanceSegmentationID(const std::string& mesh_name, int object_id, bool is_name_regex, bool update_annotation = true);

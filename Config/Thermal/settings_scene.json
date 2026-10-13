@@ -1,0 +1,114 @@
+{
+  "SettingsVersion": 2.0,
+  "SimMode": "Multirotor",
+  "RecordUIVisible": true,
+  "CameraDefaults": {
+    "CaptureSettings": [
+      {
+        "ImageType": -1,
+        "AutoExposureCompensation": -1.0
+      },
+      {
+        "ImageType": 0,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 65
+      },
+      {
+        "ImageType": 1,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 65
+      },
+      {
+        "ImageType": 5,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 65
+      },
+      {
+        "ImageType": 6,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 65
+      },
+      {
+        "ImageType": 10,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 65
+      }
+    ]
+  },
+  "SyntheticCameraSettings": {
+    "ThermalIR": {
+      "TempMin": 270.0,
+      "TempMax": 1300.0,
+      "EpsMin": 0.6,
+      "EpsMax": 0.99,
+      "DepthAttenuation": 0.002,
+      "Overrides": [
+        {
+          "Match": "human",
+          "TempK": 309.15,
+          "Emissivity": 0.98,
+          "IsAnimal": true
+        },
+        {
+          "Match": "car_engine",
+          "TempK": 363.15,
+          "Emissivity": 0.9
+        },
+        {
+          "Match": "car_body",
+          "TempK": 305.15,
+          "Emissivity": 0.85
+        },
+        {
+          "Match": "hot_pipe",
+          "TempK": 423.15,
+          "Emissivity": 0.88
+        },
+        {
+          "Match": "fire",
+          "TempK": 1000.0,
+          "Emissivity": 0.98,
+          "IsFire": true
+        },
+        {
+          "Match": "cold_wall",
+          "TempK": 285.15,
+          "Emissivity": 0.92
+        }
+      ],
+      "DisplayTempMin": 280,
+      "DisplayTempMax": 380
+    }
+  },
+  "SubWindows": [
+    {
+      "WindowID": 0,
+      "CameraName": "0",
+      "ImageType": 3,
+      "Visible": false
+    },
+    {
+      "WindowID": 1,
+      "CameraName": "0",
+      "ImageType": 5,
+      "Visible": false
+    },
+    {
+      "WindowID": 2,
+      "CameraName": "0",
+      "ImageType": 0,
+      "Visible": false
+    },
+    {
+      "WindowID": 3,
+      "CameraName": "0",
+      "ImageType": 12,
+      "Visible": true
+    }
+  ]
+}

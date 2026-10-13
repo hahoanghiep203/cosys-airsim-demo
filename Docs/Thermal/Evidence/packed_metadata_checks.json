@@ -1,0 +1,34 @@
+{
+  "camera_info_fov": 89.90362548828125,
+  "projection_matrix_valid": true,
+  "hidden_rgb_captures": [
+    {
+      "camera": "ExternalCamera",
+      "rendering_continuously": false
+    },
+    {
+      "camera": "BP_PIPCamera_C_0",
+      "rendering_continuously": false
+    },
+    {
+      "camera": "BP_PIPCamera_C_1",
+      "rendering_continuously": false
+    },
+    {
+      "camera": "BP_PIPCamera_C_2",
+      "rendering_continuously": false
+    },
+    {
+      "camera": "BP_PIPCamera_C_3",
+      "rendering_continuously": false
+    },
+    {
+      "camera": "BP_PIPCamera_C_4",
+      "rendering_continuously": false
+    }
+  ],
+  "rgb_api_size": [
+    1280,
+    720
+  ]
+}

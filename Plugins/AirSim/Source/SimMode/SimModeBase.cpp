@@ -1,4 +1,5 @@
 #include "SimModeBase.h"
+#include "SyntheticCameraProcessor.h"
 #include "Recording/RecordingThread.h"
 #include "Misc/MessageDialog.h"
 #include "Misc/EngineVersion.h"
@@ -786,6 +787,24 @@ TMap<UMeshComponent*, FString> ASimModeBase::GetInstanceSegmentationComponentToN
     return instance_segmentation_annotator_.GetComponentToNameMap();
 }
 
+TMap<UMeshComponent*, FColor> ASimModeBase::GetInstanceSegmentationComponentColors() {
+    TMap<UMeshComponent*, FColor> Result;
+    // Annotation IDs can change independently of TMap iteration order. Use the
+    // actual capture color (including the annotator's gamma correction).
+    for (const auto& Entry : instance_segmentation_annotator_.GetComponentToNameMap()) {
+        if (!IsValid(Entry.Key)) continue;
+        TArray<FString> Channels;
+        instance_segmentation_annotator_.GetComponentRGBColor(Entry.Value).ParseIntoArray(Channels, TEXT(","), false);
+        if (Channels.Num() != 3) continue;
+        Result.Add(Entry.Key, FColor(FCString::Atoi(*Channels[0]), FCString::Atoi(*Channels[1]), FCString::Atoi(*Channels[2])));
+    }
+    return Result;
+}
+
+bool ASimModeBase::GetInstanceSegmentationComponentColor(UMeshComponent* Component, FColor& Color) {
+    return instance_segmentation_annotator_.GetComponentRGBColor(Component, Color);
+}
+
 std::vector<msr::airlib::Pose> ASimModeBase::GetAllInstanceSegmentationMeshPoses(bool ned, bool only_visible) {
     std::vector<msr::airlib::Pose> retval;
     TMap<FString, UMeshComponent*> nameToComponentMapTemp = instance_segmentation_annotator_.GetNameToComponentMap();
@@ -829,6 +848,7 @@ bool ASimModeBase::SetMeshInstanceSegmentationID(const std::string& mesh_name, i
 				FString key = It.Key();
 				UAirBlueprintLib::RunCommandOnGameThread([this, key, object_id, &success]() {
 					success = instance_segmentation_annotator_.SetComponentRGBColorByIndex(key, object_id);
+                    if (success) SyntheticCameraProcessor::instance().invalidateThermalProfiles();
 				}, true);
 				changes++;
 			}
@@ -841,6 +861,7 @@ bool ASimModeBase::SetMeshInstanceSegmentationID(const std::string& mesh_name, i
 		FString key = mesh_name.c_str();
 		UAirBlueprintLib::RunCommandOnGameThread([this, key, object_id, &success]() {
 			success = instance_segmentation_annotator_.SetComponentRGBColorByIndex(key, object_id);
+            if (success) SyntheticCameraProcessor::instance().invalidateThermalProfiles();
 		}, true);
         if(update_annotation)updateInstanceSegmentationAnnotation();
         return success;

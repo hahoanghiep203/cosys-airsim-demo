@@ -1,12 +1,15 @@
 #pragma once
 
 #include <cstdint>
+#include <atomic>
 #include <map>
 #include <mutex>
 #include <random>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
+#include "ThermalGpuData.h"
 
 // CPU-side composition of the synthetic camera image types (ImageType::ThermalIR and
 // ImageType::NightVision) from underlying captures rendered in the same simGetImages
@@ -26,6 +29,15 @@ class SyntheticCameraProcessor
 public:
     static SyntheticCameraProcessor& instance();
 
+    // Query Unreal's segmentation registry only in the synchronized game-thread
+    // capture callback; composition uses cached values on the requesting worker.
+    void prepareThermalProfiles();
+    void invalidateThermalProfiles() { profile_map_dirty_.store(true); }
+    // Shader-ready profiles, cached between the bounded metadata refreshes.
+    TSharedPtr<const TArray<FThermalGpuProfile>, ESPMode::ThreadSafe> gpuThermalProfiles(
+        const FVector& CameraOrigin, const FVector& CameraForward, float TanHalfFov, float AspectRatio, uint64& Revision);
+    TSharedPtr<const TArray<float>, ESPMode::ThreadSafe> gpuThermalRadiance();
+
     // scene_rgb may be empty or a different resolution than width*height (the ROS
     // node's fallback then applies: pure thermal map, no scene luminance)
     void composeNightVision(const std::vector<uint8_t>& scene_rgb,
@@ -42,7 +54,9 @@ public:
     const std::vector<uint8_t>& normals_rgb,
     int width,
     int height,
-    std::vector<uint8_t>& out_rgb);
+    std::vector<uint8_t>& out_rgb,
+    const std::vector<float>& surface_temperature_K = {},
+    const std::vector<float>& surface_emissivity = {});
 
 private:
     struct ThermalProfile
@@ -59,6 +73,7 @@ private:
     void ensureNightVisionLut(const std::vector<uint8_t>& seg_gray);
     void ensureColorProfileMap();
     void ensureThermalIrLut(const std::vector<uint8_t>& seg_rgb, int width, int height);
+    void ensureSpectralResponse();
     ThermalProfile classifyLabel(const std::string& label, const std::string& object_name) const;
 
     std::mutex mutex_;
@@ -78,9 +93,20 @@ private:
     //ThermalIR state: 0x00RRGGBB color key -> profile / radiance cache / thermal
     //count; same incremental scheme as NVG for colors that first appear mid-run
     bool profile_map_initialized_ = false;
+    std::atomic<bool> profile_map_dirty_{true};
+    double profile_map_refresh_time_ = 0;
     std::unordered_map<uint32_t, ThermalProfile> color_to_profile_;
+    std::unordered_map<uint32_t, ThermalProfile> base_color_to_profile_;
+    std::unordered_set<uint32_t> visible_thermal_colors_;
     std::unordered_map<uint32_t, double> flir_rad_cache_;
     std::unordered_map<uint32_t, uint8_t> flir_lut_;
     std::vector<double> band_;
     std::vector<double> resp_;
+    bool gpu_profiles_requested_ = false;
+    FVector gpu_camera_origin_ = FVector::ZeroVector;
+    FVector gpu_camera_forward_ = FVector::ForwardVector;
+    float gpu_camera_cone_cos_ = 0;
+    uint64 gpu_profile_revision_ = 0;
+    TSharedPtr<TArray<FThermalGpuProfile>, ESPMode::ThreadSafe> gpu_profiles_;
+    TSharedPtr<TArray<float>, ESPMode::ThreadSafe> gpu_radiance_;
 };

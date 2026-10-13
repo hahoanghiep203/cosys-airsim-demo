@@ -63,6 +63,7 @@ public:
 
 	bool IsRGBColorValid(FColor color);
 	FString GetComponentRGBColor(FString component_id);
+    bool GetComponentRGBColor(UMeshComponent* component, FColor& color);
 	bool SetComponentRGBColorByIndex(FString component_id, uint32 color_index);
 	bool SetComponentRGBColorByColor(FString component_id, FColor color);
 

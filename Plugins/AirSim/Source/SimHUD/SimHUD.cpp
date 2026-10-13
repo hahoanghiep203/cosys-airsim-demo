@@ -10,7 +10,26 @@
 
 #include "Async/Async.h"
 #include "Engine/Texture2D.h"
+#include "Components/SceneCaptureComponent2D.h"
+#include "Components/PlanarReflectionComponent.h"
 #include "UnrealImageCapture.h"
+#include "HAL/IConsoleManager.h"
+#include "ThermalWorldSubsystem.h"
+#include "SyntheticCameraProcessor.h"
+#include "Engine/TextureRenderTarget2D.h"
+#include "ImageUtils.h"
+#include "Engine/GameViewportClient.h"
+#include "Slate/SceneViewport.h"
+#include "Materials/MaterialInterface.h"
+
+static TAutoConsoleVariable<float> ThermalLiveHz(TEXT("airsim.Thermal.LiveHz"), 30.f,
+    TEXT("ThermalIR preview refresh rate (0 disables preview requests; 1-60 Hz). Does not change thermal simulation or RPC captures."));
+static TAutoConsoleVariable<int32> ThermalGpuPreview(TEXT("airsim.Thermal.GpuPreview"), 1,
+    TEXT("GPU-resident ThermalIR on SM5+ hardware. 0 uses the CPU reference. Explicit RPC requests read back a fresh GPU image."));
+static TAutoConsoleVariable<float> RgbPreviewHz(TEXT("airsim.Camera.RgbPreviewHz"), 30.f,
+    TEXT("Displayed RGB camera preview refresh rate (0 pauses camera previews; 1-60 Hz). Main viewport and explicit RPC captures are independent."));
+static TAutoConsoleVariable<int32> PlanarReflectionBudget(TEXT("airsim.Rendering.PlanarReflectionBudget"), 0,
+    TEXT("Opt-in runtime reflection budget: 25 percent resolution, coarser reflected LODs and 50 m range. Original map assets remain unchanged; set before Play."));
 
 #include "common/AirSimSettings.hpp"
 #include <stdexcept>
@@ -24,6 +43,17 @@ ASimHUD::ASimHUD()
 void ASimHUD::BeginPlay()
 {
     Super::BeginPlay();
+
+    if (PlanarReflectionBudget.GetValueOnGameThread()) {
+        for (TObjectIterator<UPlanarReflectionComponent> It; It; ++It) {
+            auto* Reflection = *It;
+            if (Reflection->GetWorld() != GetWorld()) continue;
+            Reflection->ScreenPercentage = FMath::Min(Reflection->ScreenPercentage, 25);
+            Reflection->LODDistanceFactor = FMath::Max(Reflection->LODDistanceFactor, 4.f);
+            Reflection->MaxViewDistanceOverride = Reflection->MaxViewDistanceOverride > 0
+                ? FMath::Min(Reflection->MaxViewDistanceOverride, 5000.f) : 5000.f;
+        }
+    }
 
     try {
         UAirBlueprintLib::OnBeginPlay();
@@ -59,6 +89,23 @@ void ASimHUD::Tick(float DeltaSeconds)
     if (!simmode_ || !widget_)
         return;
 
+    // A visible RGB camera window otherwise renders the scene a second time
+    // at the main viewport's full frame rate. Schedule it independently.
+    const float RgbHz = RgbPreviewHz.GetValueOnGameThread();
+    const float RgbInterval = 1.f / FMath::Clamp(RgbHz, 1.f, 60.f);
+    rgb_live_elapsed_ += DeltaSeconds;
+    const bool CaptureRgb = RgbHz > 0 && rgb_live_elapsed_ >= RgbInterval;
+    if (CaptureRgb) rgb_live_elapsed_ = FMath::Fmod(rgb_live_elapsed_, RgbInterval);
+    for (int32 Index = 0; Index < getSubWindowSettings().size(); ++Index) {
+        const auto& Window = getSubWindowSettings()[Index];
+        if (!Window.visible || Window.image_type != ImageType::Scene || !subwindow_cameras_[Index]) continue;
+        auto* Capture = subwindow_cameras_[Index]->getCaptureComponent(ImageType::Scene, true);
+        if (!Capture) continue;
+        Capture->bCaptureEveryFrame = false;
+        Capture->bCaptureOnMovement = false;
+        if (CaptureRgb) Capture->CaptureSceneDeferred();
+    }
+
     if (getSubWindowSettings().size() <= 3)
         return;
 
@@ -71,17 +118,299 @@ void ASimHUD::Tick(float DeltaSeconds)
         return;
     }
 
+    const float LiveHz = ThermalLiveHz.GetValueOnGameThread();
+    if (LiveHz <= 0) return;
+    thermal_live_interval_ = 1.f / FMath::Clamp(LiveHz, 1.f, 60.f);
     thermal_live_elapsed_ += DeltaSeconds;
 
     if (thermal_live_elapsed_ >= thermal_live_interval_)
     {
-        thermal_live_elapsed_ = 0.0f;
+        thermal_live_elapsed_ = FMath::Fmod(thermal_live_elapsed_, thermal_live_interval_);
+
+        if (ThermalGpuPreview.GetValueOnGameThread() && FThermalGpuRenderer::IsSupported() && requestThermalGpuFrame()) return;
 
         if (!thermal_request_in_flight_.exchange(true))
         {
             requestThermalLiveFrame();
         }
     }
+}
+
+void ASimHUD::restoreThermalStencil()
+{
+    for (const auto& Entry : thermal_stencil_restore_) if (Entry.Component.IsValid()) {
+        auto* C = Entry.Component.Get();
+        C->SetRenderCustomDepth(Entry.Enabled);
+        C->SetCustomDepthStencilValue(Entry.Value);
+        C->SetCustomDepthStencilWriteMask(Entry.Mask);
+    }
+    thermal_stencil_restore_.Reset();
+    thermal_stencil_seen_.Reset();
+}
+
+bool ASimHUD::prepareThermalGpuFrame(APIPCamera* Camera)
+{
+    if (!IsValid(Camera) || !FThermalGpuRenderer::IsSupported() || !simmode_) return false;
+    const auto* Depth = Camera->getCaptureComponent(ImageType::DepthPlanar, false);
+    // Inactive AirSim captures detach their TextureTarget. Camera settings and
+    // the allocated target remain available without enabling another renderer.
+    const auto* DepthTarget = Camera->getRenderTarget(ImageType::DepthPlanar, false);
+    if (!Depth || !DepthTarget || Depth->ProjectionType != ECameraProjectionMode::Perspective) return false;
+    const FIntPoint Size(DepthTarget->SizeX, DepthTarget->SizeY);
+    if (Size.X <= 0 || Size.Y <= 0 || Size.X > 8192 || Size.Y > 8192) return false;
+    const FTransform Transform = Depth->GetComponentTransform();
+    uint64 Revision = 0;
+    const auto Profiles = SyntheticCameraProcessor::instance().gpuThermalProfiles(Transform.GetLocation(), Transform.GetUnitAxis(EAxis::X),
+        FMath::Tan(FMath::DegreesToRadians(Depth->FOVAngle) * .5f), float(Size.X) / Size.Y, Revision);
+    if (!Profiles) return false;
+    auto Frame = GetWorld()->GetSubsystem<UThermalWorldSubsystem>()->MakeGpuFrame();
+    if (!Frame.Topology) return false;
+    if (!thermal_packed_profiles_ || Revision != thermal_source_profile_revision_ ||
+        Frame.Topology->Revision != thermal_source_topology_revision_) {
+        TMap<uint32, FVector4f> Values;
+        for (const auto& P : *Profiles) Values.Add(P.Identity.X, P.Values);
+        const auto Colors = simmode_->GetInstanceSegmentationComponentColors();
+        TMap<FString, uint32> Groups;
+        auto NewProfiles = MakeShared<TArray<FThermalGpuProfile>, ESPMode::ThreadSafe>();
+        TMap<uint32, uint32> NewIds;
+        struct FAssignment { UPrimitiveComponent* C; uint32 Id; };
+        TArray<FAssignment> Assignments;
+        for (const auto& Pair : Colors) {
+            auto* C = Pair.Key;
+            if (!IsValid(C)) continue;
+            if (C->ComponentHasTag(TEXT("ThermalIgnore")) || C->GetOwner()->ActorHasTag(TEXT("ThermalIgnore"))) {
+                Assignments.Add({C, 0}); continue;
+            }
+            // Translucent puddle/glass planes are absent from opaque scene depth.
+            // Their entire quad must not mask the road or another surface behind.
+            bool HasSurface = false;
+            for (int32 M = 0; M < C->GetNumMaterials(); ++M) if (auto* Material = C->GetMaterial(M)) {
+                const auto Blend = Material->GetBlendMode();
+                HasSurface |= Blend == BLEND_Opaque || Blend == BLEND_Masked;
+            }
+            if (!HasSurface) { Assignments.Add({C, 0}); continue; }
+            const uint32 Color = (uint32(Pair.Value.R) << 16) | (uint32(Pair.Value.G) << 8) | Pair.Value.B;
+            const auto* Profile = Values.Find(Color);
+            if (!Profile) continue;
+            // A heated receiver needs its own identity. Uniform cold objects can
+            // share an ID only when both temperature and emissivity match.
+            const FString Group = Frame.ReceiversByColor.Contains(Color) ? FString::Printf(TEXT("receiver:%u"), Color) :
+                FString::Printf(TEXT("baseline:%.6f:%.6f"), Profile->X, Profile->Y);
+            uint32* Existing = Groups.Find(Group);
+            uint32 Id = Existing ? *Existing : NewProfiles->Num() + 1;
+            if (!Existing) {
+                if (Id > 255) return false; // Retain the full-identity CPU fallback.
+                Groups.Add(Group, Id);
+                NewProfiles->Add({FUintVector4(Id << 16, 0, 0, 0), *Profile});
+            }
+            NewIds.Add(Color, Id);
+            Assignments.Add({C, Id});
+        }
+        // Runtime-only stencil changes: keep original state for every component
+        // and restore it at EndPlay. Mesh/material/map assets are never modified.
+        for (const auto& Assignment : Assignments) {
+            auto* C = Assignment.C;
+            if (!thermal_stencil_seen_.Contains(C)) {
+                thermal_stencil_restore_.Add({C, bool(C->bRenderCustomDepth), C->CustomDepthStencilValue, C->CustomDepthStencilWriteMask});
+                thermal_stencil_seen_.Add(C);
+            }
+            C->SetRenderCustomDepth(Assignment.Id != 0);
+            // Default writes IDs only where this surface wins the depth test.
+            // ERSM_255 also replaces stencil on a failed depth test, letting
+            // background roads overwrite the IDs of a car or a lamp in front.
+            C->SetCustomDepthStencilWriteMask(ERendererStencilMask::ERSM_Default);
+            C->SetCustomDepthStencilValue(Assignment.Id);
+        }
+        thermal_packed_ids_ = MoveTemp(NewIds);
+        thermal_packed_profiles_ = MoveTemp(NewProfiles);
+        thermal_source_profile_revision_ = Revision;
+        thermal_source_topology_revision_ = Frame.Topology->Revision;
+        ++thermal_packed_revision_;
+    }
+    TMap<uint32, TArray<uint32>> Remapped;
+    for (const auto& Pair : Frame.ReceiversByColor) if (const auto* Id = thermal_packed_ids_.Find(Pair.Key))
+        Remapped.FindOrAdd(*Id << 16).Append(Pair.Value);
+    Frame.ReceiversByColor = MoveTemp(Remapped);
+    if (!thermal_gpu_renderer_) thermal_gpu_renderer_ = MakeUnique<FThermalGpuRenderer>();
+    if (!thermal_gpu_inputs_) thermal_gpu_inputs_ = MakeUnique<FThermalGpuInputs>();
+    if (!thermal_geometry_capture_) {
+        thermal_geometry_capture_ = NewObject<USceneCaptureComponent2D>(this);
+        thermal_geometry_capture_->RegisterComponentWithWorld(GetWorld());
+        thermal_geometry_capture_->bCaptureEveryFrame = thermal_geometry_capture_->bCaptureOnMovement = false;
+        thermal_geometry_capture_->bAlwaysPersistRenderingState = true;
+        thermal_geometry_capture_->CaptureSource = ESceneCaptureSource::SCS_FinalColorLDR;
+        auto& Flags = thermal_geometry_capture_->ShowFlags;
+        Flags.SetDynamicShadows(false); Flags.SetGlobalIllumination(false); Flags.SetReflectionEnvironment(false);
+        Flags.SetAmbientOcclusion(false); Flags.SetFog(false); Flags.SetVolumetricFog(false); Flags.SetAtmosphere(false);
+        Flags.SetLighting(false); Flags.SetTemporalAA(false); Flags.SetMotionBlur(false); Flags.SetBloom(false);
+        Flags.SetEyeAdaptation(false); Flags.SetDecals(false);
+        // FinalColor captures do not take UE's automatic unlit optimization.
+        // Rich-view mode forces expensive dynamic mesh drawing in this large
+        // scene; keep the ordinary cached draw path for geometry-only inputs.
+        Flags.SetUnlitRichView(false); Flags.SetUnlitViewmode(false);
+        Flags.SetScreenSpaceReflections(false);
+        Flags.SetRefraction(false); Flags.SetLightFunctions(false); Flags.SetSkyLighting(false);
+        // Inputs are opaque/masked depth and normals; translucent color is unused.
+        Flags.SetTranslucency(false);
+        Flags.SetAntiAliasing(false); Flags.SetLensFlares(false);
+        // Use actual meshes/material masks; annotation proxies are not camera geometry.
+    }
+    // Annotation components normally hide themselves when Materials is enabled.
+    // Also exclude them explicitly so every proxy type remains safe.
+    thermal_geometry_capture_->HiddenComponents = Camera->getCaptureComponent(ImageType::Scene, false)->HiddenComponents;
+    const auto MakeTarget = [this, Size](UTextureRenderTarget2D*& Target, EPixelFormat Format) {
+        if (Target && Target->SizeX == Size.X && Target->SizeY == Size.Y) return;
+        Target = NewObject<UTextureRenderTarget2D>(this);
+        Target->bSupportsUAV = true; Target->ClearColor = FLinearColor::Black;
+        Target->Filter = TF_Bilinear;
+        Target->InitCustomFormat(Size.X, Size.Y, Format, true);
+        Target->UpdateResourceImmediate(true);
+    };
+    MakeTarget(thermal_gpu_texture_, PF_FloatRGBA);
+    MakeTarget(thermal_geometry_target_, PF_FloatRGBA);
+    MakeTarget(thermal_identity_target_, PF_R8G8B8A8);
+    MakeTarget(thermal_camera_target_, PF_FloatRGBA);
+    thermal_geometry_capture_->TextureTarget = thermal_camera_target_;
+    thermal_geometry_capture_->SetWorldTransform(Transform);
+    thermal_geometry_capture_->FOVAngle = Depth->FOVAngle;
+    thermal_gpu_inputs_->Configure(thermal_camera_target_->GameThread_GetRenderTargetResource(),
+        thermal_geometry_target_->GameThread_GetRenderTargetResource(), thermal_identity_target_->GameThread_GetRenderTargetResource());
+    thermal_pending_frame_ = MakeUnique<FThermalGpuFrame>(MoveTemp(Frame));
+    thermal_pending_transform_ = Transform;
+    thermal_pending_fov_ = Depth->FOVAngle;
+    if (widget_ && getSubWindowSettings().size() > 3 && getSubWindowSettings()[3].visible &&
+        thermal_bound_texture_.Get() != thermal_gpu_texture_) {
+        widget_->setSubwindowVisibility(3, true, thermal_gpu_texture_);
+        thermal_bound_texture_ = thermal_gpu_texture_;
+    }
+    return true;
+}
+
+bool ASimHUD::finishThermalGpuFrame()
+{
+    if (!thermal_pending_frame_ || !thermal_gpu_renderer_ || !thermal_gpu_texture_) return false;
+    const auto& Config = AirSimSettings::singleton().synthetic_camera.thermal_ir;
+    const float Min = FMath::IsFinite(Config.display_temp_min) ? FMath::Clamp(float(Config.display_temp_min), 1.f, 1998.f) : 280.f;
+    const float Max = FMath::IsFinite(Config.display_temp_max) ? FMath::Clamp(float(Config.display_temp_max), Min + 1, 1999.f) : 380.f;
+    const bool Result = thermal_gpu_renderer_->Render(MoveTemp(*thermal_pending_frame_), thermal_packed_profiles_, thermal_packed_revision_,
+        SyntheticCameraProcessor::instance().gpuThermalRadiance(), thermal_pending_transform_, thermal_pending_fov_,
+        FIntPoint(thermal_gpu_texture_->SizeX, thermal_gpu_texture_->SizeY), Min, Max, Config.depth_attenuation,
+        thermal_identity_target_->GameThread_GetRenderTargetResource(), thermal_geometry_target_->GameThread_GetRenderTargetResource(),
+        thermal_geometry_target_->GameThread_GetRenderTargetResource(), thermal_gpu_texture_->GameThread_GetRenderTargetResource(), true);
+    thermal_pending_frame_.Reset();
+    return Result;
+}
+
+bool ASimHUD::requestThermalGpuFrame()
+{
+    if (thermal_request_in_flight_.load() || thermal_gpu_end_draw_.IsValid()) return true;
+    auto* Viewport = GetWorld()->GetGameViewport();
+    if (!Viewport || !prepareThermalGpuFrame(subwindow_cameras_[3])) return false;
+    thermal_geometry_capture_->CaptureSceneDeferred();
+    thermal_gpu_viewport_ = Viewport;
+    TWeakObjectPtr<ASimHUD> WeakThis(this);
+    thermal_gpu_end_draw_ = Viewport->OnEndDraw().AddLambda([WeakThis]() {
+        if (!WeakThis.IsValid()) return;
+        auto* Hud = WeakThis.Get();
+        if (Hud->thermal_gpu_viewport_.IsValid()) Hud->thermal_gpu_viewport_->OnEndDraw().Remove(Hud->thermal_gpu_end_draw_);
+        Hud->thermal_gpu_end_draw_.Reset();
+        Hud->finishThermalGpuFrame();
+    });
+    return true;
+}
+
+bool ASimHUD::captureThermalGpuImage(APIPCamera* Camera, TArray<FColor>& Pixels, int32& Width, int32& Height)
+{
+    check(IsInGameThread());
+    if (!ThermalGpuPreview.GetValueOnGameThread()) return false;
+    if (thermal_gpu_viewport_.IsValid() && thermal_gpu_end_draw_.IsValid())
+        thermal_gpu_viewport_->OnEndDraw().Remove(thermal_gpu_end_draw_);
+    thermal_gpu_end_draw_.Reset();
+    if (!prepareThermalGpuFrame(Camera)) return false;
+    thermal_geometry_capture_->CaptureScene();
+    if (!finishThermalGpuFrame()) return false;
+    FReadSurfaceDataFlags Flags(RCM_UNorm); Flags.SetLinearToGamma(true);
+    Width = thermal_gpu_texture_->SizeX; Height = thermal_gpu_texture_->SizeY;
+    // Only an explicit API/export request reads the completed GPU image to RAM.
+    return thermal_gpu_texture_->GameThread_GetRenderTargetResource()->ReadPixels(Pixels, Flags);
+}
+FString ASimHUD::getThermalGpuStats() const
+{
+    const auto* Client = GetWorld() ? GetWorld()->GetGameViewport() : nullptr;
+    const auto* Viewport = Client ? Client->GetGameViewport() : nullptr;
+    const FIntPoint MainSize = Viewport ? Viewport->GetRenderTargetTextureSizeXY() : FIntPoint::ZeroValue;
+    FString Stats = thermal_gpu_renderer_ ? thermal_gpu_renderer_->GetStats() : TEXT("{}");
+    Stats.LeftChopInline(1);
+    if (Stats.Len() > 1) Stats += TEXT(",");
+    Stats += FString::Printf(TEXT("\"input_captures\":%llu,\"profile_groups\":%d,\"main_width\":%d,\"main_height\":%d}"),
+        thermal_gpu_inputs_ ? thermal_gpu_inputs_->GetCaptureCount() : 0, thermal_packed_profiles_ ? thermal_packed_profiles_->Num() : 0,
+        MainSize.X, MainSize.Y);
+    return Stats;
+}
+bool ASimHUD::setThermalReviewViewportSize(int32 Width, int32 Height)
+{
+    if (Width < 0 || Height < 0 || Width > 8192 || Height > 8192 || (Width == 0) != (Height == 0)) return false;
+    auto* Client = GetWorld() ? GetWorld()->GetGameViewport() : nullptr;
+    auto* Viewport = Client ? Client->GetGameViewport() : nullptr;
+    if (!Viewport) return false;
+    Viewport->SetFixedViewportSize(Width, Height);
+    thermal_review_fixed_viewport_ = Width > 0;
+    return true;
+}
+bool ASimHUD::saveThermalGpuPreview(const FString& Path)
+{
+    if (!thermal_gpu_texture_) return false;
+    TArray<FColor> Pixels;
+    FReadSurfaceDataFlags Flags(RCM_UNorm);
+    Flags.SetLinearToGamma(true);
+    if (!thermal_gpu_texture_->GameThread_GetRenderTargetResource()->ReadPixels(Pixels, Flags)) return false;
+    TArray<uint8> Png;
+    FImageUtils::CompressImageArray(thermal_gpu_texture_->SizeX, thermal_gpu_texture_->SizeY, Pixels, Png);
+    return FFileHelper::SaveArrayToFile(Png, *Path);
+}
+
+bool ASimHUD::saveThermalCpuReference(const FString& Path)
+{
+    // Diagnostic only: independently run the established CPU surface/radiance
+    // calculation on the same corrected opaque/masked camera inputs.
+    if (!thermal_geometry_target_ || !thermal_identity_target_ || !thermal_packed_profiles_) return false;
+    TArray<FFloat16Color> Geometry;
+    TArray<FColor> Identity;
+    FReadSurfaceDataFlags Flags(RCM_UNorm); Flags.SetLinearToGamma(false);
+    if (!thermal_geometry_target_->GameThread_GetRenderTargetResource()->ReadFloat16Pixels(Geometry) ||
+        !thermal_identity_target_->GameThread_GetRenderTargetResource()->ReadPixels(Identity, Flags)) return false;
+    const int32 W = thermal_geometry_target_->SizeX, H = thermal_geometry_target_->SizeY;
+    if (Geometry.Num() != W * H || Identity.Num() != W * H) return false;
+    std::vector<float> Depth(W * H), Temperature, Emissivity;
+    std::vector<uint8_t> Seg(W * H * 3, 0), Normals(W * H * 3);
+    for (int32 P = 0; P < Geometry.Num(); ++P) {
+        Depth[P] = Geometry[P].A.GetFloat(); Seg[P * 3] = Identity[P].R;
+        Normals[P * 3] = FMath::RoundToInt(FMath::Clamp(Geometry[P].R.GetFloat(), 0.f, 1.f) * 255);
+        Normals[P * 3 + 1] = FMath::RoundToInt(FMath::Clamp(Geometry[P].G.GetFloat(), 0.f, 1.f) * 255);
+        Normals[P * 3 + 2] = FMath::RoundToInt(FMath::Clamp(Geometry[P].B.GetFloat(), 0.f, 1.f) * 255);
+    }
+    auto Frame = GetWorld()->GetSubsystem<UThermalWorldSubsystem>()->MakeSnapshot();
+    Frame.CameraTransform = thermal_pending_transform_;
+    Frame.TanHalfHorizontalFov = FMath::Tan(FMath::DegreesToRadians(thermal_pending_fov_) * .5f);
+    TMap<uint32, TArray<int32>> Remapped;
+    for (const auto& Pair : Frame.ReceiversByColor) if (const auto* Id = thermal_packed_ids_.Find(Pair.Key))
+        Remapped.FindOrAdd(*Id << 16).Append(Pair.Value);
+    Frame.ReceiversByColor = MoveTemp(Remapped);
+    Frame.ResolvePixels(Depth, W, H, Temperature, Emissivity, Normals, Seg);
+    TMap<uint32, FVector4f> Profiles;
+    for (const auto& P : *thermal_packed_profiles_) Profiles.Add(P.Identity.X, P.Values);
+    for (int32 P = 0; P < W * H; ++P) if (!FMath::IsFinite(Temperature[P])) {
+        const auto* Profile = Profiles.Find(uint32(Identity[P].R) << 16);
+        Temperature[P] = Profile ? Profile->X : 295;
+        Emissivity[P] = Profile ? Profile->Y : .9f;
+        if (!FMath::IsFinite(Depth[P]) || Depth[P] <= 0 || Depth[P] > 1.e5f) { Temperature[P] = 270; Emissivity[P] = 1; }
+    }
+    std::vector<uint8_t> RGB;
+    SyntheticCameraProcessor::instance().composeThermalIR(Seg, Depth, {}, Normals, W, H, RGB, Temperature, Emissivity);
+    TArray<FColor> Pixels; Pixels.SetNumUninitialized(W * H);
+    for (int32 P = 0; P < Pixels.Num(); ++P) Pixels[P] = FColor(RGB[P * 3], RGB[P * 3 + 1], RGB[P * 3 + 2], 255);
+    TArray<uint8> Png; FImageUtils::CompressImageArray(W, H, Pixels, Png);
+    return FFileHelper::SaveArrayToFile(Png, *Path);
 }
 
 void ASimHUD::requestThermalLiveFrame()
@@ -295,18 +624,28 @@ void ASimHUD::updateThermalLiveTexture(
     // ---------------------------------------------------------
     if (widget_ &&
         getSubWindowSettings().size() > 3 &&
-        getSubWindowSettings().at(3).visible)
+        getSubWindowSettings().at(3).visible &&
+        thermal_bound_texture_.Get() != thermal_live_texture_)
     {
         widget_->setSubwindowVisibility(
             3,
             true,
             thermal_live_texture_
         );
+        thermal_bound_texture_ = thermal_live_texture_;
     }
 }
 
 void ASimHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
+    if (thermal_review_fixed_viewport_) setThermalReviewViewportSize(0, 0);
+    if (thermal_gpu_viewport_.IsValid() && thermal_gpu_end_draw_.IsValid())
+        thermal_gpu_viewport_->OnEndDraw().Remove(thermal_gpu_end_draw_);
+    thermal_gpu_end_draw_.Reset();
+    thermal_gpu_inputs_.Reset();
+    thermal_pending_frame_.Reset();
+    restoreThermalStencil();
+    thermal_gpu_renderer_.Reset();
     if (simmode_)
         simmode_->stopApiServer();
 
@@ -363,13 +702,16 @@ void ASimHUD::updateWidgetSubwindowVisibility()
                     .visible
                 && camera != nullptr;
 
+            UTexture* Display = ThermalGpuPreview.GetValueOnGameThread() && thermal_gpu_texture_
+                ? static_cast<UTexture*>(thermal_gpu_texture_) : static_cast<UTexture*>(thermal_live_texture_);
             widget_->setSubwindowVisibility(
                 window_index,
                 is_visible,
                 is_visible
-                    ? thermal_live_texture_
+                    ? Display
                     : nullptr
             );
+            thermal_bound_texture_ = is_visible ? Display : nullptr;
 
             continue;
         }

@@ -4,7 +4,9 @@
 
 
 #include "SyntheticCameraProcessor.h"
+#include "ThermalWorldSubsystem.h"
 #include "AirBlueprintLib.h"
+#include "SimHUD/SimHUD.h"
 
 #include "RenderRequest.h"
 #include "common/ClockFactory.hpp"
@@ -49,6 +51,61 @@ void UnrealImageCapture::getImages(
         return;
     }
 
+    // Fresh native GPU IR captures use the same opacity-aware camera inputs as
+    // the live preview. Readback is needed only for this explicit API request.
+    std::vector<ImageResponse> gpu_responses(requests.size());
+    bool gpu_complete = true;
+    for (size_t I = 0; I < requests.size(); ++I) {
+        if (requests[I].image_type != ImageType::ThermalIR) continue;
+        const auto& Request = requests[I];
+        APIPCamera* Camera = cameras_->at(Request.camera_name);
+        TArray<FColor> Pixels;
+        int32 Width = 0, Height = 0;
+        bool Captured = false;
+        UAirBlueprintLib::RunCommandOnGameThread([&]() {
+            auto* Controller = Camera->GetWorld()->GetFirstPlayerController();
+            auto* Hud = Controller ? Cast<ASimHUD>(Controller->GetHUD()) : nullptr;
+            Captured = Hud && Hud->captureThermalGpuImage(Camera, Pixels, Width, Height);
+            if (Captured) {
+                const auto Info = Camera->getCameraInfo();
+                gpu_responses[I].camera_position = Info.pose.position;
+                gpu_responses[I].camera_orientation = Info.pose.orientation;
+                gpu_responses[I].time_stamp = msr::airlib::ClockFactory::get()->nowNanos();
+            }
+        }, true);
+        if (!Captured) { gpu_complete = false; break; }
+        auto& Response = gpu_responses[I];
+        Response.camera_name = Request.camera_name;
+        Response.image_type = ImageType::ThermalIR;
+        Response.width = Width; Response.height = Height;
+        Response.pixels_as_float = false; Response.compress = Request.compress;
+        if (Request.compress) {
+            TArray<uint8> Png;
+            UAirBlueprintLib::CompressImageArray(Width, Height, Pixels, Png);
+            Response.image_data_uint8.assign(Png.GetData(), Png.GetData() + Png.Num());
+        } else {
+            Response.image_data_uint8.resize(size_t(Width) * Height * 3);
+            for (int32 P = 0; P < Pixels.Num(); ++P) {
+                Response.image_data_uint8[P * 3] = Pixels[P].R;
+                Response.image_data_uint8[P * 3 + 1] = Pixels[P].G;
+                Response.image_data_uint8[P * 3 + 2] = Pixels[P].B;
+            }
+        }
+    }
+    if (gpu_complete) {
+        std::vector<ImageRequest> NormalRequests;
+        for (const auto& Request : requests) if (Request.image_type != ImageType::ThermalIR) NormalRequests.push_back(Request);
+        std::vector<ImageResponse> NormalResponses;
+        if (!NormalRequests.empty()) getSceneCaptureImage(NormalRequests, NormalResponses, false);
+        size_t NormalIndex = 0;
+        for (size_t I = 0; I < requests.size(); ++I) {
+            if (requests[I].image_type == ImageType::ThermalIR) responses.push_back(std::move(gpu_responses[I]));
+            else if (NormalIndex < NormalResponses.size()) responses.push_back(std::move(NormalResponses[NormalIndex++]));
+            else { responses.emplace_back(); responses.back().message = "normal capture failed"; }
+        }
+        return;
+    }
+
     // ThermalIR does not own a SceneCaptureComponent.
     // It is synthesized from:
     //
@@ -73,7 +130,6 @@ void UnrealImageCapture::getImages(
 
         size_t segmentation_idx = 0;
         size_t depth_idx = 0;
-        size_t lighting_idx = 0;
         size_t normals_idx = 0;
     };
 
@@ -156,12 +212,6 @@ void UnrealImageCapture::getImages(
                     ImageType::DepthPlanar,
                     true
                 );
-            slots[i].lighting_idx =
-                find_or_append(
-                    request.camera_name,
-                    ImageType::Lighting,
-                    false
-                );
             slots[i].normals_idx =
                 find_or_append(
                     request.camera_name,
@@ -176,11 +226,13 @@ void UnrealImageCapture::getImages(
     // in one batch.
     // --------------------------------------------------------
     std::vector<ImageResponse> render_responses;
+    std::vector<FThermalFrameSnapshot> thermal_snapshots(render_requests.size());
 
     getSceneCaptureImage(
         render_requests,
         render_responses,
-        false
+        false,
+        &thermal_snapshots
     );
 
     if (render_responses.size() != render_requests.size()) {
@@ -216,10 +268,6 @@ void UnrealImageCapture::getImages(
         const ImageResponse& depth_response =
             render_responses.at(
                 slots[i].depth_idx
-            );
-        const ImageResponse& lighting_response =
-            render_responses.at(
-                slots[i].lighting_idx
             );
         const ImageResponse& normals_response =
             render_responses.at(
@@ -276,15 +324,37 @@ void UnrealImageCapture::getImages(
         }
         else {
 
+            std::vector<float> surface_temperature, surface_emissivity;
+            const bool aligned_depth = depth_response.width == segmentation_response.width &&
+                depth_response.height == segmentation_response.height;
+            const auto& segmentation_frame = thermal_snapshots.at(slots[i].segmentation_idx);
+            const auto& depth_frame = thermal_snapshots.at(slots[i].depth_idx);
+            const bool aligned_projection = segmentation_frame.Perspective && depth_frame.Perspective &&
+                FMath::IsNearlyEqual(segmentation_frame.TanHalfHorizontalFov, depth_frame.TanHalfHorizontalFov, 1.e-6) &&
+                segmentation_frame.CameraTransform.Equals(depth_frame.CameraTransform, .01);
+            if (aligned_depth && aligned_projection)
+                thermal_snapshots.at(slots[i].segmentation_idx).ResolvePixels(
+                    depth_response.image_data_float, segmentation_response.width,
+                    segmentation_response.height, surface_temperature, surface_emissivity,
+                    normals_response.image_data_uint8, segmentation_response.image_data_uint8);
+
+            if (!aligned_depth || !aligned_projection) {
+                response.message = "ThermalIR surface simulation requires matching perspective Segmentation/DepthPlanar dimensions, transform and FOV";
+                responses.push_back(std::move(response));
+                continue;
+            }
+
             SyntheticCameraProcessor::instance()
                 .composeThermalIR(
                     segmentation_response.image_data_uint8,
                     depth_response.image_data_float,
-                    lighting_response.image_data_uint8,
+                    {}, // Physical surface temperatures do not use visible lighting.
                     normals_response.image_data_uint8,
                     segmentation_response.width,
                     segmentation_response.height,
-                    thermal_rgb
+                    thermal_rgb,
+                    surface_temperature,
+                    surface_emissivity
                 );
         }
 
@@ -343,7 +413,8 @@ void UnrealImageCapture::getImages(
 }
 
 void UnrealImageCapture::getSceneCaptureImage(const std::vector<msr::airlib::ImageCaptureBase::ImageRequest>& requests,
-                                              std::vector<msr::airlib::ImageCaptureBase::ImageResponse>& responses, bool use_safe_method) const
+                                              std::vector<msr::airlib::ImageCaptureBase::ImageResponse>& responses, bool use_safe_method,
+                                              std::vector<FThermalFrameSnapshot>* thermal_snapshots) const
 {
     std::vector<std::shared_ptr<RenderRequest::RenderParams>> render_params;
     std::vector<std::shared_ptr<RenderRequest::RenderResult>> render_results;
@@ -420,7 +491,7 @@ void UnrealImageCapture::getSceneCaptureImage(const std::vector<msr::airlib::Ima
         return;
     }
 
-    auto query_camera_pose_cb = [this, &requests, &responses]() {
+    auto query_camera_pose_cb = [this, &requests, &responses, thermal_snapshots]() {
         size_t count = requests.size();
         for (size_t i = 0; i < count; i++) {
             const ImageRequest& request = requests.at(i);
@@ -429,6 +500,44 @@ void UnrealImageCapture::getSceneCaptureImage(const std::vector<msr::airlib::Ima
             auto camera_pose = camera->getPose();
             response.camera_position = camera_pose.position;
             response.camera_orientation = camera_pose.orientation;
+            {
+                bool Displayed = false;
+                for (const auto& Window : msr::airlib::AirSimSettings::singleton().subwindow_settings)
+                    if (Window.visible && Window.image_type == request.image_type && Window.camera_name == request.camera_name &&
+                        (request.image_type != ImageType::Annotation || Window.annotation_name == request.annotation_name)) Displayed = true;
+                // RPC-only RGB and hidden thermal dependencies render on
+                // request, rather than leaving an extra continuous viewport.
+                camera->setCameraTypeUpdate(request.image_type, !Displayed || request.image_type == ImageType::Scene, request.annotation_name);
+                if (request.image_type == ImageType::Segmentation || request.image_type == ImageType::DepthPlanar || request.image_type == ImageType::SurfaceNormals) {
+                    if (auto* Capture = camera->getCaptureComponent(request.image_type, false)) {
+                        // Auxiliary data needs geometry and its post-process
+                        // encoding, not RGB shadows, reflections or atmosphere.
+                        Capture->ShowFlags.SetDynamicShadows(false);
+                        Capture->ShowFlags.SetGlobalIllumination(false);
+                        Capture->ShowFlags.SetReflectionEnvironment(false);
+                        Capture->ShowFlags.SetAmbientOcclusion(false);
+                        Capture->ShowFlags.SetFog(false);
+                        Capture->ShowFlags.SetVolumetricFog(false);
+                        Capture->ShowFlags.SetAtmosphere(false);
+                    }
+                }
+            }
+            if (thermal_snapshots && (request.image_type == ImageType::Segmentation || request.image_type == ImageType::DepthPlanar)) {
+                // This callback runs on GameThread at the same OnEndDraw as the
+                // capture. No UObject is consulted during pixel composition.
+                auto* capture = camera->getCaptureComponent(request.image_type, false);
+                if (request.image_type == ImageType::Segmentation)
+                    SyntheticCameraProcessor::instance().prepareThermalProfiles();
+                auto* system = camera->GetWorld()->GetSubsystem<UThermalWorldSubsystem>();
+                if (capture && system) {
+                    auto& snapshot = thermal_snapshots->at(i);
+                    if (request.image_type == ImageType::Segmentation) snapshot = system->MakeSnapshot();
+                    snapshot.CameraTransform = capture->GetComponentTransform();
+                    snapshot.CameraTransform.SetScale3D(FVector::OneVector);
+                    snapshot.TanHalfHorizontalFov = (1.0 + capture->Overscan) * FMath::Tan(FMath::DegreesToRadians(capture->FOVAngle * .5));
+                    snapshot.Perspective = capture->ProjectionType == ECameraProjectionMode::Perspective && !capture->bUseCustomProjectionMatrix;
+                }
+            }
         }
     };
     RenderRequest render_request{ gameViewport, std::move(query_camera_pose_cb) };

@@ -1,0 +1,28 @@
+#include "/Engine/Private/Common.ush"
+#include "/Engine/Private/DeferredShadingCommon.ush"
+
+uint2 ImageSize;
+int2 ViewMin;
+RWTexture2D<float4> GeometryOutput;
+RWTexture2D<float4> IdentityOutput;
+
+[numthreads(8, 8, 1)]
+void ThermalInputsCS(uint3 DispatchId : SV_DispatchThreadID)
+{
+    uint2 Pixel = DispatchId.xy;
+    if (any(Pixel >= ImageSize)) return;
+    // The capture output can differ from the internal scene-texture rectangle.
+    // Use the actual view rectangle instead of assuming one output pixel maps
+    // to one pixel in the pooled GBuffer allocation.
+    float2 ScenePosition = View.ViewRectMin.xy + (Pixel + .5) * View.ViewSizeAndInvSize.xy / ImageSize;
+    int2 ScenePixel = int2(ScenePosition);
+    float2 UV = ScenePosition * View.BufferSizeAndInvSize.zw;
+    float DepthCm = CalcSceneDepth(UV);
+    FGBufferData GBuffer = GetGBufferData(UV);
+    uint Stencil = CalcSceneCustomStencil(ScenePixel);
+    // Reject custom-depth silhouettes that are behind the actual visible surface.
+    float CustomCm = CalcSceneCustomDepth(UV);
+    if (abs(CustomCm - DepthCm) > max(1, DepthCm * .001)) Stencil = 0;
+    GeometryOutput[Pixel] = float4(GBuffer.WorldNormal * .5 + .5, DepthCm * .01);
+    IdentityOutput[Pixel] = float4(Stencil / 255.0, 0, 0, 1);
+}
