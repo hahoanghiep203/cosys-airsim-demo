@@ -23,6 +23,8 @@ def main():
             raise ValueError('Use run_angle_capture.py for the combined environment')
     else:
         scenes=[s for s in scenes if s.get('capture_mode')!='independent_viewpoints']
+        if not scenes:
+            raise RuntimeError('Individual scene maps were archived; use run_angle_capture.py for the combined environment.')
     for scene in scenes:
         print('LOAD ' + scene['id'], flush=True)
         editor("""world=unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_game_world()

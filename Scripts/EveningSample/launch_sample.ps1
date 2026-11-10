@@ -1,6 +1,7 @@
 param([switch]$Offscreen)
 $ErrorActionPreference='Stop'
 $sampleRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../..')).Path
+if (-not (Test-Path -LiteralPath (Join-Path $sampleRoot 'Content/CityPark/Maps/Showcase_EveningSample.umap'))) { throw 'EveningSample map was archived; restore it before using this historical launcher.' }
 if(Get-Process -Name 'llama-server*','prism*' -ErrorAction SilentlyContinue){throw 'Unload local inference before opening Unreal.'}
 $sampleExisting=Get-CimInstance Win32_Process | Where-Object {$_.Name -match '^UnrealEditor(-Cmd)?\.exe$' -and $_.CommandLine -match '(Cosys_Airsim|AirSim_test)\.uproject'}
 if($sampleExisting){throw 'An AirSim editor is already open. Close it before opening the sample.'}
