@@ -1,0 +1,15 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0.0",
+  "FriendlyName": "AirSim Route Capture",
+  "Description": "Ordered drone routes with supervised RGB and ThermalIR acquisition.",
+  "Category": "AirSim",
+  "CanContainContent": true,
+  "EnabledByDefault": true,
+  "Plugins": [{"Name":"AirSim","Enabled":true}],
+  "Modules": [
+    {"Name":"AirSimRouteCapture","Type":"Runtime","LoadingPhase":"PostEngineInit"},
+    {"Name":"AirSimRouteCaptureEditor","Type":"Editor","LoadingPhase":"PostEngineInit"}
+  ]
+}

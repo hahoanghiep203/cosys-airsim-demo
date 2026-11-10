@@ -1,0 +1,128 @@
+{
+  "SportsCar": [
+    {
+      "point": [
+        -135.103592,
+        89.841522,
+        34.114567
+      ],
+      "rim_component": {
+        "vertices": 9360,
+        "min": [
+          -159.572769,
+          89.031006,
+          9.576811
+        ],
+        "max": [
+          -110.632599,
+          102.952362,
+          58.65028
+        ],
+        "center": [
+          -135.102684,
+          95.99168399999999,
+          34.1135455
+        ],
+        "extent": [
+          24.470084999999997,
+          6.960677999999994,
+          24.5367345
+        ]
+      },
+      "provenance": "Actual OBJ mesh vertex near hub centre, within connected rim bounds; avoids probing empty space at tyre outer AABB face."
+    },
+    {
+      "point": [
+        -135.103592,
+        -91.585754,
+        34.114567
+      ],
+      "rim_component": {
+        "vertices": 9363,
+        "min": [
+          -159.572769,
+          -104.696579,
+          9.576811
+        ],
+        "max": [
+          -110.632599,
+          -90.775238,
+          58.65028
+        ],
+        "center": [
+          -135.102684,
+          -97.7359085,
+          34.1135455
+        ],
+        "extent": [
+          24.470084999999997,
+          6.960670499999999,
+          24.5367345
+        ]
+      },
+      "provenance": "Actual OBJ mesh vertex near hub centre, within connected rim bounds; avoids probing empty space at tyre outer AABB face."
+    },
+    {
+      "point": [
+        119.25853,
+        85.909561,
+        30.21785
+      ],
+      "rim_component": {
+        "vertices": 8919,
+        "min": [
+          94.723068,
+          85.288223,
+          5.744036
+        ],
+        "max": [
+          143.795776,
+          95.00647,
+          54.689644
+        ],
+        "center": [
+          119.259422,
+          90.1473465,
+          30.21684
+        ],
+        "extent": [
+          24.536353999999996,
+          4.8591234999999955,
+          24.472804
+        ]
+      },
+      "provenance": "Actual OBJ mesh vertex near hub centre, within connected rim bounds; avoids probing empty space at tyre outer AABB face."
+    },
+    {
+      "point": [
+        119.25853,
+        -87.653786,
+        30.21785
+      ],
+      "rim_component": {
+        "vertices": 8919,
+        "min": [
+          94.723068,
+          -96.814804,
+          5.74404
+        ],
+        "max": [
+          143.795776,
+          -87.03244,
+          54.689629
+        ],
+        "center": [
+          119.259422,
+          -91.923622,
+          30.216834499999997
+        ],
+        "extent": [
+          24.536353999999996,
+          4.891182000000001,
+          24.4727945
+        ]
+      },
+      "provenance": "Actual OBJ mesh vertex near hub centre, within connected rim bounds; avoids probing empty space at tyre outer AABB face."
+    }
+  ]
+}

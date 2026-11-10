@@ -1,0 +1,237 @@
+{
+  "Hatchback": {
+    "HoodHeat": {
+      "point_cm": [
+        125.0,
+        0.0,
+        88.40254345607815
+      ],
+      "normal": [
+        0.13384873136337253,
+        0.0,
+        0.9910017745253616
+      ],
+      "distance_to_emitter_cm": 4.597456543921851,
+      "triangle": 3692,
+      "method": "first exterior ray intersection on original exported render mesh"
+    },
+    "Headlight_0": {
+      "point_cm": [
+        186.28185676772267,
+        -52.0,
+        65.0
+      ],
+      "normal": [
+        0.9594720041869197,
+        -0.13206536487347262,
+        0.24894218722902714
+      ],
+      "distance_to_emitter_cm": 6.718143232277328,
+      "triangle": 2598,
+      "method": "first exterior ray intersection on original exported render mesh"
+    },
+    "Headlight_1": {
+      "point_cm": [
+        186.36763624118794,
+        52.0,
+        65.0
+      ],
+      "normal": [
+        0.9594720041869197,
+        0.13206536487347262,
+        0.24894218722902728
+      ],
+      "distance_to_emitter_cm": 6.632363758812062,
+      "triangle": 22420,
+      "method": "first exterior ray intersection on original exported render mesh"
+    }
+  },
+  "SUV": {
+    "HoodHeat": {
+      "point_cm": [
+        190.0,
+        0.0,
+        105.61341197240702
+      ],
+      "normal": [
+        0.0637127777001319,
+        0.005404717818668731,
+        0.9979536417003718
+      ],
+      "distance_to_emitter_cm": 0.3865880275929783,
+      "triangle": 83526,
+      "method": "first exterior ray intersection on original exported render mesh"
+    },
+    "Headlight_0": {
+      "point_cm": [
+        212.24503244516268,
+        -65.0,
+        78.0
+      ],
+      "normal": [
+        0.9999998203500107,
+        -0.00038986155281149057,
+        -0.00045531079028318834
+      ],
+      "distance_to_emitter_cm": 2.2450324451626784,
+      "triangle": 104642,
+      "method": "first exterior ray intersection on original exported render mesh"
+    },
+    "Headlight_1": {
+      "point_cm": [
+        212.24503244516268,
+        65.0,
+        78.0
+      ],
+      "normal": [
+        0.9999998203500107,
+        0.00038986155281149057,
+        -0.00045531079028318834
+      ],
+      "distance_to_emitter_cm": 2.2450324451626784,
+      "triangle": 87150,
+      "method": "first exterior ray intersection on original exported render mesh"
+    }
+  },
+  "Pickup": {
+    "HoodHeat": {
+      "point_cm": [
+        162.0,
+        5.0,
+        93.3674686511167
+      ],
+      "normal": [
+        0.14528158970961674,
+        3.946842576386783e-07,
+        0.989390347482373
+      ],
+      "distance_to_emitter_cm": 3.6325313488833046,
+      "triangle": 8352,
+      "method": "first exterior ray intersection on original exported render mesh"
+    },
+    "Headlight_0": {
+      "point_cm": [
+        205.06943967412934,
+        -62.0,
+        62.0
+      ],
+      "normal": [
+        0.9818822627866162,
+        -0.17823577843885094,
+        -0.0643368425502151
+      ],
+      "distance_to_emitter_cm": 2.9305603258706583,
+      "triangle": 10131,
+      "method": "first exterior ray intersection on original exported render mesh"
+    },
+    "Headlight_1": {
+      "point_cm": [
+        206.7818713290451,
+        62.0,
+        62.0
+      ],
+      "normal": [
+        0.985413067290976,
+        0.16653265003009063,
+        -0.035042307089368605
+      ],
+      "distance_to_emitter_cm": 1.2181286709549113,
+      "triangle": 4533,
+      "method": "first exterior ray intersection on original exported render mesh"
+    }
+  },
+  "SportsCar": {
+    "HoodHeat": {
+      "point_cm": [
+        155.0,
+        0.0,
+        65.09113100825422
+      ],
+      "normal": [
+        0.3521327708470263,
+        0.004955143604257759,
+        0.9359369413841174
+      ],
+      "distance_to_emitter_cm": 7.091131008254223,
+      "triangle": 88333,
+      "method": "first exterior ray intersection on original exported render mesh"
+    },
+    "Headlight_0": {
+      "point_cm": [
+        208.65303852443404,
+        -70.0,
+        42.0
+      ],
+      "normal": [
+        0.49769710832589886,
+        -0.019959978007289308,
+        0.8671212070074097
+      ],
+      "distance_to_emitter_cm": 3.346961475565962,
+      "triangle": 87862,
+      "method": "first exterior ray intersection on original exported render mesh"
+    },
+    "Headlight_1": {
+      "point_cm": [
+        208.57807204271282,
+        70.0,
+        42.0
+      ],
+      "normal": [
+        0.5029871153180165,
+        0.0714474936705123,
+        0.8613357170536133
+      ],
+      "distance_to_emitter_cm": 3.4219279572871812,
+      "triangle": 87578,
+      "method": "first exterior ray intersection on original exported render mesh"
+    }
+  },
+  "Truck_Box": {
+    "HoodHeat": {
+      "point_cm": [
+        360.9417509837111,
+        0.0,
+        126.0
+      ],
+      "normal": [
+        0.9897578645429131,
+        -0.021057382107347866,
+        0.1411947457741876
+      ],
+      "distance_to_emitter_cm": 2.9417509837110742,
+      "triangle": 87111,
+      "method": "first exterior ray intersection on original exported render mesh"
+    },
+    "Headlight_0": {
+      "point_cm": [
+        359.1624812603727,
+        -67.0,
+        71.0
+      ],
+      "normal": [
+        0.9939935124034666,
+        -0.08610069409595289,
+        -0.06755418400080587
+      ],
+      "distance_to_emitter_cm": 0.16248126037271504,
+      "triangle": 3435,
+      "method": "first exterior ray intersection on original exported render mesh"
+    },
+    "Headlight_1": {
+      "point_cm": [
+        359.2327617138034,
+        67.0,
+        71.0
+      ],
+      "normal": [
+        0.9939935124034665,
+        0.08610069409595289,
+        -0.06755418400080668
+      ],
+      "distance_to_emitter_cm": 0.23276171380342703,
+      "triangle": 1323,
+      "method": "first exterior ray intersection on original exported render mesh"
+    }
+  }
+}

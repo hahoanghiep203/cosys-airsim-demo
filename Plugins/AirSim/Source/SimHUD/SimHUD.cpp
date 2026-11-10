@@ -258,6 +258,9 @@ bool ASimHUD::prepareThermalGpuFrame(APIPCamera* Camera)
     // Annotation components normally hide themselves when Materials is enabled.
     // Also exclude them explicitly so every proxy type remains safe.
     thermal_geometry_capture_->HiddenComponents = Camera->getCaptureComponent(ImageType::Scene, false)->HiddenComponents;
+    // Route demo markers may be visible in the fixed observer, but must never
+    // occlude drone RGB or thermal geometry. Mirror the camera exclusion list.
+    thermal_geometry_capture_->HiddenActors = Camera->getCaptureComponent(ImageType::Scene, false)->HiddenActors;
     const auto MakeTarget = [this, Size](UTextureRenderTarget2D*& Target, EPixelFormat Format) {
         if (Target && Target->SizeX == Size.X && Target->SizeY == Size.Y) return;
         Target = NewObject<UTextureRenderTarget2D>(this);

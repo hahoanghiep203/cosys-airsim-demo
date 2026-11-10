@@ -1,0 +1,433 @@
+{
+  "date": "2026-10-21",
+  "build": "UE5.7.4 Cosys_AirsimEditor Win64 Development succeeded",
+  "thermal_tests": 15,
+  "route_tests": 61,
+  "post_cleanup_packages": 1271,
+  "unused_remaining_under_protected_root_policy": 0,
+  "quarantined_packages": 26,
+  "quarantined_bytes": 64597120,
+  "user_map_sha256": "3140cc603d7405faf5f845ee2c8b1266e18bed52c86596657b83514aab14ac6a",
+  "measurements": [
+    {
+      "label": "original_fixed_balanced_720p_1",
+      "measurement": "UE editor PIE wall tick intervals; CSV profiler records engine frames separately; not packaged-flight FPS",
+      "motion": true,
+      "seconds": 90.01068789999954,
+      "ticks": 8745,
+      "wall_tick_hz": 97.15512906329033,
+      "median_ms": 9.947700000338955,
+      "p95_ms": 13.62399999925401,
+      "p99_ms": 15.384000000267406,
+      "max_ms": 55.07480000051146,
+      "over_100ms": 0,
+      "over_500ms": 0,
+      "ir_dispatch_hz": 29.996437789695126,
+      "gpu_before": {
+        "submitted": 27109,
+        "dispatched": 27109,
+        "skipped": 0,
+        "geometry_uploads": 1,
+        "temperature_uploads": 1,
+        "gpu_data_bytes": 11067456,
+        "input_captures": 27109,
+        "profile_groups": 3,
+        "main_width": 1280,
+        "main_height": 720
+      },
+      "gpu_after": {
+        "submitted": 29809,
+        "dispatched": 29809,
+        "skipped": 0,
+        "geometry_uploads": 1,
+        "temperature_uploads": 1,
+        "gpu_data_bytes": 11067456,
+        "input_captures": 29809,
+        "profile_groups": 3,
+        "main_width": 1280,
+        "main_height": 720
+      },
+      "profile": {
+        "profile": "balanced",
+        "map": "/Game/CityPark/Maps/UEDPIE_0_Showcase.Showcase",
+        "changed_components": 560,
+        "categories": {
+          "protected": 95,
+          "grass": 66,
+          "structure": 299,
+          "prop": 351,
+          "small_prop": 79,
+          "tree": 43,
+          "bush": 21
+        },
+        "lod_distance_scale": 1.5,
+        "collision_unchanged": true,
+        "saved_assets": false,
+        "distances_m": {
+          "grass": 40,
+          "bush": 90,
+          "tree": 220,
+          "small_prop": 80,
+          "prop": 150
+        },
+        "actual_console_variables": {
+          "r.Streaming.PoolSize": 6144.0,
+          "r.Streaming.LimitPoolSizeToVRAM": 1.0
+        }
+      },
+      "texture_pool_mb": 6144
+    },
+    {
+      "label": "original_fixed_baseline_720p",
+      "measurement": "UE editor PIE wall tick intervals; CSV profiler records engine frames separately; not packaged-flight FPS",
+      "motion": true,
+      "seconds": 30.00381070000003,
+      "ticks": 2340,
+      "wall_tick_hz": 77.9900934383644,
+      "median_ms": 12.117700000089826,
+      "p95_ms": 17.085000001316075,
+      "p99_ms": 20.0304000009055,
+      "max_ms": 125.40790000093693,
+      "over_100ms": 1,
+      "over_500ms": 0,
+      "ir_dispatch_hz": 29.829544285186383,
+      "gpu_before": {
+        "submitted": 29821,
+        "dispatched": 29821,
+        "skipped": 0,
+        "geometry_uploads": 1,
+        "temperature_uploads": 1,
+        "gpu_data_bytes": 11067456,
+        "input_captures": 29821,
+        "profile_groups": 3,
+        "main_width": 1280,
+        "main_height": 720
+      },
+      "gpu_after": {
+        "submitted": 30716,
+        "dispatched": 30716,
+        "skipped": 0,
+        "geometry_uploads": 1,
+        "temperature_uploads": 1,
+        "gpu_data_bytes": 11067456,
+        "input_captures": 30716,
+        "profile_groups": 3,
+        "main_width": 1280,
+        "main_height": 720
+      },
+      "profile": {
+        "profile": "baseline",
+        "map": "/Game/CityPark/Maps/UEDPIE_0_Showcase.Showcase",
+        "changed_components": 0,
+        "categories": {
+          "protected": 95,
+          "grass": 66,
+          "structure": 299,
+          "prop": 351,
+          "small_prop": 79,
+          "tree": 43,
+          "bush": 21
+        },
+        "lod_distance_scale": 1.0,
+        "collision_unchanged": true,
+        "saved_assets": false,
+        "distances_m": {},
+        "actual_console_variables": {
+          "r.Streaming.PoolSize": 6144.0,
+          "r.Streaming.LimitPoolSizeToVRAM": 1.0
+        }
+      },
+      "texture_pool_mb": 800
+    },
+    {
+      "label": "original_fixed_balanced_720p_2",
+      "measurement": "UE editor PIE wall tick intervals; CSV profiler records engine frames separately; not packaged-flight FPS",
+      "motion": true,
+      "seconds": 90.00156979999883,
+      "ticks": 7474,
+      "wall_tick_hz": 83.04299599005546,
+      "median_ms": 11.474699998871074,
+      "p95_ms": 16.095299999506096,
+      "p99_ms": 24.861199999577366,
+      "max_ms": 82.07399999992049,
+      "over_100ms": 0,
+      "over_500ms": 0,
+      "ir_dispatch_hz": 29.910589403964316,
+      "gpu_before": {
+        "submitted": 30725,
+        "dispatched": 30725,
+        "skipped": 0,
+        "geometry_uploads": 1,
+        "temperature_uploads": 1,
+        "gpu_data_bytes": 11067456,
+        "input_captures": 30725,
+        "profile_groups": 3,
+        "main_width": 1280,
+        "main_height": 720
+      },
+      "gpu_after": {
+        "submitted": 33418,
+        "dispatched": 33417,
+        "skipped": 0,
+        "geometry_uploads": 1,
+        "temperature_uploads": 1,
+        "gpu_data_bytes": 11067456,
+        "input_captures": 33418,
+        "profile_groups": 3,
+        "main_width": 1280,
+        "main_height": 720
+      },
+      "profile": {
+        "profile": "balanced",
+        "map": "/Game/CityPark/Maps/UEDPIE_0_Showcase.Showcase",
+        "changed_components": 560,
+        "categories": {
+          "protected": 95,
+          "grass": 66,
+          "structure": 299,
+          "prop": 351,
+          "small_prop": 79,
+          "tree": 43,
+          "bush": 21
+        },
+        "lod_distance_scale": 1.5,
+        "collision_unchanged": true,
+        "saved_assets": false,
+        "distances_m": {
+          "grass": 40,
+          "bush": 90,
+          "tree": 220,
+          "small_prop": 80,
+          "prop": 150
+        },
+        "actual_console_variables": {
+          "r.Streaming.PoolSize": 6144.0,
+          "r.Streaming.LimitPoolSizeToVRAM": 1.0
+        }
+      },
+      "texture_pool_mb": 6144
+    },
+    {
+      "label": "crop_fixed_720p",
+      "measurement": "UE editor PIE wall tick intervals; CSV profiler records engine frames separately; not packaged-flight FPS",
+      "motion": true,
+      "seconds": 65.00696099999914,
+      "ticks": 3009,
+      "wall_tick_hz": 46.28735067310776,
+      "median_ms": 16.57840000007127,
+      "p95_ms": 40.45349999978498,
+      "p99_ms": 48.17000000002736,
+      "max_ms": 67.5145999994129,
+      "over_100ms": 0,
+      "over_500ms": 0,
+      "ir_dispatch_hz": 29.566064471157567,
+      "gpu_before": {
+        "submitted": 1050,
+        "dispatched": 1050,
+        "skipped": 0,
+        "geometry_uploads": 1,
+        "temperature_uploads": 332,
+        "gpu_data_bytes": 54572480,
+        "input_captures": 1050,
+        "profile_groups": 31,
+        "main_width": 1280,
+        "main_height": 720
+      },
+      "gpu_after": {
+        "submitted": 2973,
+        "dispatched": 2972,
+        "skipped": 0,
+        "geometry_uploads": 1,
+        "temperature_uploads": 932,
+        "gpu_data_bytes": 54572480,
+        "input_captures": 2973,
+        "profile_groups": 31,
+        "main_width": 1280,
+        "main_height": 720
+      },
+      "profile": {
+        "profile": "balanced",
+        "map": "/Game/CityPark/Maps/UEDPIE_0_Showcase_CoordinateCrop.Showcase_CoordinateCrop",
+        "changed_components": 11035,
+        "categories": {
+          "protected": 98,
+          "structure": 5157,
+          "grass": 88,
+          "tree": 2353,
+          "bush": 3225,
+          "prop": 4587,
+          "small_prop": 782
+        },
+        "lod_distance_scale": 1.5,
+        "collision_unchanged": true,
+        "saved_assets": false,
+        "distances_m": {
+          "grass": 40,
+          "bush": 90,
+          "tree": 220,
+          "small_prop": 80,
+          "prop": 150
+        },
+        "actual_console_variables": {
+          "r.Streaming.PoolSize": 6144.0,
+          "r.Streaming.LimitPoolSizeToVRAM": 1.0
+        }
+      },
+      "texture_pool_mb": 6144
+    }
+  ],
+  "checks": {
+    "rollback_check": {
+      "restored": {
+        "profile": "baseline",
+        "map": "/Game/CityPark/Maps/Showcase.Showcase",
+        "changed_components": 0,
+        "categories": {
+          "protected": 9,
+          "grass": 66,
+          "structure": 299,
+          "prop": 351,
+          "small_prop": 79,
+          "tree": 43,
+          "bush": 21
+        },
+        "lod_distance_scale": 1.0,
+        "collision_unchanged": true,
+        "saved_assets": false,
+        "distances_m": {},
+        "actual_console_variables": {
+          "r.Streaming.PoolSize": 6144.0,
+          "r.Streaming.LimitPoolSizeToVRAM": 1.0
+        }
+      },
+      "mismatches": [],
+      "snapshots_plain_values_only": true,
+      "user_map_preserved": true
+    },
+    "crop_heating_check": {
+      "car_sources": [
+        {
+          "component": "HoodHeat",
+          "source_type": "<ThermalSourceType.RECT: 2>",
+          "region": "<ThermalContactRegion.FALLOFF: 0>",
+          "temperature_k": 353.1499938964844
+        },
+        {
+          "component": "FrontLeftLightHeat",
+          "source_type": "<ThermalSourceType.SPOT: 1>",
+          "region": "<ThermalContactRegion.FALLOFF: 0>",
+          "temperature_k": 343.1499938964844
+        },
+        {
+          "component": "FrontLeftTireHeat",
+          "source_type": "<ThermalSourceType.POINT: 0>",
+          "region": "<ThermalContactRegion.FINITE_CYLINDER: 1>",
+          "temperature_k": 333.1499938964844
+        },
+        {
+          "component": "FrontRightLightHeat",
+          "source_type": "<ThermalSourceType.SPOT: 1>",
+          "region": "<ThermalContactRegion.FALLOFF: 0>",
+          "temperature_k": 343.1499938964844
+        },
+        {
+          "component": "FrontRightTireHeat",
+          "source_type": "<ThermalSourceType.POINT: 0>",
+          "region": "<ThermalContactRegion.FINITE_CYLINDER: 1>",
+          "temperature_k": 333.1499938964844
+        },
+        {
+          "component": "RearLeftTireHeat",
+          "source_type": "<ThermalSourceType.POINT: 0>",
+          "region": "<ThermalContactRegion.FINITE_CYLINDER: 1>",
+          "temperature_k": 333.1499938964844
+        },
+        {
+          "component": "RearRightTireHeat",
+          "source_type": "<ThermalSourceType.POINT: 0>",
+          "region": "<ThermalContactRegion.FINITE_CYLINDER: 1>",
+          "temperature_k": 333.1499938964844
+        }
+      ],
+      "source_count": 14,
+      "fixture_sources": 7,
+      "decorative_water": [
+        {
+          "actor": "Plane3",
+          "ignored": true,
+          "thermal_children": 0
+        },
+        {
+          "actor": "Plane4",
+          "ignored": true,
+          "thermal_children": 0
+        },
+        {
+          "actor": "Plane7",
+          "ignored": true,
+          "thermal_children": 0
+        },
+        {
+          "actor": "Plane8",
+          "ignored": true,
+          "thermal_children": 0
+        }
+      ],
+      "gpu": {
+        "submitted": 1042,
+        "dispatched": 1042,
+        "skipped": 0,
+        "geometry_uploads": 1,
+        "temperature_uploads": 329,
+        "gpu_data_bytes": 54572480,
+        "input_captures": 1042,
+        "profile_groups": 31,
+        "main_width": 1280,
+        "main_height": 720
+      }
+    },
+    "canonical_ir_parity": [
+      {
+        "view": "car",
+        "size": [
+          1280,
+          720
+        ],
+        "mean_abs_counts": 0.0018880207790061831,
+        "p95_abs_counts": 0.0,
+        "max_abs_counts": 10.0,
+        "pixels_over_10_counts": 0
+      },
+      {
+        "view": "area",
+        "size": [
+          1280,
+          720
+        ],
+        "mean_abs_counts": 0.00017686632054392248,
+        "p95_abs_counts": 0.0,
+        "max_abs_counts": 4.0,
+        "pixels_over_10_counts": 0
+      },
+      {
+        "view": "lamp",
+        "size": [
+          1280,
+          720
+        ],
+        "mean_abs_counts": 9.657118062023073e-05,
+        "p95_abs_counts": 0.0,
+        "max_abs_counts": 2.0,
+        "pixels_over_10_counts": 0
+      }
+    ],
+    "route_install_check": {
+      "map": "/Game/RouteCapture/Maps/RouteCaptureDemo.RouteCaptureDemo",
+      "old_json": "D:\\F1\\UE prj\\airsim_test\\AirSim_test\\Config\\RouteCapture\\at_nodes.json",
+      "json": "Config/RouteCapture/at_nodes.json",
+      "python": ".venv/Scripts/python.exe",
+      "status": "Valid",
+      "points": 4
+    }
+  }
+}

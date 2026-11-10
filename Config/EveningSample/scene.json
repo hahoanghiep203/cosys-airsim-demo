@@ -1,0 +1,14 @@
+{
+  "map": "/Game/CityPark/Maps/Showcase_EveningSample",
+  "preview_position_cm": [
+    -31800,
+    11900,
+    950
+  ],
+  "preview_target_cm": [
+    -29450,
+    10850,
+    180
+  ],
+  "warmup_seconds": 45.0
+}

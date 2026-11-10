@@ -1,0 +1,4 @@
+{
+  "SUV": {"hood_cm": [190, 0, 106], "hood_pitch": -90, "hood_contact_radius_cm": 35, "hood_material_indices": [2], "probe": "top_hood"},
+  "Truck_Box": {"hood_cm": [358, 0, 126], "hood_pitch": 0, "hood_contact_radius_cm": 45, "hood_material_indices": [0], "headlight_x_cm": 359, "probe": "front_engine_cover"}
+}

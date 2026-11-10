@@ -1,0 +1,196 @@
+{
+  "id": "01_dusk_cafe",
+  "elapsed": 110.79413677379489,
+  "source_count": 24,
+  "vehicles": [
+    {
+      "label": "Diversity_Hatchback_Driving",
+      "model": "Hatchback",
+      "state": "driving",
+      "tires": [
+        {
+          "tire": 0,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            306.16180419921875,
+            306.0747375488281,
+            306.16180419921875,
+            305.9494323730469
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 308.0950012207031,
+          "inner_radius_cm": 19.600000381469727,
+          "outer_radius_cm": 27.596384048461914
+        },
+        {
+          "tire": 1,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            306.16180419921875,
+            305.9182434082031,
+            306.16180419921875,
+            305.6883850097656
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 308.0950012207031,
+          "inner_radius_cm": 19.600000381469727,
+          "outer_radius_cm": 27.596384048461914
+        },
+        {
+          "tire": 2,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            306.16192626953125,
+            311.2327575683594,
+            305.4209899902344,
+            305.7396545410156
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 308.0950012207031,
+          "inner_radius_cm": 19.600000381469727,
+          "outer_radius_cm": 27.596384048461914
+        },
+        {
+          "tire": 3,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            306.16180419921875,
+            310.3772888183594,
+            305.6005554199219,
+            305.5721130371094
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 308.0950012207031,
+          "inner_radius_cm": 19.600000381469727,
+          "outer_radius_cm": 27.596384048461914
+        }
+      ]
+    },
+    {
+      "label": "Diversity_SUV_Parked",
+      "model": "SUV",
+      "state": "parked",
+      "tires": [
+        {
+          "tire": 0,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            291.1499938964844,
+            291.1499938964844,
+            291.1499938964844,
+            291.1499938964844
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 291.1499938964844,
+          "inner_radius_cm": 24.0,
+          "outer_radius_cm": 35.948036193847656
+        },
+        {
+          "tire": 1,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            291.1499938964844,
+            291.1499938964844,
+            291.1499938964844,
+            291.1499938964844
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 291.1499938964844,
+          "inner_radius_cm": 24.0,
+          "outer_radius_cm": 35.948036193847656
+        },
+        {
+          "tire": 2,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            291.1499938964844,
+            291.1499938964844,
+            291.1499938964844,
+            291.1499938964844
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 291.1499938964844,
+          "inner_radius_cm": 24.0,
+          "outer_radius_cm": 35.948036193847656
+        },
+        {
+          "tire": 3,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            291.1499938964844,
+            291.1499938964844,
+            291.1499938964844,
+            291.1499938964844
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 291.1499938964844,
+          "inner_radius_cm": 24.0,
+          "outer_radius_cm": 35.948036193847656
+        }
+      ]
+    },
+    {
+      "label": "Diversity_Pickup_Cooling",
+      "model": "Pickup",
+      "state": "cooling",
+      "tires": [
+        {
+          "tire": 0,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            293.7687683105469,
+            293.7687683105469,
+            293.7687683105469,
+            293.7687683105469
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 293.77789306640625,
+          "inner_radius_cm": 22.200000762939453,
+          "outer_radius_cm": 31.47252655029297
+        },
+        {
+          "tire": 1,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            293.7687683105469,
+            293.7687683105469,
+            293.7687683105469,
+            293.7687683105469
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 293.77789306640625,
+          "inner_radius_cm": 22.200000762939453,
+          "outer_radius_cm": 31.47252655029297
+        },
+        {
+          "tire": 2,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            293.7694091796875,
+            295.2914733886719,
+            293.7689208984375,
+            293.7687683105469
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 293.77789306640625,
+          "inner_radius_cm": 22.200000762939453,
+          "outer_radius_cm": 31.47252655029297
+        },
+        {
+          "tire": 3,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            293.7694091796875,
+            295.3167724609375,
+            293.7688903808594,
+            293.7687683105469
+          ],
+          "rim_surface_k": 291.1499938964844,
+          "source_k": 293.77789306640625,
+          "inner_radius_cm": 22.200000762939453,
+          "outer_radius_cm": 31.47252655029297
+        }
+      ]
+    }
+  ]
+}

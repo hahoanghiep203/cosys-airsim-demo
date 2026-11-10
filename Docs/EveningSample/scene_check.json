@@ -1,0 +1,107 @@
+{
+  "map": "/Game/CityPark/Maps/UEDPIE_0_Showcase_EveningSample.Showcase_EveningSample",
+  "sources": [
+    {
+      "name": "LocalHeat_GEN_VARIABLE_BP_SampleLampHeat_C_CAT_1",
+      "source_type": "<ThermalSourceType.POINT: 0>",
+      "temperature_k": 328.1499938964844,
+      "parent": "None"
+    },
+    {
+      "name": "LocalHeat_GEN_VARIABLE_BP_SampleLampHeat_C_CAT_0",
+      "source_type": "<ThermalSourceType.POINT: 0>",
+      "temperature_k": 328.1499938964844,
+      "parent": "None"
+    },
+    {
+      "name": "HoodHeat_GEN_VARIABLE_BP_HatchbackHoodHeat_C_CAT_0",
+      "source_type": "<ThermalSourceType.RECT: 2>",
+      "temperature_k": 353.1499938964844,
+      "parent": "None"
+    },
+    {
+      "name": "HeadlightHeat_GEN_VARIABLE_BP_HatchbackHeadlightHeat_C_CAT_0",
+      "source_type": "<ThermalSourceType.SPOT: 1>",
+      "temperature_k": 343.1499938964844,
+      "parent": "None"
+    },
+    {
+      "name": "FrontLeftTireHeat_GEN_VARIABLE_BP_HatchbackTireHeat_C_CAT_0",
+      "source_type": "<ThermalSourceType.POINT: 0>",
+      "temperature_k": 333.1499938964844,
+      "parent": "None"
+    },
+    {
+      "name": "FrontRightLightHeat_GEN_VARIABLE_BP_HatchbackHeadlightHeat_C_CAT_0",
+      "source_type": "<ThermalSourceType.SPOT: 1>",
+      "temperature_k": 343.1499938964844,
+      "parent": "None"
+    },
+    {
+      "name": "FrontRightTireHeat_GEN_VARIABLE_BP_HatchbackTireHeat_C_CAT_0",
+      "source_type": "<ThermalSourceType.POINT: 0>",
+      "temperature_k": 333.1499938964844,
+      "parent": "None"
+    },
+    {
+      "name": "RearLeftTireHeat_GEN_VARIABLE_BP_HatchbackTireHeat_C_CAT_0",
+      "source_type": "<ThermalSourceType.POINT: 0>",
+      "temperature_k": 333.1499938964844,
+      "parent": "None"
+    },
+    {
+      "name": "RearRightTireHeat_GEN_VARIABLE_BP_HatchbackTireHeat_C_CAT_0",
+      "source_type": "<ThermalSourceType.POINT: 0>",
+      "temperature_k": 333.1499938964844,
+      "parent": "None"
+    },
+    {
+      "name": "LocalHeat_GEN_VARIABLE_BP_SampleCounterHeat_C_CAT_0",
+      "source_type": "<ThermalSourceType.RECT: 2>",
+      "temperature_k": 363.1499938964844,
+      "parent": "None"
+    }
+  ],
+  "source_count": 10,
+  "car_child_count": 7,
+  "cold_vehicle_sources": 0,
+  "counter_probes": [
+    {
+      "counter_local": [
+        0.0,
+        0.0,
+        155.0
+      ],
+      "surface_k": 297.1499938964844
+    },
+    {
+      "counter_local": [
+        30.0,
+        0.0,
+        135.0
+      ],
+      "surface_k": 350.6603088378906
+    },
+    {
+      "counter_local": [
+        0.0,
+        0.0,
+        25.0
+      ],
+      "surface_k": 293.1499938964844
+    }
+  ],
+  "gpu": {
+    "submitted": 8109,
+    "dispatched": 8109,
+    "skipped": 0,
+    "geometry_uploads": 2,
+    "temperature_uploads": 2589,
+    "gpu_data_bytes": 65463868,
+    "input_captures": 8110,
+    "profile_groups": 33,
+    "main_width": 1280,
+    "main_height": 720
+  },
+  "source_sample_count": 687284
+}

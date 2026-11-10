@@ -1,0 +1,12 @@
+{
+  "size": [
+    1280,
+    720
+  ],
+  "mae_uint8": 0.00013997395833333334,
+  "p95_uint8": 0.0,
+  "p99_uint8": 0.0,
+  "max_uint8": 3.0,
+  "fraction_gt_2": 1.0850694444444444e-06,
+  "scope": "Independent CPU surface and radiance calculation, same opaque/masked geometry inputs; demonstration model, not physical camera calibration."
+}

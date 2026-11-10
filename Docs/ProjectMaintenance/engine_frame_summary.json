@@ -1,0 +1,58 @@
+[
+  {
+    "label": "original_fixed_balanced_720p_1",
+    "csv": "Profile(20261021_161609).csv",
+    "frames": 8745,
+    "engine_frame_time": {
+      "mean": 10.295462527158376,
+      "p95": 12.9845,
+      "p99": 14.6127,
+      "max": 52.231,
+      "over_100ms": 0,
+      "over_500ms": 0,
+      "fps": 97.13016752400414
+    }
+  },
+  {
+    "label": "original_fixed_baseline_720p",
+    "csv": "Profile(20261021_161739).csv",
+    "frames": 2340,
+    "engine_frame_time": {
+      "mean": 12.78277264957265,
+      "p95": 16.5692,
+      "p99": 21.0365,
+      "max": 59.9559,
+      "over_100ms": 0,
+      "over_500ms": 0,
+      "fps": 78.23028910972862
+    }
+  },
+  {
+    "label": "original_fixed_balanced_720p_2",
+    "csv": "Profile(20261021_161810).csv",
+    "frames": 7474,
+    "engine_frame_time": {
+      "mean": 12.035791062349478,
+      "p95": 15.7711,
+      "p99": 23.1042,
+      "max": 57.7937,
+      "over_100ms": 0,
+      "over_500ms": 0,
+      "fps": 83.0855234042915
+    }
+  },
+  {
+    "label": "crop_fixed_720p",
+    "csv": "Profile(20261021_162347).csv",
+    "frames": 3009,
+    "engine_frame_time": {
+      "mean": 21.607009305417083,
+      "p95": 36.3623,
+      "p99": 43.5471,
+      "max": 67.4824,
+      "over_100ms": 0,
+      "over_500ms": 0,
+      "fps": 46.28127779577947
+    }
+  }
+]

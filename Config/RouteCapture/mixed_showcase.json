@@ -1,0 +1,220 @@
+{
+  "$schema": "../../Plugins/AirSimRouteCapture/Scripts/mission.schema.json",
+  "format": "airsim-route-capture",
+  "schema_version": "1.0.0",
+  "mission_id": "mixed_capture_showcase",
+  "name": "Mixed route - stop photos and in-flight capture",
+  "map_asset": "/Game/RouteCapture/Maps/MixedCaptureShowcase",
+  "coordinates": {
+    "frame": "unreal_world",
+    "position_unit": "cm",
+    "angle_unit": "deg",
+    "world_origin_rebasing": "reject"
+  },
+  "connection": {
+    "host": "127.0.0.1",
+    "port": 41469,
+    "vehicle_name": "RouteDrone",
+    "camera_name": "0",
+    "rpc_timeout_s": 30
+  },
+  "camera": {
+    "configuration_policy": "require_active_match",
+    "projection": "perspective",
+    "width_px": 640,
+    "height_px": 480,
+    "horizontal_fov_deg": 65,
+    "rgb_image_type": 0,
+    "aim": {
+      "mode": "marker_rotation",
+      "interpolation": "slerp",
+      "max_rate_deg_s": 45
+    }
+  },
+  "thermal": {
+    "image_type": 12,
+    "warmup_ms": 10000,
+    "display_window_k": {
+      "min": 280,
+      "max": 380
+    },
+    "configuration_policy": "require_active_match"
+  },
+  "flight": {
+    "takeoff": {
+      "mode": "if_landed",
+      "height_above_takeoff_m": 2.5,
+      "timeout_s": 60
+    },
+    "entry_leg": {
+      "speed_mps": 1,
+      "timeout_s": 90
+    },
+    "on_complete": "hover",
+    "on_error": "cancel_then_hover",
+    "api_control_after_hover": "retain_until_handoff"
+  },
+  "defaults": {
+    "node": {
+      "behavior": "stop",
+      "arrival_radius_m": 0.25,
+      "max_settled_speed_mps": 0.3,
+      "aim_tolerance_deg": 3,
+      "settle_time_ms": 500,
+      "extra_hold_ms": 1500,
+      "capture": {
+        "mode": "single",
+        "delay_ms": 0
+      }
+    },
+    "segment": {
+      "speed_mps": 1.5,
+      "acceleration_mps2": 1,
+      "deceleration_mps2": 1,
+      "timeout_s": 120,
+      "capture": {
+        "mode": "time_interval",
+        "interval_ms": 1000
+      }
+    }
+  },
+  "acquisition": {
+    "cadence_clock": "unpaused_simulation_time",
+    "pair_policy": "freeze_simulation",
+    "capture_timeout_ms": 15000,
+    "max_pair_position_delta_m": 0.02,
+    "max_pair_angle_delta_deg": 0.25,
+    "max_pending_writes": 8,
+    "on_interval_overload": "skip_and_log",
+    "abort_after_consecutive_missed_triggers": 30,
+    "abort_after_consecutive_bad_pairs": 3
+  },
+  "limits": {
+    "max_duration_wall_s": 1200,
+    "max_pairs": 1000,
+    "min_free_disk_mb": 1024,
+    "obstacle_clearance_m": 0.3,
+    "max_cross_track_error_m": 2,
+    "cross_track_grace_ms": 2000
+  },
+  "output": {
+    "root": "Saved/RouteCaptureReview/Runs",
+    "image_format": "png",
+    "write_pair_records": true,
+    "write_summary": true
+  },
+  "metrics": {
+    "telemetry_interval_ms": 100,
+    "record_image_quality": true
+  },
+  "nodes": [
+    {
+      "id": "A",
+      "label": "A STOP",
+      "position_cm": {
+        "x": -600,
+        "y": -600,
+        "z": 250
+      },
+      "camera_rotation_deg": {
+        "pitch": -11.32904382173426,
+        "yaw": 45.0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "B",
+      "label": "B PASS",
+      "position_cm": {
+        "x": 600,
+        "y": -600,
+        "z": 250
+      },
+      "camera_rotation_deg": {
+        "pitch": -11.32904382173426,
+        "yaw": 135.0,
+        "roll": 0
+      },
+      "settings": {
+        "behavior": "fly_through",
+        "settle_time_ms": 0,
+        "extra_hold_ms": 0,
+        "capture": {
+          "mode": "off"
+        }
+      }
+    },
+    {
+      "id": "C",
+      "label": "C STOP",
+      "position_cm": {
+        "x": 600,
+        "y": 600,
+        "z": 250
+      },
+      "camera_rotation_deg": {
+        "pitch": -11.32904382173426,
+        "yaw": -135.0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "D",
+      "label": "D STOP",
+      "position_cm": {
+        "x": -600,
+        "y": 600,
+        "z": 250
+      },
+      "camera_rotation_deg": {
+        "pitch": -11.32904382173426,
+        "yaw": -45.0,
+        "roll": 0
+      }
+    }
+  ],
+  "segments": [
+    {
+      "id": "A_to_B",
+      "from": "A",
+      "to": "B",
+      "settings": {
+        "speed_mps": 1.5,
+        "capture": {
+          "mode": "time_interval",
+          "interval_ms": 1000
+        }
+      }
+    },
+    {
+      "id": "B_to_C",
+      "from": "B",
+      "to": "C",
+      "settings": {
+        "speed_mps": 1.5,
+        "capture": {
+          "mode": "time_interval",
+          "interval_ms": 1000
+        }
+      }
+    },
+    {
+      "id": "C_to_D",
+      "from": "C",
+      "to": "D",
+      "settings": {
+        "speed_mps": 1.5,
+        "capture": {
+          "mode": "time_interval",
+          "interval_ms": 1000
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "demo_mode": "mixed_showcase",
+    "observer_camera": "fixed world position and angle",
+    "route_behavior": "A stop+capture; B fly-through; C stop+capture; D stop+capture; in-flight RGB/IR pairs every1simulationsecond on all legs",
+    "recordings": "station; live drone view; station with synchronized originalRGB/IR capture panels"
+  }
+}

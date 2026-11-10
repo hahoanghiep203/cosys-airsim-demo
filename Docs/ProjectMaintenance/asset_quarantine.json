@@ -1,0 +1,165 @@
+{
+  "archive": "D:\\F1\\UE prj\\airsim_test\\Cosys_Airsim\\AssetArchive\\unused_20261021",
+  "packages": [
+    "/Game/CityPark/Materials/Flora/Bushs/MI_Bush01_2",
+    "/Game/CityPark/Materials/Flora/Bushs/MI_Bush02_2",
+    "/Game/CityPark/Materials/Flora/Bushs/MI_Bush04_2",
+    "/Game/CityPark/Materials/Flora/Bushs/MI_Bush05_2",
+    "/Game/CityPark/Materials/Ground/MI_Ground01",
+    "/Game/CityPark/Materials/Ground/MI_Ground03",
+    "/Game/CityPark/Materials/Ground/MI_Rock01",
+    "/Game/CityPark/Materials/Ground/MI_Stone01",
+    "/Game/CityPark/Materials/Ground/MI_Water6",
+    "/Game/CityPark/Materials/ParkSquare/MI_ParkSquare04_2",
+    "/Game/CityPark/Materials/Road/MI_Sidewalk02",
+    "/Game/CityPark/Sound/S_231537__vkproduktion__forest-birds-loop-02",
+    "/Game/CityPark/Sound/S_345852__hargissssound__spring-birds-loop-with-low-cut-new-jersey",
+    "/Game/CityPark/Sound/S_354121__sean-sd2007__fountain",
+    "/Game/CityPark/Textures/BaseTextures/TC_HDR",
+    "/Game/CityPark/Textures/BaseTextures/TC_HDR02",
+    "/Game/CityPark/Textures/BaseTextures/TC_HDR03",
+    "/Game/CityPark/Textures/BaseTextures/TC_HDR04",
+    "/Game/CityPark/Textures/BaseTextures/T_Brush01",
+    "/Game/CityPark/Textures/BaseTextures/T_LUT02",
+    "/Game/CityPark/Textures/BaseTextures/T_gradient_D",
+    "/Game/CityPark/Textures/Ground/T_Rock01_D",
+    "/Game/CityPark/Textures/Props/T_ParkFence03_D",
+    "/Game/CityPark/Textures/Props/T_ParkFence03_N",
+    "/Game/CityPark/Textures/Props/T_ParkFence03_SRM",
+    "/Game/CityPark/Textures/Road/T_Sidewalk02_SRM"
+  ],
+  "files": [
+    {
+      "path": "Content\\CityPark\\Materials\\Flora\\Bushs\\MI_Bush01_2.uasset",
+      "bytes": 143236,
+      "sha256": "01b8fb9f0aa45f27fe8065f8e8d55b419b7fe8063ca5a9d67b8876030b725fc7"
+    },
+    {
+      "path": "Content\\CityPark\\Materials\\Flora\\Bushs\\MI_Bush02_2.uasset",
+      "bytes": 135222,
+      "sha256": "0861e16575f06e9d176b6814d903a143e280c05ae76e711b3937dedcd44839e5"
+    },
+    {
+      "path": "Content\\CityPark\\Materials\\Flora\\Bushs\\MI_Bush04_2.uasset",
+      "bytes": 146950,
+      "sha256": "c5bdd9fabab711af337bd101c91f9f1d5bce3aee3eb2c575528cea3b49174004"
+    },
+    {
+      "path": "Content\\CityPark\\Materials\\Flora\\Bushs\\MI_Bush05_2.uasset",
+      "bytes": 140408,
+      "sha256": "a08834117e55228679bbd1fe533b593aa56ba53cbc37d5dfaf30817645e27350"
+    },
+    {
+      "path": "Content\\CityPark\\Materials\\Ground\\MI_Ground01.uasset",
+      "bytes": 112457,
+      "sha256": "3aeac8810aa72ce279d4647f5dcdb5c65f9eeba1cda893fac366ddb9564667de"
+    },
+    {
+      "path": "Content\\CityPark\\Materials\\Ground\\MI_Ground03.uasset",
+      "bytes": 101607,
+      "sha256": "842dd6f982633792380b8bce6fbbfc1fade187c45fd3b6d6c6b49946ca6d45a8"
+    },
+    {
+      "path": "Content\\CityPark\\Materials\\Ground\\MI_Rock01.uasset",
+      "bytes": 104142,
+      "sha256": "36a8fdb5c3f707eb472d1352e25dfbd7f60e16ab9492be60cc962851b75f0282"
+    },
+    {
+      "path": "Content\\CityPark\\Materials\\Ground\\MI_Stone01.uasset",
+      "bytes": 99115,
+      "sha256": "3db6e9fd4362b324a1c486ace10e36636b824629256ca7477b2e1514f1987dcd"
+    },
+    {
+      "path": "Content\\CityPark\\Materials\\Ground\\MI_Water6.uasset",
+      "bytes": 109206,
+      "sha256": "53ea27202d4bb5ed4bb42f868c75da5f41b45ac46dc70ff1c346984125386968"
+    },
+    {
+      "path": "Content\\CityPark\\Materials\\ParkSquare\\MI_ParkSquare04_2.uasset",
+      "bytes": 110304,
+      "sha256": "6b8cb98a113776659457462653cef6900fda144a917b5da639e0175aaee86da1"
+    },
+    {
+      "path": "Content\\CityPark\\Materials\\Road\\MI_Sidewalk02.uasset",
+      "bytes": 106446,
+      "sha256": "67361e2d9d21bd3569119205426498960beefa1529248f7543a4d315eefbe989"
+    },
+    {
+      "path": "Content\\CityPark\\Sound\\S_231537__vkproduktion__forest-birds-loop-02.uasset",
+      "bytes": 5296391,
+      "sha256": "8508120ea3cf05b0b0813da8efb8d142281abea84355a85cd8a32220360547fa"
+    },
+    {
+      "path": "Content\\CityPark\\Sound\\S_345852__hargissssound__spring-birds-loop-with-low-cut-new-jersey.uasset",
+      "bytes": 28039180,
+      "sha256": "60daeaa57f0d20d13003d8c7d37427af3e26f1f509d62a21fcbb8a87138fc896"
+    },
+    {
+      "path": "Content\\CityPark\\Sound\\S_354121__sean-sd2007__fountain.uasset",
+      "bytes": 3503899,
+      "sha256": "5258740311f9d79eb79b58d2259a1538ea401bade2fdcbb1d1b5f00a721eb8ce"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\BaseTextures\\TC_HDR.uasset",
+      "bytes": 11852,
+      "sha256": "734c5fc49053a559b46e800eb21b8698c4385a24fad2ecf7fd1c7db522b53a3f"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\BaseTextures\\TC_HDR02.uasset",
+      "bytes": 2169134,
+      "sha256": "1ae5c639f697a8428e7a24159b7e93183e38b438e95316d22f2037fa2698f446"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\BaseTextures\\TC_HDR03.uasset",
+      "bytes": 447398,
+      "sha256": "a8084600cd37a9f9b0fe2886cf1b785f7ee6f1e7331e18e38e298085eb52a67a"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\BaseTextures\\TC_HDR04.uasset",
+      "bytes": 447564,
+      "sha256": "2d6113245fdd8f6572e4ea6b52eb577e5b964eeebf3587baa8e6201b0cb11690"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\BaseTextures\\T_Brush01.uasset",
+      "bytes": 85572,
+      "sha256": "6d5b139ed0c9c9d87f5fea2a63bc17c69dd03ebdb9aca5134089fa7af6e77cbe"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\BaseTextures\\T_LUT02.uasset",
+      "bytes": 4042,
+      "sha256": "f506a4d495a423ee4c2726dc7a139be18b49591aedda3818efff6ac3d325cc3b"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\BaseTextures\\T_gradient_D.uasset",
+      "bytes": 89774,
+      "sha256": "6b71565e5ad8eb3c13bf6480e58d5d20893a0c0f1f4dd30fdc798f96ba3c2d88"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\Ground\\T_Rock01_D.uasset",
+      "bytes": 1785803,
+      "sha256": "b0c7da5b588af0b757f8d535d56be37071d4313cd1e0cd441e34e5f42e65dc96"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\Props\\T_ParkFence03_D.uasset",
+      "bytes": 5255370,
+      "sha256": "ad3c1d1b165ec35e11f2f61cb241c4fb2d9767c8fc6a2484e01c1dbc4e048159"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\Props\\T_ParkFence03_N.uasset",
+      "bytes": 4737469,
+      "sha256": "a3bed1d0464c2f31b7ab86c646b9602fcea263d72f7b9f520d528d46f6396271"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\Props\\T_ParkFence03_SRM.uasset",
+      "bytes": 5070243,
+      "sha256": "9dd2e372f3ffc9781c683d2a45339d5b3d12ee49358bd93b9bacc34596231cbf"
+    },
+    {
+      "path": "Content\\CityPark\\Textures\\Road\\T_Sidewalk02_SRM.uasset",
+      "bytes": 6344336,
+      "sha256": "e797965173a7c4b0b093494372939b6d34f417696cd320e44f38f9e406e14dc8"
+    }
+  ],
+  "bytes": 64597120,
+  "policy": "Every map and authored thermal/route/vehicle/developer library retained. All registry reference types traversed. Review before quarantine; no deletion performed."
+}

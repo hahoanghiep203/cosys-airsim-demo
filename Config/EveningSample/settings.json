@@ -1,0 +1,122 @@
+{
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "EnableRpc": true,
+  "ApiServerPort": 41471,
+  "LocalHostIp": "127.0.0.1",
+  "InitialInstanceSegmentation": true,
+  "MoveWorldOrigin": false,
+  "LogMessagesVisible": false,
+  "ViewMode": "Fpv",
+  "Vehicles": {
+    "EveningSample": {
+      "VehicleType": "SimpleFlight",
+      "AutoCreate": true
+    }
+  },
+  "SubWindows": [
+    {
+      "WindowID": 2,
+      "CameraName": "0",
+      "VehicleName": "EveningSample",
+      "ImageType": 0,
+      "Visible": false
+    },
+    {
+      "WindowID": 3,
+      "CameraName": "0",
+      "VehicleName": "EveningSample",
+      "ImageType": 12,
+      "Visible": true
+    }
+  ],
+  "SyntheticCameraSettings": {
+    "ThermalIR": {
+      "TempMin": 280,
+      "TempMax": 600,
+      "DepthAttenuation": 0.001,
+      "DisplayTempMin": 280,
+      "DisplayTempMax": 380,
+      "Overrides": [
+        {
+          "Match": "human",
+          "TempK": 309.15,
+          "Emissivity": 0.98,
+          "IsAnimal": true
+        },
+        {
+          "Match": "car_engine",
+          "TempK": 363.15,
+          "Emissivity": 0.9
+        },
+        {
+          "Match": "car_body",
+          "TempK": 305.15,
+          "Emissivity": 0.85
+        },
+        {
+          "Match": "hot_pipe",
+          "TempK": 423.15,
+          "Emissivity": 0.88
+        },
+        {
+          "Match": "fire",
+          "TempK": 1000.0,
+          "Emissivity": 0.98,
+          "IsFire": true
+        },
+        {
+          "Match": "cold_wall",
+          "TempK": 285.15,
+          "Emissivity": 0.92
+        }
+      ]
+    }
+  },
+  "CameraDefaults": {
+    "CaptureSettings": [
+      {
+        "ImageType": -1,
+        "AutoExposureCompensation": 1.0,
+        "FOV_Degrees": 65,
+        "AutoExposureMinBrightness": 1,
+        "AutoExposureMaxBrightness": 1,
+        "MotionBlurAmount": 0
+      },
+      {
+        "ImageType": 0,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 65,
+        "AutoExposureMinBrightness": 1,
+        "AutoExposureMaxBrightness": 1,
+        "AutoExposureCompensation": 1.0,
+        "MotionBlurAmount": 0
+      },
+      {
+        "ImageType": 1,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 65
+      },
+      {
+        "ImageType": 5,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 65
+      },
+      {
+        "ImageType": 6,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 65
+      },
+      {
+        "ImageType": 10,
+        "Width": 1280,
+        "Height": 720,
+        "FOV_Degrees": 65
+      }
+    ]
+  }
+}

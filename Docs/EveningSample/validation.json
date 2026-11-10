@@ -1,0 +1,209 @@
+{
+  "protected_maps_unchanged": {
+    "D:\\F1\\UE prj\\airsim_test\\Cosys_Airsim\\Content\\CityPark\\Maps\\Showcase.umap": true,
+    "D:\\F1\\UE prj\\airsim_test\\Cosys_Airsim\\Content\\CityPark\\Maps\\Showcase_CoordinateCrop.umap": true
+  },
+  "performance": {
+    "label": "evening_sample_final_720_20261021",
+    "measurement": "UE editor PIE wall tick intervals; CSV profiler records engine frames separately; not packaged-flight FPS",
+    "motion": false,
+    "seconds": 70.01283390000026,
+    "ticks": 3702,
+    "wall_tick_hz": 52.87601992068466,
+    "median_ms": 13.109899999108166,
+    "p95_ms": 36.00409999853582,
+    "p99_ms": 41.417500000534346,
+    "max_ms": 54.82010000196169,
+    "over_100ms": 0,
+    "over_500ms": 0,
+    "ir_dispatch_hz": 29.59457408850854,
+    "gpu_before": {
+      "submitted": 3442,
+      "dispatched": 3442,
+      "skipped": 0,
+      "geometry_uploads": 2,
+      "temperature_uploads": 1106,
+      "gpu_data_bytes": 65463868,
+      "input_captures": 3443,
+      "profile_groups": 33,
+      "main_width": 1280,
+      "main_height": 720
+    },
+    "gpu_after": {
+      "submitted": 5515,
+      "dispatched": 5514,
+      "skipped": 0,
+      "geometry_uploads": 2,
+      "temperature_uploads": 1767,
+      "gpu_data_bytes": 65463868,
+      "input_captures": 5516,
+      "profile_groups": 33,
+      "main_width": 1280,
+      "main_height": 720
+    },
+    "profile": {
+      "profile": "balanced",
+      "map": "/Game/CityPark/Maps/UEDPIE_0_Showcase_EveningSample.Showcase_EveningSample",
+      "changed_components": 560,
+      "categories": {
+        "protected": 110,
+        "grass": 66,
+        "structure": 299,
+        "prop": 351,
+        "small_prop": 79,
+        "tree": 43,
+        "bush": 21
+      },
+      "lod_distance_scale": 1.5,
+      "collision_unchanged": true,
+      "saved_assets": false,
+      "distances_m": {
+        "grass": 40,
+        "bush": 90,
+        "tree": 220,
+        "small_prop": 80,
+        "prop": 150
+      },
+      "actual_console_variables": {
+        "r.Streaming.PoolSize": 6144.0,
+        "r.Streaming.LimitPoolSizeToVRAM": 1.0
+      }
+    },
+    "texture_pool_mb": 6144
+  },
+  "engine": {
+    "csv": "Profile(20261021_200240).csv",
+    "frames": 3702,
+    "summary": {
+      "GPUMem/LocalBudgetMB": {
+        "mean": 15282.0,
+        "p95": 15282.0,
+        "p99": 15282.0,
+        "max": 15282.0
+      },
+      "GPUMem/LocalUsedMB": {
+        "mean": 4008.2227,
+        "p95": 4008.2227,
+        "p99": 4008.2227,
+        "max": 4008.3477
+      },
+      "RHI/DrawCalls": {
+        "mean": 3640.6118314424634,
+        "p95": 4274.0,
+        "p99": 4278.0,
+        "max": 4307.0
+      },
+      "FrameTime": {
+        "mean": 18.918622744462454,
+        "p95": 35.1147,
+        "p99": 39.8636,
+        "max": 51.766,
+        "over_100ms": 0,
+        "over_500ms": 0,
+        "fps": 52.85797034526223
+      },
+      "RenderThreadTime": {
+        "mean": 13.012598622366287,
+        "p95": 16.9569,
+        "p99": 19.5787,
+        "max": 30.538
+      },
+      "GameThreadTime": {
+        "mean": 18.598181712587788,
+        "p95": 35.5461,
+        "p99": 40.7026,
+        "max": 95.2366
+      },
+      "GPUTime": {
+        "mean": 10.857252863317125,
+        "p95": 14.2556,
+        "p99": 14.8133,
+        "max": 15.8432
+      }
+    },
+    "longest_frame_costs": [
+      [
+        "FrameTime",
+        51.766
+      ],
+      [
+        "GameThreadTime",
+        50.442
+      ],
+      [
+        "Exclusive/GameThread/Tickables",
+        40.0828
+      ],
+      [
+        "Exclusive/RenderThread/EventWait",
+        26.4467
+      ],
+      [
+        "RenderThreadTime",
+        18.5259
+      ],
+      [
+        "Exclusive/GameThread/UI",
+        6.1011
+      ],
+      [
+        "Exclusive/RenderThread/RenderShadows",
+        5.3605
+      ],
+      [
+        "Exclusive/RenderThread/RenderOther",
+        2.4714
+      ],
+      [
+        "Exclusive/RenderThread/RenderThreadOther",
+        1.6534
+      ],
+      [
+        "Exclusive/GameThread/TickActors",
+        0.8076
+      ],
+      [
+        "Exclusive/AllWorkers/RenderCustomDepthPass",
+        0.6919
+      ],
+      [
+        "Exclusive/RenderThread/FXSystem",
+        0.6648
+      ]
+    ]
+  },
+  "comparison": {
+    "size": [
+      1280,
+      720
+    ],
+    "mae_uint8": 0.00013997395833333334,
+    "p95_uint8": 0.0,
+    "p99_uint8": 0.0,
+    "max_uint8": 3.0,
+    "fraction_gt_2": 1.0850694444444444e-06,
+    "scope": "Independent CPU surface and radiance calculation, same opaque/masked geometry inputs; demonstration model, not physical camera calibration."
+  },
+  "pair": [
+    {
+      "channel": "rgb",
+      "size": [
+        1280,
+        720
+      ],
+      "camera_position": "<Vector3r> {   'x_val': 0.0,\n    'y_val': 0.0,\n    'z_val': -7.299999713897705}",
+      "camera_orientation": "<Quaternionr> {   'w_val': 0.9676988124847412,\n    'x_val': -0.03020518273115158,\n    'y_val': -0.14164525270462036,\n    'z_val': -0.2063571959733963}",
+      "time_stamp": 1792587909306472192
+    },
+    {
+      "channel": "ir",
+      "size": [
+        1280,
+        720
+      ],
+      "camera_position": "<Vector3r> {   'x_val': 0.0,\n    'y_val': 0.0,\n    'z_val': -7.299999713897705}",
+      "camera_orientation": "<Quaternionr> {   'w_val': 0.9676988124847412,\n    'x_val': -0.03020518273115158,\n    'y_val': -0.14164525270462036,\n    'z_val': -0.2063571959733963}",
+      "time_stamp": 1792587909306472192
+    }
+  ]
+}

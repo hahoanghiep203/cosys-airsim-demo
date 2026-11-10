@@ -17,5 +17,12 @@
       "Name": "EditorScriptingUtilities",
       "Enabled": true
     }
+  ],
+  "Modules": [
+    {
+      "Name": "Cosys_Airsim",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
   ]
 }

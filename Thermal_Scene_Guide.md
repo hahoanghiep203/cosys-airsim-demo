@@ -1,6 +1,8 @@
+Current main environment: see [project guide](Docs/ProjectMaintenance/MAIN_PROJECT.md) and [measured validation](Docs/ProjectMaintenance/VALIDATION.md).
+
 # Thermal temperatures in Showcase_CoordinateCrop
 
-Project: `C:\Users\Admin\Documents\Unreal Projects\Cosys_Airsim`
+Project: `D:/F1/UE prj/airsim_test/Cosys_Airsim`
 
 Map: `/Game/CityPark/Maps/Showcase_CoordinateCrop`
 
@@ -46,10 +48,10 @@ thumbnail rate. The main viewport keeps its normal frame rate.
 For a normal game window at 720p, open **Play → Advanced Settings**, set
 **New Viewport Resolution** to **1280×720**, and choose
 **Play → New Editor Window (PIE)**.
-The embedded editor viewport uses the size of its panel.
+The project launcher now fixes the main Play render output at 1280×720 after Play starts; the editor panel can display it at a different on-screen size.
 
 The launcher uses medium shadows, effects, post-processing, reflections and global
-illumination, with a **3 GB texture pool** on this machine's 16 GB GPU. Capture
+illumination, with a **6 GB texture pool** on this machine's 16 GB GPU. Capture
 output stays at native 720p. Heat-source temperatures and material sampling are preserved.
 
 Decorative mirror reflections use 25% resolution, coarser reflected mesh detail

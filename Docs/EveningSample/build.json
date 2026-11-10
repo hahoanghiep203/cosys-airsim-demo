@@ -1,0 +1,150 @@
+{
+  "map": "/Game/CityPark/Maps/Showcase_EveningSample",
+  "objects": [
+    {
+      "label": "Sample_FoodStall",
+      "asset": "/Game/CityPark/Meshes/Props/SM_FoodStalls03",
+      "location": [
+        -28800.0,
+        10280.0,
+        75.91159090307102
+      ],
+      "baseline_k": 292.15
+    },
+    {
+      "label": "Sample_HotFoodCounter",
+      "asset": "/Game/Thermal/EveningSample/Blueprints/BP_SampleHotCounter",
+      "role": "localized heated metal counter; source90C, not whole cart"
+    },
+    {
+      "label": "Sample_CafeTable_A",
+      "asset": "/Game/CityPark/Meshes/Props/SM_CafeTable02",
+      "location": [
+        -29360.0,
+        9900.0,
+        100.26162273736637
+      ],
+      "baseline_k": 292.15
+    },
+    {
+      "label": "Sample_CafeTable_B",
+      "asset": "/Game/CityPark/Meshes/Props/SM_CafeTable01",
+      "location": [
+        -29600.0,
+        10400.0,
+        105.86254673063823
+      ],
+      "baseline_k": 292.15
+    },
+    {
+      "label": "Sample_Chair_A1",
+      "asset": "/Game/CityPark/Meshes/Props/SM_CafeChair01",
+      "location": [
+        -29360.0,
+        9790.0,
+        100.79512450672442
+      ],
+      "baseline_k": 292.15
+    },
+    {
+      "label": "Sample_Chair_A2",
+      "asset": "/Game/CityPark/Meshes/Props/SM_CafeChair02",
+      "location": [
+        -29360.0,
+        10010.0,
+        99.771126969383
+      ],
+      "baseline_k": 292.15
+    },
+    {
+      "label": "Sample_Chair_B1",
+      "asset": "/Game/CityPark/Meshes/Props/SM_CafeChair03",
+      "location": [
+        -29600.0,
+        10290.0,
+        196.40147247314454
+      ],
+      "baseline_k": 292.15
+    },
+    {
+      "label": "Sample_Chair_B2",
+      "asset": "/Game/CityPark/Meshes/Props/SM_CafeChair04",
+      "location": [
+        -29600.0,
+        10510.0,
+        105.82539157927104
+      ],
+      "baseline_k": 292.15
+    },
+    {
+      "label": "Sample_Bench",
+      "asset": "/Game/CityPark/Meshes/Props/SM_Bench03",
+      "location": [
+        -28900.0,
+        10820.0,
+        612.2001750414423
+      ],
+      "baseline_k": 292.15
+    },
+    {
+      "label": "Sample_Bin_A",
+      "asset": "/Game/CityPark/Meshes/Props/SM_TrashCan01",
+      "location": [
+        -28880.0,
+        10540.0,
+        762.8138291459625
+      ],
+      "baseline_k": 292.15
+    },
+    {
+      "label": "Sample_Bin_B",
+      "asset": "/Game/CityPark/Meshes/Props/SM_TrashCan02",
+      "location": [
+        -29900.0,
+        10770.0,
+        107.38079693736702
+      ],
+      "baseline_k": 292.15
+    },
+    {
+      "label": "Sample_Vehicle_HotHatchback",
+      "asset": "/Game/Thermal/Blueprints/BP_ThermalHatchback",
+      "role": "existing seven hood/headlight/tire-only child heat sources"
+    },
+    {
+      "label": "Sample_Vehicle_ColdSUV",
+      "asset": "/Game/VehicleVarietyPack/Meshes/SM_SUV",
+      "location": [
+        -30080.0,
+        11900.0,
+        103.3739304822889
+      ],
+      "baseline_k": 289.15
+    },
+    {
+      "label": "Sample_WarmLamp_A",
+      "asset": "/Game/Thermal/EveningSample/Blueprints/BP_SampleWarmLamp",
+      "role": "localized55C housing source, independent3000K visible light"
+    },
+    {
+      "label": "Sample_WarmLamp_B",
+      "asset": "/Game/Thermal/EveningSample/Blueprints/BP_SampleWarmLamp",
+      "role": "localized55C housing source, independent3000K visible light"
+    }
+  ],
+  "preview_position_cm": [
+    -31800,
+    11900,
+    950
+  ],
+  "preview_target_cm": [
+    -29450,
+    10850,
+    180
+  ],
+  "protected_map_hashes": {
+    "D:\\F1\\UE prj\\airsim_test\\Cosys_Airsim\\Content\\CityPark\\Maps\\Showcase.umap": "5200f7b1945d30cf595f8393427a3c2aa32df27703f6318b8bc43cf00fe2b593",
+    "D:\\F1\\UE prj\\airsim_test\\Cosys_Airsim\\Content\\CityPark\\Maps\\Showcase_CoordinateCrop.umap": "3140cc603d7405faf5f845ee2c8b1266e18bed52c86596657b83514aab14ac6a"
+  },
+  "notes": "Existing assets reused; warm counter, seven-source hatchback, two warm lamp fixtures, cold SUV and ambient cafe props. Demonstration temperatures, not measurements. No character assets added."
+}

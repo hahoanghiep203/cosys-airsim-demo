@@ -1,0 +1,87 @@
+{
+  "license": "CC0",
+  "creator": "Kenney",
+  "source": "https://kenney.nl/assets/city-kit-industrial",
+  "props": [
+    {
+      "label": "Combined_service_ProcessTank_Warm",
+      "mesh": "detail_tank",
+      "xy_cm": [
+        -23600,
+        13800
+      ],
+      "height_cm": 120,
+      "yaw": 0,
+      "temperature_c": 35.0,
+      "state": "controlled warm casing; hypothetical operating process tank",
+      "asset": "/Game/Thermal/SceneDiversity/ThirdParty/KenneyIndustrial/SM_Kenney_detail_tank",
+      "position_cm": [
+        -23600.0,
+        13800.0,
+        100.99504081788336
+      ],
+      "scale": 2.8895075627413087,
+      "emissivity": 0.9
+    },
+    {
+      "label": "Combined_service_ProcessTank_Cold",
+      "mesh": "detail_tank",
+      "xy_cm": [
+        -24100,
+        13800
+      ],
+      "height_cm": 120,
+      "yaw": 0,
+      "temperature_c": 16.0,
+      "state": "inactive tank at ambient",
+      "asset": "/Game/Thermal/SceneDiversity/ThirdParty/KenneyIndustrial/SM_Kenney_detail_tank",
+      "position_cm": [
+        -24100.0,
+        13800.0,
+        100.99504081788336
+      ],
+      "scale": 2.8895075627413087,
+      "emissivity": 0.9
+    },
+    {
+      "label": "Combined_service_StorageContainer",
+      "mesh": "shipping_container_a",
+      "xy_cm": [
+        -22100,
+        13900
+      ],
+      "height_cm": 220,
+      "yaw": 90,
+      "temperature_c": 16.0,
+      "state": "unpowered storage container",
+      "asset": "/Game/Thermal/SceneDiversity/ThirdParty/KenneyIndustrial/SM_Kenney_shipping_container_a",
+      "position_cm": [
+        -22100.0,
+        13900.0,
+        100.99504038447527
+      ],
+      "scale": 6.320386374404017,
+      "emissivity": 0.9
+    },
+    {
+      "label": "Combined_market_SolarPanel",
+      "mesh": "solar_panel_landscape",
+      "xy_cm": [
+        -13800,
+        10000
+      ],
+      "height_cm": 65,
+      "yaw": 20,
+      "temperature_c": 16.0,
+      "state": "inactive solar panel at blue-hour ambient",
+      "asset": "/Game/Thermal/SceneDiversity/ThirdParty/KenneyIndustrial/SM_Kenney_solar_panel_landscape",
+      "position_cm": [
+        -13800.0,
+        10000.0,
+        100.99325734312079
+      ],
+      "scale": 2.477506674000761,
+      "emissivity": 0.9
+    }
+  ]
+}

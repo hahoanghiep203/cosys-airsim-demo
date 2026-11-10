@@ -1,0 +1,54 @@
+{
+  "id": "01_dusk_cafe",
+  "map": "/Game/CityPark/Maps/ThermalDiversity_01_DuskCafe",
+  "new_objects": [
+    {
+      "label": "Diversity_Hatchback_Driving",
+      "asset": "/Game/Thermal/SceneDiversity/BP_Thermal_Hatchback",
+      "state": "driving"
+    },
+    {
+      "label": "Diversity_SUV_Parked",
+      "asset": "/Game/Thermal/SceneDiversity/BP_Thermal_SUV",
+      "state": "parked"
+    },
+    {
+      "label": "Diversity_Pickup_Cooling",
+      "asset": "/Game/Thermal/SceneDiversity/BP_Thermal_Pickup",
+      "state": "cooling"
+    },
+    {
+      "label": "Diversity_SM_CafeTable03_0",
+      "asset": "SM_CafeTable03"
+    },
+    {
+      "label": "Diversity_SM_CafeChair02_1",
+      "asset": "SM_CafeChair02"
+    },
+    {
+      "label": "Diversity_SM_CafeChair04_2",
+      "asset": "SM_CafeChair04"
+    },
+    {
+      "label": "Diversity_SM_TrashCan02_3",
+      "asset": "SM_TrashCan02"
+    },
+    {
+      "label": "Diversity_SM_Bench01_1_4",
+      "asset": "SM_Bench01_1"
+    },
+    {
+      "label": "Diversity_SM_RoadBlock01_5",
+      "asset": "SM_RoadBlock01"
+    },
+    {
+      "label": "Diversity_SM_TrafficBarrel01_6",
+      "asset": "SM_TrafficBarrel01"
+    },
+    {
+      "label": "Diversity_SM_FoodStalls01_7",
+      "asset": "SM_FoodStalls01"
+    }
+  ],
+  "protected_maps_unchanged": true
+}

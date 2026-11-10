@@ -1,0 +1,262 @@
+{
+  "date": "2026-10-19",
+  "scope": "Planning-only schema and bounded semantic examples; not flight, scheduler or throughput validation",
+  "schema_dialect": "2020-12",
+  "schema_version": "1.0.0",
+  "validator": "jsonschema 4.26.0",
+  "schema_self_validation": "passed",
+  "checks_passed": 39,
+  "checks_failed": 0,
+  "cases": [
+    {
+      "case": "complete example: 100ms + 1000ms + node burst",
+      "expected": "valid",
+      "result": "passed",
+      "rejected_by": null
+    },
+    {
+      "case": "1000ms segment interval",
+      "expected": "valid",
+      "result": "passed",
+      "rejected_by": null
+    },
+    {
+      "case": "distance sampling",
+      "expected": "valid",
+      "result": "passed",
+      "rejected_by": null
+    },
+    {
+      "case": "node-only sampling",
+      "expected": "valid",
+      "result": "passed",
+      "rejected_by": null
+    },
+    {
+      "case": "default inheritance: remove segment overrides",
+      "expected": "valid",
+      "result": "passed",
+      "rejected_by": null
+    },
+    {
+      "case": "fixed camera angle",
+      "expected": "valid",
+      "result": "passed",
+      "rejected_by": null
+    },
+    {
+      "case": "fly-through intermediate node",
+      "expected": "valid",
+      "result": "passed",
+      "rejected_by": null
+    },
+    {
+      "case": "explicit landing policy",
+      "expected": "valid",
+      "result": "passed",
+      "rejected_by": null
+    },
+    {
+      "case": "zero speed",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "negative acceleration",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "zero interval",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "negative interval",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "interval with string unit",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "mixed capture modes leftover field",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "zero distance",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "unknown property typo",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "thermal type 7 rejected",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "unsupported version",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "unsupported coordinates",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "missing position component",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "burst count below two",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "missing full defaults",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "null override",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "schema"
+    },
+    {
+      "case": "duplicate node id",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "duplicate segment id",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "unknown endpoint",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "out-of-order connections",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "missing connection",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "zero length connection",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "inverted thermal window",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "inherited node capture conflicts with fly-through",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "final fly-through",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "limit below mandatory node captures",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "all capture sources off",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "bounded_semantic_check"
+    },
+    {
+      "case": "duplicate JSON property",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "strict_json_parser"
+    },
+    {
+      "case": "nonfinite JSON number",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "strict_json_parser"
+    },
+    {
+      "case": "numeric exponent overflow rejected",
+      "expected": "invalid",
+      "result": "passed",
+      "rejected_by": "strict_numeric_parser"
+    },
+    {
+      "case": "documentation JSON fragments parse",
+      "expected": "valid",
+      "result": "passed",
+      "fragment_count": 3
+    },
+    {
+      "case": "final schema and example revalidated after review",
+      "expected": "valid",
+      "result": "passed"
+    }
+  ],
+  "not_validated": [
+    "Runtime importer or scheduler implementation",
+    "Physical flight and collision checks",
+    "Camera and thermal profile availability",
+    "100ms achieved throughput",
+    "Freeze simulation and RGB/IR paired-state consistency",
+    "Watchdog feasibility versus measured simulation speed"
+  ],
+  "review": {
+    "status": "addressed",
+    "findings_fixed": [
+      "Node/travel endpoint windows explicitly disjoint; removed merge/dedup promise",
+      "Node bad-pair abort precedence and interval-miss counter reset specified",
+      "Node burst successful-start minimum interval clarified",
+      "Simulation-duration feasibility must use runtime rate before comparing wall watchdogs"
+    ]
+  }
+}

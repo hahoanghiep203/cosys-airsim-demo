@@ -1,0 +1,7 @@
+Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+D:\F1\UE prj\airsim_test\ThermalGen\.venv\Lib\site-packages\torch\functional.py:554: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\native\TensorShape.cpp:4316.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Saved predicted thermal image to test_thermal_uncond.png
+Saved predicted thermal image to test_thermal_cond.png
+Saved predicted thermal image to test_thermal_cond_cfg4.png

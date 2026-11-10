@@ -1,0 +1,160 @@
+{
+  "status": "passed_for_configured_synthetic_temperatures",
+  "physical_calibration": "Not performed: values are controlled blue-hour assumptions, not measured ground truth",
+  "editor_components": 936,
+  "runtime_components": 1022,
+  "runtime_mesh_instances": 2707554,
+  "missing_or_invalid_assignments": 0,
+  "decorative_water_components": 7,
+  "decorative_water_all_ignored": true,
+  "water_heat_sources": 0,
+  "hot_render_surface_probes": 39,
+  "active_hot_surfaces_above_ambient": true,
+  "maximum_tire_attachment_error_cm": 0.0,
+  "maximum_rim_baseline_delta_k": 6.1035156022626325e-06,
+  "parked_tire_max_baseline_delta_k": 6.1035156022626325e-06,
+  "source_count": 105,
+  "added_props": {
+    "license": "CC0",
+    "creator": "Kenney",
+    "source": "https://kenney.nl/assets/city-kit-industrial",
+    "props": [
+      {
+        "label": "Combined_service_ProcessTank_Warm",
+        "mesh": "detail_tank",
+        "xy_cm": [
+          -23600,
+          13800
+        ],
+        "height_cm": 120,
+        "yaw": 0,
+        "temperature_c": 35.0,
+        "state": "controlled warm casing; hypothetical operating process tank",
+        "asset": "/Game/Thermal/SceneDiversity/ThirdParty/KenneyIndustrial/SM_Kenney_detail_tank",
+        "position_cm": [
+          -23600.0,
+          13800.0,
+          100.99504081788336
+        ],
+        "scale": 2.8895075627413087,
+        "emissivity": 0.9
+      },
+      {
+        "label": "Combined_service_ProcessTank_Cold",
+        "mesh": "detail_tank",
+        "xy_cm": [
+          -24100,
+          13800
+        ],
+        "height_cm": 120,
+        "yaw": 0,
+        "temperature_c": 16.0,
+        "state": "inactive tank at ambient",
+        "asset": "/Game/Thermal/SceneDiversity/ThirdParty/KenneyIndustrial/SM_Kenney_detail_tank",
+        "position_cm": [
+          -24100.0,
+          13800.0,
+          100.99504081788336
+        ],
+        "scale": 2.8895075627413087,
+        "emissivity": 0.9
+      },
+      {
+        "label": "Combined_service_StorageContainer",
+        "mesh": "shipping_container_a",
+        "xy_cm": [
+          -22100,
+          13900
+        ],
+        "height_cm": 220,
+        "yaw": 90,
+        "temperature_c": 16.0,
+        "state": "unpowered storage container",
+        "asset": "/Game/Thermal/SceneDiversity/ThirdParty/KenneyIndustrial/SM_Kenney_shipping_container_a",
+        "position_cm": [
+          -22100.0,
+          13900.0,
+          100.99504038447527
+        ],
+        "scale": 6.320386374404017,
+        "emissivity": 0.9
+      },
+      {
+        "label": "Combined_market_SolarPanel",
+        "mesh": "solar_panel_landscape",
+        "xy_cm": [
+          -13800,
+          10000
+        ],
+        "height_cm": 65,
+        "yaw": 20,
+        "temperature_c": 16.0,
+        "state": "inactive solar panel at blue-hour ambient",
+        "asset": "/Game/Thermal/SceneDiversity/ThirdParty/KenneyIndustrial/SM_Kenney_solar_panel_landscape",
+        "position_cm": [
+          -13800.0,
+          10000.0,
+          100.99325734312079
+        ],
+        "scale": 2.477506674000761,
+        "emissivity": 0.9
+      }
+    ]
+  },
+  "cpu_gpu_comparison": {
+    "scene": "05_combined_environment",
+    "mae_uint8": 0.0007302517361111111,
+    "p95_uint8": 0.0,
+    "max_uint8": 9.0,
+    "size": [
+      1280,
+      720
+    ],
+    "gpu": {
+      "submitted": 9803,
+      "dispatched": 9803,
+      "skipped": 0,
+      "geometry_uploads": 3,
+      "temperature_uploads": 9254,
+      "gpu_data_bytes": 119559744,
+      "input_captures": 9805,
+      "profile_groups": 55,
+      "main_width": 1280,
+      "main_height": 720
+    },
+    "scope": "Independent CPU surface/radiance arithmetic using the same opaque/masked camera geometry inputs. Not physical calibration."
+  },
+  "still_capture_audit": {
+    "status": "passed",
+    "scene": "05_combined_environment",
+    "map": "/Game/CityPark/Maps/ThermalDiversity_05_CombinedEnvironment",
+    "capture_mode": "independent_viewpoints",
+    "expected_count": 50,
+    "pair_count": 50,
+    "unique_actual_positions": 50,
+    "unique_actual_orientations": 18,
+    "unique_image_hashes": {
+      "rgb": 50,
+      "ir": 50
+    },
+    "camera_origin_spread_cm": 0.0014370310531461698,
+    "maximum_aim_error_deg": 0.023724817409975462,
+    "azimuth_bins_per_zone": {
+      "cafe": 7,
+      "service": 7,
+      "market": 7,
+      "parking": 5
+    },
+    "contact_sheet": "contact_sheet.jpg",
+    "errors": []
+  },
+  "protected_maps_unchanged": {
+    "Content/CityPark/Maps/Showcase.umap": true,
+    "Content/CityPark/Maps/Showcase_CoordinateCrop.umap": true,
+    "Content/CityPark/Maps/Showcase_EveningSample.umap": true
+  },
+  "regression_tests": "6 Python unittest cases passed; 11 prior classification assertions also passed",
+  "production_cpp_changed_this_turn": false,
+  "human_asset_download": "Creator-linked Google Drive returned Quota exceeded. No human imported.",
+  "performance": "No new real-time benchmark; previous combined-map limitation ~4.4 Hz IR remains unresolved. No additional simulated emitters added."
+}

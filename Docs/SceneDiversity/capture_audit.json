@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "pairs": 50,
+  "images": 100,
+  "scenes": [
+    {
+      "id": "01_dusk_cafe",
+      "pairs": 13,
+      "unique_ir": 13,
+      "camera_translation_m": 8.306623920322536,
+      "driving_displacement_cm": {
+        "Diversity_Hatchback_Driving": 914.8264499008656
+      }
+    },
+    {
+      "id": "02_bluehour_service",
+      "pairs": 13,
+      "unique_ir": 13,
+      "camera_translation_m": 8.306623920322536,
+      "driving_displacement_cm": {
+        "Diversity_Truck_Box_Driving": 1082.0765088312328
+      }
+    },
+    {
+      "id": "03_night_market",
+      "pairs": 12,
+      "unique_ir": 12,
+      "camera_translation_m": 8.306623920322536,
+      "driving_displacement_cm": {
+        "Diversity_Pickup_Driving": 897.6840192172676
+      }
+    },
+    {
+      "id": "04_moonlit_parking",
+      "pairs": 12,
+      "unique_ir": 12,
+      "camera_translation_m": 8.306623920322536,
+      "driving_displacement_cm": {
+        "Diversity_SportsCar_Driving": 924.6069632098079
+      }
+    }
+  ],
+  "protected_maps_unchanged": true,
+  "surface_checks_verified": true,
+  "scope": "paired images plus actual attached rubber/rim surface probes"
+}

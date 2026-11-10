@@ -1,0 +1,4707 @@
+{
+  "scene": "02_bluehour_service",
+  "map": "/Game/CityPark/Maps/ThermalDiversity_02_BlueHourService",
+  "status": "passed",
+  "expected_pairs": 13,
+  "pairing": "RGB and IR captured while simulation and scripted movement are frozen",
+  "editor_pid": 31488,
+  "pairs": [
+    {
+      "index": 0,
+      "requested_camera_cm": [
+        -31800.0,
+        12900.0,
+        1100.0
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 1.1830638013780117,
+        "last_world_time": 2.5052013099193573,
+        "tick": 45,
+        "suspended": true,
+        "last_publish": 55548.828,
+        "view_position_cm": [
+          -31800.0,
+          12900.0,
+          1100.0
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -31411.27021489665,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -31573.916638396648,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 293.0690002441406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -31573.85676289665,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 293.0690002441406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -31573.81080339665,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 293.0690002441406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -31573.81074239665,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 293.0690002441406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -31177.52669989665,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 293.0690002441406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -31177.488766396647,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 293.0690002441406,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -31120.27021489665,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -31073.27021489665,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -31073.27021489665,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 300.00634765625,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 300.00634765625,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 300.00634765625,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 300.00634765625,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 332.5754089355469,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "000_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693602566636288,
+          "pose": {
+            "position_m": [
+              0.0,
+              0.0,
+              -8.800000190734863
+            ],
+            "orientation_xyzw": [
+              -0.053354278206825256,
+              -0.1380065381526947,
+              -0.3566276431083679,
+              0.9224555492401123
+            ]
+          }
+        },
+        "ir": {
+          "file": "000_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693602566636288,
+          "pose": {
+            "position_m": [
+              0.0,
+              0.0,
+              -8.800000190734863
+            ],
+            "orientation_xyzw": [
+              -0.053354278206825256,
+              -0.1380065381526947,
+              -0.3566276431083679,
+              0.9224555492401123
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 1,
+      "requested_camera_cm": [
+        -31733.333333333332,
+        12916.666666666666,
+        1091.6666666666667
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 2.3956150002777576,
+        "last_world_time": 3.9191575087606907,
+        "tick": 189,
+        "suspended": true,
+        "last_publish": 55550.875,
+        "view_position_cm": [
+          -31733.333333333332,
+          12916.666666666666,
+          1091.6666666666667
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -31320.328874979168,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -31482.975298479167,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 293.9561462402344,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -31482.915422979167,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 293.9561462402344,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -31482.86946347917,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 293.9561462402344,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -31482.86940247917,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 293.9561462402344,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -31086.58535997917,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 293.9561462402344,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -31086.547426479166,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 293.9561462402344,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -31029.328874979168,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30982.328874979168,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30982.328874979168,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 299.8610534667969,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 299.8610534667969,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 299.8610534667969,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 299.8610534667969,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 331.9942626953125,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "001_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693603976666368,
+          "pose": {
+            "position_m": [
+              0.6666666269302368,
+              0.1666666567325592,
+              -8.716666221618652
+            ],
+            "orientation_xyzw": [
+              -0.05487579479813576,
+              -0.13793286681175232,
+              -0.3655674457550049,
+              0.9188708662986755
+            ]
+          }
+        },
+        "ir": {
+          "file": "001_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693603976666368,
+          "pose": {
+            "position_m": [
+              0.6666666269302368,
+              0.1666666567325592,
+              -8.716666221618652
+            ],
+            "orientation_xyzw": [
+              -0.05487579479813576,
+              -0.13793286681175232,
+              -0.3655674457550049,
+              0.9188708662986755
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 2,
+      "requested_camera_cm": [
+        -31666.666666666668,
+        12933.333333333334,
+        1083.3333333333333
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 3.607209697365761,
+        "last_world_time": 5.337232306599617,
+        "tick": 331,
+        "suspended": true,
+        "last_publish": 55552.953,
+        "view_position_cm": [
+          -31666.666666666668,
+          12933.333333333334,
+          1083.3333333333333
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -31229.459272697568,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -31392.105696197566,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 294.7904968261719,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -31392.045820697567,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 294.7904968261719,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -31391.999861197568,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 294.7904968261719,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -31391.99980019757,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 294.7904968261719,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30995.71575769757,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 294.7904968261719,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30995.677824197566,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 294.7904968261719,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30938.459272697568,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30891.459272697568,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30891.459272697568,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 299.71783447265625,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 299.71783447265625,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 299.71783447265625,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 299.71783447265625,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 331.4213562011719,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "002_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693605377696256,
+          "pose": {
+            "position_m": [
+              1.3333332538604736,
+              0.3333333134651184,
+              -8.633333206176758
+            ],
+            "orientation_xyzw": [
+              -0.056419048458337784,
+              -0.13778918981552124,
+              -0.37470102310180664,
+              0.9151120781898499
+            ]
+          }
+        },
+        "ir": {
+          "file": "002_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693605377696256,
+          "pose": {
+            "position_m": [
+              1.3333332538604736,
+              0.3333333134651184,
+              -8.633333206176758
+            ],
+            "orientation_xyzw": [
+              -0.056419048458337784,
+              -0.13778918981552124,
+              -0.37470102310180664,
+              0.9151120781898499
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 3,
+      "requested_camera_cm": [
+        -31600.0,
+        12950.0,
+        1075.0
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 4.800970897078514,
+        "last_world_time": 6.7576935067772865,
+        "tick": 473,
+        "suspended": true,
+        "last_publish": 55554.984,
+        "view_position_cm": [
+          -31600.0,
+          12950.0,
+          1075.0
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -31139.92718271911,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -31302.57360621911,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 295.5645751953125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -31302.51373071911,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 295.5645751953125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -31302.46777121911,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 295.5645751953125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -31302.467710219113,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 295.5645751953125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30906.183667719113,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 295.5645751953125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30906.14573421911,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 295.5645751953125,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30848.92718271911,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30801.92718271911,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30801.92718271911,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 299.5785827636719,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 299.5785827636719,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 299.5785827636719,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 299.5785827636719,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 330.8643493652344,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "003_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693606784726272,
+          "pose": {
+            "position_m": [
+              2.0,
+              0.5,
+              -8.550000190734863
+            ],
+            "orientation_xyzw": [
+              -0.05798112601041794,
+              -0.1375708431005478,
+              -0.3840263783931732,
+              0.9111729860305786
+            ]
+          }
+        },
+        "ir": {
+          "file": "003_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693606784726272,
+          "pose": {
+            "position_m": [
+              2.0,
+              0.5,
+              -8.550000190734863
+            ],
+            "orientation_xyzw": [
+              -0.05798112601041794,
+              -0.1375708431005478,
+              -0.3840263783931732,
+              0.9111729860305786
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 4,
+      "requested_camera_cm": [
+        -31533.333333333332,
+        12966.666666666666,
+        1066.6666666666667
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 5.985537897795439,
+        "last_world_time": 8.166284207254648,
+        "tick": 616,
+        "suspended": true,
+        "last_publish": 55557.015,
+        "view_position_cm": [
+          -31533.333333333332,
+          12966.666666666666,
+          1066.6666666666667
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -31051.084657665342,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -31213.73108116534,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 296.288330078125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -31213.67120566534,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 296.288330078125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -31213.625246165342,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 296.288330078125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -31213.625185165343,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 296.288330078125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30817.341142665344,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 296.288330078125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30817.30320916534,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 296.288330078125,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30760.084657665342,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30713.084657665342,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30713.084657665342,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 299.4422302246094,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 299.4422302246094,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 299.4422302246094,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 299.4422302246094,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 330.31890869140625,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "004_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693608194756352,
+          "pose": {
+            "position_m": [
+              2.6666665077209473,
+              0.6666666269302368,
+              -8.466666221618652
+            ],
+            "orientation_xyzw": [
+              -0.0595586895942688,
+              -0.13727311789989471,
+              -0.3935405910015106,
+              0.9070472121238708
+            ]
+          }
+        },
+        "ir": {
+          "file": "004_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693608194756352,
+          "pose": {
+            "position_m": [
+              2.6666665077209473,
+              0.6666666269302368,
+              -8.466666221618652
+            ],
+            "orientation_xyzw": [
+              -0.0595586895942688,
+              -0.13727311789989471,
+              -0.3935405910015106,
+              0.9070472121238708
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 5,
+      "requested_camera_cm": [
+        -31466.666666666668,
+        12983.333333333334,
+        1058.3333333333333
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 7.201368995010853,
+        "last_world_time": 9.573366601020098,
+        "tick": 757,
+        "suspended": true,
+        "last_publish": 55559.046,
+        "view_position_cm": [
+          -31466.666666666668,
+          12983.333333333334,
+          1058.3333333333333
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -30959.897325374186,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -31122.543748874185,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 296.9879455566406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -31122.483873374185,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 296.9879455566406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -31122.437913874186,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 296.9879455566406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -31122.437852874187,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 296.9879455566406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30726.153810374188,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 296.9879455566406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30726.115876874184,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 296.9879455566406,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30668.897325374186,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30621.897325374186,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30621.897325374186,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 299.30413818359375,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 299.30413818359375,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 299.30413818359375,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 299.30413818359375,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 329.7665100097656,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "005_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693609604786432,
+          "pose": {
+            "position_m": [
+              3.3333332538604736,
+              0.8333333134651184,
+              -8.383333206176758
+            ],
+            "orientation_xyzw": [
+              -0.06114797666668892,
+              -0.13689135015010834,
+              -0.40323978662490845,
+              0.9027288556098938
+            ]
+          }
+        },
+        "ir": {
+          "file": "005_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693609604786432,
+          "pose": {
+            "position_m": [
+              3.3333332538604736,
+              0.8333333134651184,
+              -8.383333206176758
+            ],
+            "orientation_xyzw": [
+              -0.06114797666668892,
+              -0.13689135015010834,
+              -0.40323978662490845,
+              0.9027288556098938
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 6,
+      "requested_camera_cm": [
+        -31400.0,
+        13000.0,
+        1050.0
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 8.410421594977379,
+        "last_world_time": 10.988344002515078,
+        "tick": 892,
+        "suspended": true,
+        "last_publish": 55562.125,
+        "view_position_cm": [
+          -31400.0,
+          13000.0,
+          1050.0
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -30869.218380376697,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -31031.864803876695,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 297.6427307128906,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -31031.804928376696,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 297.6427307128906,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -31031.758968876697,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 297.6427307128906,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -31031.758907876698,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 297.6427307128906,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30635.4748653767,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 297.6427307128906,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30635.436931876695,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 297.6427307128906,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30578.218380376697,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30531.218380376697,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30531.218380376697,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 299.16864013671875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 299.16864013671875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 299.16864013671875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 299.16864013671875,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 329.2245178222656,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "006_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693611008816384,
+          "pose": {
+            "position_m": [
+              4.0,
+              1.0,
+              -8.300000190734863
+            ],
+            "orientation_xyzw": [
+              -0.06274476647377014,
+              -0.13642096519470215,
+              -0.4131191074848175,
+              0.8982121348381042
+            ]
+          }
+        },
+        "ir": {
+          "file": "006_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693611008816384,
+          "pose": {
+            "position_m": [
+              4.0,
+              1.0,
+              -8.300000190734863
+            ],
+            "orientation_xyzw": [
+              -0.06274476647377014,
+              -0.13642096519470215,
+              -0.4131191074848175,
+              0.8982121348381042
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 7,
+      "requested_camera_cm": [
+        -31333.333333333332,
+        13016.666666666666,
+        1041.6666666666667
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 9.617257591336966,
+        "last_world_time": 12.406209699809551,
+        "tick": 1035,
+        "suspended": true,
+        "last_publish": 55564.171,
+        "view_position_cm": [
+          -31333.333333333332,
+          13016.666666666666,
+          1041.6666666666667
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -30778.705680649728,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -30941.352104149726,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 298.25799560546875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -30941.292228649727,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 298.25799560546875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -30941.246269149728,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 298.25799560546875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -30941.24620814973,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 298.25799560546875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30544.96216564973,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 298.25799560546875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30544.924232149726,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 298.25799560546875,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30487.705680649728,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30440.705680649728,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30440.705680649728,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 299.0351867675781,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 299.0351867675781,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 299.0351867675781,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 299.0351867675781,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 328.69073486328125,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "007_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693612415846400,
+          "pose": {
+            "position_m": [
+              4.666666507720947,
+              1.1666666269302368,
+              -8.216666221618652
+            ],
+            "orientation_xyzw": [
+              -0.0643443837761879,
+              -0.135857492685318,
+              -0.42317262291908264,
+              0.8934917449951172
+            ]
+          }
+        },
+        "ir": {
+          "file": "007_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693612415846400,
+          "pose": {
+            "position_m": [
+              4.666666507720947,
+              1.1666666269302368,
+              -8.216666221618652
+            ],
+            "orientation_xyzw": [
+              -0.0643443837761879,
+              -0.135857492685318,
+              -0.42317262291908264,
+              0.8934917449951172
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 8,
+      "requested_camera_cm": [
+        -31266.666666666668,
+        13033.333333333334,
+        1033.3333333333333
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 10.824852392077446,
+        "last_world_time": 14.083970598876476,
+        "tick": 1185,
+        "suspended": true,
+        "last_publish": 55566.203,
+        "view_position_cm": [
+          -31266.666666666668,
+          13033.333333333334,
+          1033.3333333333333
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -30688.13607059419,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -30850.78249409419,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 298.8376159667969,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -30850.72261859419,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 298.8376159667969,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -30850.67665909419,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 298.8376159667969,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -30850.676598094193,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 298.8376159667969,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30454.392555594193,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 298.8376159667969,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30454.35462209419,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 298.8376159667969,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30397.13607059419,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30350.13607059419,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30350.13607059419,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 298.9034423828125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 298.9034423828125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 298.9034423828125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 298.9034423828125,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 328.1637268066406,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "008_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693614071881728,
+          "pose": {
+            "position_m": [
+              5.3333330154418945,
+              1.3333332538604736,
+              -8.133333206176758
+            ],
+            "orientation_xyzw": [
+              -0.0659416913986206,
+              -0.13519670069217682,
+              -0.4333932101726532,
+              0.888562798500061
+            ]
+          }
+        },
+        "ir": {
+          "file": "008_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693614071881728,
+          "pose": {
+            "position_m": [
+              5.3333330154418945,
+              1.3333332538604736,
+              -8.133333206176758
+            ],
+            "orientation_xyzw": [
+              -0.0659416913986206,
+              -0.13519670069217682,
+              -0.4333932101726532,
+              0.888562798500061
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 9,
+      "requested_camera_cm": [
+        -31200.0,
+        13050.0,
+        1025.0
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 12.041814487427473,
+        "last_world_time": 15.480191893875599,
+        "tick": 1322,
+        "suspended": true,
+        "last_publish": 55568.234,
+        "view_position_cm": [
+          -31200.0,
+          13050.0,
+          1025.0
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -30596.86391344294,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -30759.510336942938,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 299.3873596191406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -30759.45046144294,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 299.3873596191406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -30759.40450194294,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 299.3873596191406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -30759.40444094294,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 299.3873596191406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30363.12039844294,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 299.3873596191406,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30363.082464942938,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 299.3873596191406,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30305.86391344294,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30258.86391344294,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30258.86391344294,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 298.7724304199219,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 298.7724304199219,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 298.7724304199219,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 298.7724304199219,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 327.6397399902344,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "009_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693615469911552,
+          "pose": {
+            "position_m": [
+              6.0,
+              1.5,
+              -8.050000190734863
+            ],
+            "orientation_xyzw": [
+              -0.06753110885620117,
+              -0.13443459570407867,
+              -0.44377264380455017,
+              0.883421003818512
+            ]
+          }
+        },
+        "ir": {
+          "file": "009_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693615469911552,
+          "pose": {
+            "position_m": [
+              6.0,
+              1.5,
+              -8.050000190734863
+            ],
+            "orientation_xyzw": [
+              -0.06753110885620117,
+              -0.13443459570407867,
+              -0.44377264380455017,
+              0.883421003818512
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 10,
+      "requested_camera_cm": [
+        -31133.333333333332,
+        13066.666666666666,
+        1016.6666666666666
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 13.238510388880968,
+        "last_world_time": 16.89333999529481,
+        "tick": 1464,
+        "suspended": true,
+        "last_publish": 55571.343,
+        "view_position_cm": [
+          -31133.333333333332,
+          13066.666666666666,
+          1016.6666666666666
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -30507.111720833927,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -30669.758144333926,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 299.89630126953125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -30669.698268833927,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 299.89630126953125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -30669.652309333927,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 299.89630126953125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -30669.65224833393,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 299.89630126953125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30273.36820583393,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 299.89630126953125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30273.330272333926,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 299.89630126953125,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30216.111720833927,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30169.111720833927,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30169.111720833927,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 298.64532470703125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 298.64532470703125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 298.64532470703125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 298.64532470703125,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 327.13134765625,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "010_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693616882941696,
+          "pose": {
+            "position_m": [
+              6.666666507720947,
+              1.6666666269302368,
+              -7.9666666984558105
+            ],
+            "orientation_xyzw": [
+              -0.06910660862922668,
+              -0.13356755673885345,
+              -0.45430150628089905,
+              0.8780627250671387
+            ]
+          }
+        },
+        "ir": {
+          "file": "010_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693616882941696,
+          "pose": {
+            "position_m": [
+              6.666666507720947,
+              1.6666666269302368,
+              -7.9666666984558105
+            ],
+            "orientation_xyzw": [
+              -0.06910660862922668,
+              -0.13356755673885345,
+              -0.45430150628089905,
+              0.8780627250671387
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 11,
+      "requested_camera_cm": [
+        -31066.666666666668,
+        13083.333333333334,
+        1008.3333333333334
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 14.423214387148619,
+        "last_world_time": 18.302922293543816,
+        "tick": 1599,
+        "suspended": true,
+        "last_publish": 55573.421,
+        "view_position_cm": [
+          -31066.666666666668,
+          13083.333333333334,
+          1008.3333333333334
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -30418.258920963854,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -30580.905344463852,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 300.3710021972656,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -30580.845468963853,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 300.3710021972656,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -30580.799509463854,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 300.3710021972656,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -30580.799448463855,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 300.3710021972656,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30184.515405963855,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 300.3710021972656,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30184.477472463852,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 300.3710021972656,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30127.258920963854,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -30080.258920963854,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -30080.258920963854,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 298.52117919921875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 298.52117919921875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 298.52117919921875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 298.52117919921875,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 326.6346435546875,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "011_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693618289971712,
+          "pose": {
+            "position_m": [
+              7.3333330154418945,
+              1.8333332538604736,
+              -7.883333206176758
+            ],
+            "orientation_xyzw": [
+              -0.07066177576780319,
+              -0.1325923353433609,
+              -0.46496906876564026,
+              0.8724849224090576
+            ]
+          }
+        },
+        "ir": {
+          "file": "011_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693618289971712,
+          "pose": {
+            "position_m": [
+              7.3333330154418945,
+              1.8333332538604736,
+              -7.883333206176758
+            ],
+            "orientation_xyzw": [
+              -0.07066177576780319,
+              -0.1325923353433609,
+              -0.46496906876564026,
+              0.8724849224090576
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    },
+    {
+      "index": 12,
+      "requested_camera_cm": [
+        -31000.0,
+        13100.0,
+        1000.0
+      ],
+      "snapshot": {
+        "pid": 31488,
+        "world": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService",
+        "id": "02_bluehour_service",
+        "ready": true,
+        "elapsed": 15.610750585794449,
+        "last_world_time": 19.71014219149947,
+        "tick": 1735,
+        "suspended": true,
+        "last_publish": 55575.453,
+        "view_position_cm": [
+          -31000.0,
+          13100.0,
+          1000.0
+        ],
+        "view_target_cm": [
+          -29600,
+          10900,
+          190
+        ],
+        "actor_paths": {
+          "Diversity_Truck_Box_Driving": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Truck_Box_C_0",
+          "Diversity_Pickup_Parked": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_Pickup_C_0",
+          "Diversity_SportsCar_Cooling": "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_Thermal_SportsCar_C_0"
+        },
+        "removed_distortion_blendables": 144,
+        "camera_paths": [
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.ExternalCamera",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_0",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_1",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_2",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_3",
+          "/Game/CityPark/Maps/UEDPIE_0_ThermalDiversity_02_BlueHourService.ThermalDiversity_02_BlueHourService:PersistentLevel.BP_PIPCamera_C_4"
+        ],
+        "source_count": 26,
+        "vehicles": [
+          {
+            "label": "Diversity_Truck_Box_Driving",
+            "model": "Truck_Box",
+            "state": "driving",
+            "position_cm": [
+              -30329.193706065416,
+              11300.0,
+              110.0
+            ],
+            "yaw_deg": 0.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -30491.840129565415,
+                  11230.810936,
+                  153.420067
+                ],
+                "temperature_k": 300.8194580078125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -30491.780254065416,
+                  11395.9939195,
+                  153.4586485
+                ],
+                "temperature_k": 300.8194580078125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -30491.734294565416,
+                  11205.893837,
+                  153.444313
+                ],
+                "temperature_k": 300.8194580078125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -30491.734233565418,
+                  11372.9226915,
+                  153.444485
+                ],
+                "temperature_k": 300.8194580078125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_4",
+                "position_cm": [
+                  -30095.450191065418,
+                  11212.8030165,
+                  153.44442
+                ],
+                "temperature_k": 300.8194580078125,
+                "enabled": true
+              },
+              {
+                "name": "Tire_5",
+                "position_cm": [
+                  -30095.412257565415,
+                  11389.832802,
+                  153.432617
+                ],
+                "temperature_k": 300.8194580078125,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -30038.193706065416,
+                  11300.0,
+                  236.0
+                ],
+                "temperature_k": 353.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29991.193706065416,
+                  11233.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29991.193706065416,
+                  11367.0,
+                  181.0
+                ],
+                "temperature_k": 333.1499938964844,
+                "enabled": true
+              }
+            ]
+          },
+          {
+            "label": "Diversity_Pickup_Parked",
+            "model": "Pickup",
+            "state": "parked",
+            "position_cm": [
+              -29700.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -29584.2769395,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -29584.276943,
+                  12211.22732,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -29839.558613,
+                  12211.227318,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -29839.5586205,
+                  12078.680023,
+                  140.165352
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -29862.0,
+                  12145.0,
+                  207.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29908.0,
+                  12212.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29908.0,
+                  12088.0,
+                  172.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          },
+          {
+            "label": "Diversity_SportsCar_Cooling",
+            "model": "SportsCar",
+            "state": "cooling",
+            "position_cm": [
+              -28800.0,
+              12150.0,
+              110.0
+            ],
+            "yaw_deg": 180.0,
+            "sources": [
+              {
+                "name": "Tire_0",
+                "position_cm": [
+                  -28664.892891,
+                  12065.729042,
+                  144.113661
+                ],
+                "temperature_k": 298.3983154296875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_1",
+                "position_cm": [
+                  -28664.8928945,
+                  12236.0066755,
+                  144.113661
+                ],
+                "temperature_k": 298.3983154296875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_2",
+                "position_cm": [
+                  -28919.254986,
+                  12068.8998415,
+                  140.216946
+                ],
+                "temperature_k": 298.3983154296875,
+                "enabled": true
+              },
+              {
+                "name": "Tire_3",
+                "position_cm": [
+                  -28919.25499,
+                  12232.83873,
+                  140.216946
+                ],
+                "temperature_k": 298.3983154296875,
+                "enabled": true
+              },
+              {
+                "name": "HoodHeat",
+                "position_cm": [
+                  -28955.0,
+                  12150.0,
+                  168.0
+                ],
+                "temperature_k": 326.143310546875,
+                "enabled": true
+              },
+              {
+                "name": "Headlight_0",
+                "position_cm": [
+                  -29012.0,
+                  12220.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              },
+              {
+                "name": "Headlight_1",
+                "position_cm": [
+                  -29012.0,
+                  12080.0,
+                  152.0
+                ],
+                "temperature_k": 289.1499938964844,
+                "enabled": false
+              }
+            ]
+          }
+        ]
+      },
+      "images": {
+        "rgb": {
+          "file": "012_rgb.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693619688001536,
+          "pose": {
+            "position_m": [
+              8.0,
+              2.0,
+              -7.799999713897705
+            ],
+            "orientation_xyzw": [
+              -0.0721898004412651,
+              -0.13150621950626373,
+              -0.4757634699344635,
+              0.8666855692863464
+            ]
+          }
+        },
+        "ir": {
+          "file": "012_ir.png",
+          "size": [
+            1280,
+            720
+          ],
+          "time_stamp": 1792693619688001536,
+          "pose": {
+            "position_m": [
+              8.0,
+              2.0,
+              -7.799999713897705
+            ],
+            "orientation_xyzw": [
+              -0.0721898004412651,
+              -0.13150621950626373,
+              -0.4757634699344635,
+              0.8666855692863464
+            ]
+          }
+        }
+      },
+      "timestamp_delta_ns": 0,
+      "frozen_scene_verified": true
+    }
+  ],
+  "camera_translation_m": 8.306623920322536,
+  "driving_displacement_cm": {
+    "Diversity_Truck_Box_Driving": 1082.0765088312328
+  }
+}

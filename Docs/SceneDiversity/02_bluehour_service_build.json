@@ -1,0 +1,58 @@
+{
+  "id": "02_bluehour_service",
+  "map": "/Game/CityPark/Maps/ThermalDiversity_02_BlueHourService",
+  "new_objects": [
+    {
+      "label": "Diversity_Truck_Box_Driving",
+      "asset": "/Game/Thermal/SceneDiversity/BP_Thermal_Truck_Box",
+      "state": "driving"
+    },
+    {
+      "label": "Diversity_Pickup_Parked",
+      "asset": "/Game/Thermal/SceneDiversity/BP_Thermal_Pickup",
+      "state": "parked"
+    },
+    {
+      "label": "Diversity_SportsCar_Cooling",
+      "asset": "/Game/Thermal/SceneDiversity/BP_Thermal_SportsCar",
+      "state": "cooling"
+    },
+    {
+      "label": "Diversity_SM_TrafficBarrel01_0",
+      "asset": "SM_TrafficBarrel01"
+    },
+    {
+      "label": "Diversity_SM_TrafficBarrel01_1",
+      "asset": "SM_TrafficBarrel01"
+    },
+    {
+      "label": "Diversity_SM_TrafficBarrel01_2",
+      "asset": "SM_TrafficBarrel01"
+    },
+    {
+      "label": "Diversity_SM_TrafficBarrel01_3",
+      "asset": "SM_TrafficBarrel01"
+    },
+    {
+      "label": "Diversity_SM_TrafficBarrel01_4",
+      "asset": "SM_TrafficBarrel01"
+    },
+    {
+      "label": "Diversity_SM_RoadBlock02_5",
+      "asset": "SM_RoadBlock02"
+    },
+    {
+      "label": "Diversity_SM_RoadBlock01_6",
+      "asset": "SM_RoadBlock01"
+    },
+    {
+      "label": "Diversity_SM_TrashCan01_7",
+      "asset": "SM_TrashCan01"
+    },
+    {
+      "label": "Diversity_SM_Bench02_1_8",
+      "asset": "SM_Bench02_1"
+    }
+  ],
+  "protected_maps_unchanged": true
+}

@@ -1,0 +1,192 @@
+{
+  "$schema": "./mission.schema.json",
+  "format": "airsim-route-capture",
+  "schema_version": "1.0.0",
+  "mission_id": "thermal_inspection_001",
+  "name": "RGB and ThermalIR route example",
+  "map_asset": "/Game/CityPark/Maps/Showcase",
+  "coordinates": {
+    "frame": "unreal_world",
+    "position_unit": "cm",
+    "angle_unit": "deg",
+    "world_origin_rebasing": "reject"
+  },
+  "connection": {
+    "host": "127.0.0.1",
+    "port": 41451,
+    "vehicle_name": "",
+    "camera_name": "0",
+    "rpc_timeout_s": 15
+  },
+  "camera": {
+    "configuration_policy": "require_active_match",
+    "projection": "perspective",
+    "width_px": 1280,
+    "height_px": 720,
+    "horizontal_fov_deg": 65,
+    "rgb_image_type": 0,
+    "aim": {
+      "mode": "marker_rotation",
+      "interpolation": "slerp",
+      "max_rate_deg_s": 45
+    }
+  },
+  "thermal": {
+    "image_type": 12,
+    "warmup_ms": 10000,
+    "display_window_k": {
+      "min": 280,
+      "max": 380
+    },
+    "configuration_policy": "require_active_match"
+  },
+  "flight": {
+    "takeoff": {
+      "mode": "if_landed",
+      "height_above_takeoff_m": 3,
+      "timeout_s": 30
+    },
+    "entry_leg": {
+      "speed_mps": 1,
+      "timeout_s": 60
+    },
+    "on_complete": "hover",
+    "on_error": "cancel_then_hover",
+    "api_control_after_hover": "retain_until_handoff"
+  },
+  "defaults": {
+    "node": {
+      "behavior": "stop",
+      "arrival_radius_m": 0.25,
+      "max_settled_speed_mps": 0.2,
+      "aim_tolerance_deg": 1,
+      "settle_time_ms": 500,
+      "extra_hold_ms": 0,
+      "capture": {
+        "mode": "single",
+        "delay_ms": 0
+      }
+    },
+    "segment": {
+      "speed_mps": 2,
+      "acceleration_mps2": 1,
+      "deceleration_mps2": 1,
+      "timeout_s": 60,
+      "capture": {
+        "mode": "time_interval",
+        "interval_ms": 1000
+      }
+    }
+  },
+  "acquisition": {
+    "cadence_clock": "unpaused_simulation_time",
+    "pair_policy": "freeze_simulation",
+    "capture_timeout_ms": 5000,
+    "max_pair_position_delta_m": 0.01,
+    "max_pair_angle_delta_deg": 0.1,
+    "max_pending_writes": 8,
+    "on_interval_overload": "skip_and_log",
+    "abort_after_consecutive_missed_triggers": 10,
+    "abort_after_consecutive_bad_pairs": 3
+  },
+  "limits": {
+    "max_duration_wall_s": 1800,
+    "max_pairs": 10000,
+    "min_free_disk_mb": 1024,
+    "obstacle_clearance_m": 0.5,
+    "max_cross_track_error_m": 1,
+    "cross_track_grace_ms": 1000
+  },
+  "output": {
+    "root": "Saved/DroneCaptures",
+    "image_format": "png",
+    "write_pair_records": true,
+    "write_summary": true
+  },
+  "metrics": {
+    "telemetry_interval_ms": 100,
+    "record_image_quality": true
+  },
+  "nodes": [
+    {
+      "id": "A",
+      "label": "Start view",
+      "position_cm": {
+        "x": 0,
+        "y": 0,
+        "z": 300
+      },
+      "camera_rotation_deg": {
+        "pitch": -30,
+        "yaw": 0,
+        "roll": 0
+      }
+    },
+    {
+      "id": "B",
+      "label": "Detailed car view",
+      "position_cm": {
+        "x": 1000,
+        "y": 0,
+        "z": 300
+      },
+      "camera_rotation_deg": {
+        "pitch": -45,
+        "yaw": 90,
+        "roll": 0
+      },
+      "settings": {
+        "extra_hold_ms": 500,
+        "capture": {
+          "mode": "burst",
+          "delay_ms": 200,
+          "count": 3,
+          "interval_ms": 1000
+        }
+      }
+    },
+    {
+      "id": "C",
+      "label": "Exit view",
+      "position_cm": {
+        "x": 1000,
+        "y": 1000,
+        "z": 400
+      },
+      "camera_rotation_deg": {
+        "pitch": -45,
+        "yaw": 180,
+        "roll": 0
+      }
+    }
+  ],
+  "segments": [
+    {
+      "id": "A_to_B",
+      "from": "A",
+      "to": "B",
+      "settings": {
+        "speed_mps": 1,
+        "capture": {
+          "mode": "time_interval",
+          "interval_ms": 100
+        }
+      }
+    },
+    {
+      "id": "B_to_C",
+      "from": "B",
+      "to": "C",
+      "settings": {
+        "speed_mps": 2,
+        "capture": {
+          "mode": "time_interval",
+          "interval_ms": 1000
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "purpose": "Design example only. Replace positions with exported route markers and match the active scene/camera profile before flight."
+  }
+}

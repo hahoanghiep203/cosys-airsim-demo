@@ -418,6 +418,19 @@ int32 UThermalWorldSubsystem::GetSampleCount() const
 FThermalGpuFrame UThermalWorldSubsystem::MakeGpuFrame()
 {
     check(IsInGameThread());
+    // Receivers can share a Landscape with thousands of spline components.
+    // Reuse only the owner lookup within this call; keep tag reads live.
+    TMap<const AActor*, const UThermalReceiverComponent*> Responses;
+    const auto ResolveReceiver = [&Responses](const UActorComponent* Component, float Baseline) {
+        const AActor* Owner = Component ? Component->GetOwner() : nullptr;
+        const UThermalReceiverComponent* Response = nullptr;
+        if (Owner) {
+            auto* Found = Responses.Find(Owner);
+            if (!Found) Found = &Responses.Add(Owner, Owner->FindComponentByClass<UThermalReceiverComponent>());
+            Response = *Found;
+        }
+        return ThermalObjectSettings::ResolveWithResponse(Component, Response, Baseline);
+    };
     if (!GpuTopology || GpuTopology->Revision != GpuTopologyRevision) {
         GpuTopology = MakeShared<FThermalGpuTopology, ESPMode::ThreadSafe>();
         GpuTopology->Revision = GpuTopologyRevision;
@@ -453,7 +466,7 @@ FThermalGpuFrame UThermalWorldSubsystem::MakeGpuFrame()
         GpuTemperatures->Values.Reserve(GpuTopology->Samples.Num());
         for (int32 Index = 0; Index < Receivers.Num(); ++Index) {
             const auto& R = Receivers[Index];
-            const auto Values = ThermalObjectSettings::Resolve(R.Component.Get(), R.BaselineKelvin);
+            const auto Values = ResolveReceiver(R.Component.Get(), R.BaselineKelvin);
             FBox Active(ForceInit);
             for (const auto& Key : GpuReceiverBucketOrder[Index])
                 for (const auto& S : R.Samples.FindChecked(Key)) {
@@ -478,7 +491,7 @@ FThermalGpuFrame UThermalWorldSubsystem::MakeGpuFrame()
         const auto Reciprocal = [](double V) { return FMath::Abs(V) > KINDA_SMALL_NUMBER ? 1.0 / V : 1.0; };
         FTransform NormalTransform(Transform.GetRotation(), FVector::ZeroVector,
             FVector(Reciprocal(Scale.X), Reciprocal(Scale.Y), Reciprocal(Scale.Z)));
-        const auto Values = ThermalObjectSettings::Resolve(R.Component.Get(), R.BaselineKelvin);
+        const auto Values = ResolveReceiver(R.Component.Get(), R.BaselineKelvin);
         const bool CanSkipCold = Values.HasTemperature && Values.HasEmissivity && FMath::IsNearlyEqual(Values.TemperatureKelvin, R.BaselineKelvin, .001f);
         FBox Active = GpuTemperatures->ActiveBounds[Index];
         if (!CanSkipCold) Active = FBox(FVector(-MAX_flt), FVector(MAX_flt));

@@ -1,0 +1,858 @@
+{
+  "scene": "05_combined_environment",
+  "capture_mode": "independent_viewpoints",
+  "units": "Unreal centimetres",
+  "description": "Explicit still viewpoints. Camera teleports; no route interpolation or continuous recording.",
+  "views": [
+    {
+      "id": "cafe_Hatchback_driving_1",
+      "zone": "cafe",
+      "focus": "Combined_cafe_Hatchback_driving",
+      "position_cm": [
+        -30380.85,
+        11873.58,
+        569.45
+      ],
+      "target_cm": [
+        -31200,
+        11300,
+        169.44558728160519
+      ],
+      "azimuth_deg": 35,
+      "elevation_deg": 21.802
+    },
+    {
+      "id": "cafe_Hatchback_driving_2",
+      "zone": "cafe",
+      "focus": "Combined_cafe_Hatchback_driving",
+      "position_cm": [
+        -32242.25,
+        11786.01,
+        769.45
+      ],
+      "target_cm": [
+        -31200,
+        11300,
+        169.44558728160519
+      ],
+      "azimuth_deg": 155,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "cafe_Hatchback_driving_3",
+      "zone": "cafe",
+      "focus": "Combined_cafe_Hatchback_driving",
+      "position_cm": [
+        -31082.34,
+        9955.14,
+        969.45
+      ],
+      "target_cm": [
+        -31200,
+        11300,
+        169.44558728160519
+      ],
+      "azimuth_deg": 275,
+      "elevation_deg": 30.651
+    },
+    {
+      "id": "cafe_SUV_parked_1",
+      "zone": "cafe",
+      "focus": "Combined_cafe_SUV_parked",
+      "position_cm": [
+        -30819.15,
+        11526.42,
+        569.45
+      ],
+      "target_cm": [
+        -30000,
+        12100,
+        169.44558728160519
+      ],
+      "azimuth_deg": 215,
+      "elevation_deg": 21.802
+    },
+    {
+      "id": "cafe_SUV_parked_2",
+      "zone": "cafe",
+      "focus": "Combined_cafe_SUV_parked",
+      "position_cm": [
+        -28957.75,
+        11613.99,
+        769.45
+      ],
+      "target_cm": [
+        -30000,
+        12100,
+        169.44558728160519
+      ],
+      "azimuth_deg": 335,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "cafe_SUV_parked_3",
+      "zone": "cafe",
+      "focus": "Combined_cafe_SUV_parked",
+      "position_cm": [
+        -30117.66,
+        13444.86,
+        969.45
+      ],
+      "target_cm": [
+        -30000,
+        12100,
+        169.44558728160519
+      ],
+      "azimuth_deg": 95,
+      "elevation_deg": 30.651
+    },
+    {
+      "id": "cafe_Pickup_cooling_1",
+      "zone": "cafe",
+      "focus": "Combined_cafe_Pickup_cooling",
+      "position_cm": [
+        -30419.15,
+        10726.42,
+        569.46
+      ],
+      "target_cm": [
+        -29600,
+        11300,
+        169.4625391012437
+      ],
+      "azimuth_deg": 215,
+      "elevation_deg": 21.801
+    },
+    {
+      "id": "cafe_Pickup_cooling_2",
+      "zone": "cafe",
+      "focus": "Combined_cafe_Pickup_cooling",
+      "position_cm": [
+        -28557.75,
+        10813.99,
+        769.46
+      ],
+      "target_cm": [
+        -29600,
+        11300,
+        169.4625391012437
+      ],
+      "azimuth_deg": 335,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "cafe_Pickup_cooling_3",
+      "zone": "cafe",
+      "focus": "Combined_cafe_Pickup_cooling",
+      "position_cm": [
+        -29717.66,
+        12644.86,
+        969.46
+      ],
+      "target_cm": [
+        -29600,
+        11300,
+        169.4625391012437
+      ],
+      "azimuth_deg": 95,
+      "elevation_deg": 30.651
+    },
+    {
+      "id": "cafe_wide_1",
+      "zone": "cafe",
+      "focus": "zone_overview",
+      "position_cm": [
+        -27915.49,
+        12272.02,
+        1420
+      ],
+      "target_cm": [
+        -30000,
+        11300,
+        220
+      ],
+      "azimuth_deg": 25,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "cafe_wide_2",
+      "zone": "cafe",
+      "focus": "zone_overview",
+      "position_cm": [
+        -31884.05,
+        12619.23,
+        1520
+      ],
+      "target_cm": [
+        -30000,
+        11300,
+        220
+      ],
+      "azimuth_deg": 145,
+      "elevation_deg": 29.476
+    },
+    {
+      "id": "cafe_wide_3",
+      "zone": "cafe",
+      "focus": "zone_overview",
+      "position_cm": [
+        -30595.28,
+        9078.37,
+        1920
+      ],
+      "target_cm": [
+        -30000,
+        11300,
+        220
+      ],
+      "azimuth_deg": 255,
+      "elevation_deg": 36.469
+    },
+    {
+      "id": "cafe_props",
+      "zone": "cafe",
+      "focus": "props",
+      "position_cm": [
+        -30000.0,
+        11650.0,
+        700
+      ],
+      "target_cm": [
+        -30000,
+        10550,
+        200
+      ],
+      "azimuth_deg": 90,
+      "elevation_deg": 24.444
+    },
+    {
+      "id": "service_Truck_Box_driving_1",
+      "zone": "service",
+      "focus": "Combined_service_Truck_Box_driving",
+      "position_cm": [
+        -24180.85,
+        15373.58,
+        594.0
+      ],
+      "target_cm": [
+        -25000,
+        14800,
+        193.99504081788336
+      ],
+      "azimuth_deg": 35,
+      "elevation_deg": 21.802
+    },
+    {
+      "id": "service_Truck_Box_driving_2",
+      "zone": "service",
+      "focus": "Combined_service_Truck_Box_driving",
+      "position_cm": [
+        -26042.25,
+        15286.01,
+        794.0
+      ],
+      "target_cm": [
+        -25000,
+        14800,
+        193.99504081788336
+      ],
+      "azimuth_deg": 155,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "service_Truck_Box_driving_3",
+      "zone": "service",
+      "focus": "Combined_service_Truck_Box_driving",
+      "position_cm": [
+        -24882.34,
+        13455.14,
+        994.0
+      ],
+      "target_cm": [
+        -25000,
+        14800,
+        193.99504081788336
+      ],
+      "azimuth_deg": 275,
+      "elevation_deg": 30.651
+    },
+    {
+      "id": "service_Pickup_parked_1",
+      "zone": "service",
+      "focus": "Combined_service_Pickup_parked",
+      "position_cm": [
+        -24019.15,
+        15076.42,
+        579.18
+      ],
+      "target_cm": [
+        -23200,
+        15650,
+        179.18401336669922
+      ],
+      "azimuth_deg": 215,
+      "elevation_deg": 21.801
+    },
+    {
+      "id": "service_Pickup_parked_2",
+      "zone": "service",
+      "focus": "Combined_service_Pickup_parked",
+      "position_cm": [
+        -22157.75,
+        15163.99,
+        779.18
+      ],
+      "target_cm": [
+        -23200,
+        15650,
+        179.18401336669922
+      ],
+      "azimuth_deg": 335,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "service_Pickup_parked_3",
+      "zone": "service",
+      "focus": "Combined_service_Pickup_parked",
+      "position_cm": [
+        -23317.66,
+        16994.86,
+        1379.1799999999998
+      ],
+      "target_cm": [
+        -23200,
+        15650,
+        179.18401336669922
+      ],
+      "azimuth_deg": 95,
+      "elevation_deg": 41.634
+    },
+    {
+      "id": "service_SportsCar_cooling_1",
+      "zone": "service",
+      "focus": "Combined_service_SportsCar_cooling",
+      "position_cm": [
+        -23119.15,
+        15076.42,
+        564.0
+      ],
+      "target_cm": [
+        -22300,
+        15650,
+        163.999427786679
+      ],
+      "azimuth_deg": 215,
+      "elevation_deg": 21.801
+    },
+    {
+      "id": "service_SportsCar_cooling_2",
+      "zone": "service",
+      "focus": "Combined_service_SportsCar_cooling",
+      "position_cm": [
+        -21257.75,
+        15163.99,
+        764.0
+      ],
+      "target_cm": [
+        -22300,
+        15650,
+        163.999427786679
+      ],
+      "azimuth_deg": 335,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "service_SportsCar_cooling_3",
+      "zone": "service",
+      "focus": "Combined_service_SportsCar_cooling",
+      "position_cm": [
+        -22417.66,
+        16994.86,
+        1364.0
+      ],
+      "target_cm": [
+        -22300,
+        15650,
+        163.999427786679
+      ],
+      "azimuth_deg": 95,
+      "elevation_deg": 41.634
+    },
+    {
+      "id": "service_wide_1",
+      "zone": "service",
+      "focus": "zone_overview",
+      "position_cm": [
+        -21415.49,
+        15772.02,
+        1020
+      ],
+      "target_cm": [
+        -23500,
+        14800,
+        220
+      ],
+      "azimuth_deg": 25,
+      "elevation_deg": 19.179
+    },
+    {
+      "id": "service_container",
+      "zone": "service",
+      "focus": "zone_overview",
+      "position_cm": [
+        -23574.47,
+        14932.44,
+        1110
+      ],
+      "target_cm": [
+        -22100,
+        13900,
+        210
+      ],
+      "azimuth_deg": 145,
+      "elevation_deg": 26.565
+    },
+    {
+      "id": "service_wide_3",
+      "zone": "service",
+      "focus": "zone_overview",
+      "position_cm": [
+        -24095.28,
+        12578.37,
+        1920
+      ],
+      "target_cm": [
+        -23500,
+        14800,
+        220
+      ],
+      "azimuth_deg": 255,
+      "elevation_deg": 36.469
+    },
+    {
+      "id": "service_props",
+      "zone": "service",
+      "focus": "props",
+      "position_cm": [
+        -23850.0,
+        14800.0,
+        675
+      ],
+      "target_cm": [
+        -23850,
+        13800,
+        175
+      ],
+      "azimuth_deg": 90,
+      "elevation_deg": 26.565
+    },
+    {
+      "id": "market_Pickup_driving_1",
+      "zone": "market",
+      "focus": "Combined_market_Pickup_driving",
+      "position_cm": [
+        -15480.85,
+        11873.58,
+        561.86
+      ],
+      "target_cm": [
+        -16300,
+        11300,
+        161.86037066742983
+      ],
+      "azimuth_deg": 35,
+      "elevation_deg": 21.801
+    },
+    {
+      "id": "market_Pickup_driving_2",
+      "zone": "market",
+      "focus": "Combined_market_Pickup_driving",
+      "position_cm": [
+        -17342.25,
+        11786.01,
+        761.86
+      ],
+      "target_cm": [
+        -16300,
+        11300,
+        161.86037066742983
+      ],
+      "azimuth_deg": 155,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "market_Pickup_driving_3",
+      "zone": "market",
+      "focus": "Combined_market_Pickup_driving",
+      "position_cm": [
+        -16182.34,
+        9955.14,
+        961.86
+      ],
+      "target_cm": [
+        -16300,
+        11300,
+        161.86037066742983
+      ],
+      "azimuth_deg": 275,
+      "elevation_deg": 30.651
+    },
+    {
+      "id": "market_Hatchback_parked_1",
+      "zone": "market",
+      "focus": "Combined_market_Hatchback_parked",
+      "position_cm": [
+        -15819.15,
+        11526.42,
+        563.99
+      ],
+      "target_cm": [
+        -15000,
+        12100,
+        163.99324073014395
+      ],
+      "azimuth_deg": 215,
+      "elevation_deg": 21.801
+    },
+    {
+      "id": "market_Hatchback_parked_2",
+      "zone": "market",
+      "focus": "Combined_market_Hatchback_parked",
+      "position_cm": [
+        -13957.75,
+        11613.99,
+        763.99
+      ],
+      "target_cm": [
+        -15000,
+        12100,
+        163.99324073014395
+      ],
+      "azimuth_deg": 335,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "market_Hatchback_parked_3",
+      "zone": "market",
+      "focus": "Combined_market_Hatchback_parked",
+      "position_cm": [
+        -15117.66,
+        13444.86,
+        963.99
+      ],
+      "target_cm": [
+        -15000,
+        12100,
+        163.99324073014395
+      ],
+      "azimuth_deg": 95,
+      "elevation_deg": 30.651
+    },
+    {
+      "id": "market_SUV_cooling_1",
+      "zone": "market",
+      "focus": "Combined_market_SUV_cooling",
+      "position_cm": [
+        -14819.15,
+        11526.42,
+        589.39
+      ],
+      "target_cm": [
+        -14000,
+        12100,
+        189.39391326904297
+      ],
+      "azimuth_deg": 215,
+      "elevation_deg": 21.801
+    },
+    {
+      "id": "market_SUV_cooling_2",
+      "zone": "market",
+      "focus": "Combined_market_SUV_cooling",
+      "position_cm": [
+        -12957.75,
+        11613.99,
+        789.39
+      ],
+      "target_cm": [
+        -14000,
+        12100,
+        189.39391326904297
+      ],
+      "azimuth_deg": 335,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "market_SUV_cooling_3",
+      "zone": "market",
+      "focus": "Combined_market_SUV_cooling",
+      "position_cm": [
+        -14117.66,
+        13444.86,
+        989.39
+      ],
+      "target_cm": [
+        -14000,
+        12100,
+        189.39391326904297
+      ],
+      "azimuth_deg": 95,
+      "elevation_deg": 30.651
+    },
+    {
+      "id": "market_wide_1",
+      "zone": "market",
+      "focus": "zone_overview",
+      "position_cm": [
+        -12915.49,
+        12272.02,
+        1020
+      ],
+      "target_cm": [
+        -15000,
+        11300,
+        220
+      ],
+      "azimuth_deg": 25,
+      "elevation_deg": 19.179
+    },
+    {
+      "id": "market_solar_panel",
+      "zone": "market",
+      "focus": "zone_overview",
+      "position_cm": [
+        -14701.07,
+        10630.93,
+        645
+      ],
+      "target_cm": [
+        -13800,
+        10000,
+        145
+      ],
+      "azimuth_deg": 145,
+      "elevation_deg": 24.444
+    },
+    {
+      "id": "market_wide_3",
+      "zone": "market",
+      "focus": "zone_overview",
+      "position_cm": [
+        -15595.28,
+        9078.37,
+        1920
+      ],
+      "target_cm": [
+        -15000,
+        11300,
+        220
+      ],
+      "azimuth_deg": 255,
+      "elevation_deg": 36.469
+    },
+    {
+      "id": "parking_SportsCar_driving_1",
+      "zone": "parking",
+      "focus": "Combined_parking_SportsCar_driving",
+      "position_cm": [
+        -7480.85,
+        11873.58,
+        571.44
+      ],
+      "target_cm": [
+        -8300,
+        11300,
+        171.43825914512308
+      ],
+      "azimuth_deg": 35,
+      "elevation_deg": 21.801
+    },
+    {
+      "id": "parking_SportsCar_driving_2",
+      "zone": "parking",
+      "focus": "Combined_parking_SportsCar_driving",
+      "position_cm": [
+        -9342.25,
+        11786.01,
+        771.44
+      ],
+      "target_cm": [
+        -8300,
+        11300,
+        171.43825914512308
+      ],
+      "azimuth_deg": 155,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "parking_Truck_Box_parked_1",
+      "zone": "parking",
+      "focus": "Combined_parking_Truck_Box_parked",
+      "position_cm": [
+        -7769.15,
+        11626.42,
+        593.21
+      ],
+      "target_cm": [
+        -6950,
+        12200,
+        193.2077229724573
+      ],
+      "azimuth_deg": 215,
+      "elevation_deg": 21.802
+    },
+    {
+      "id": "parking_Truck_Box_parked_2",
+      "zone": "parking",
+      "focus": "Combined_parking_Truck_Box_parked",
+      "position_cm": [
+        -5907.75,
+        11713.99,
+        793.21
+      ],
+      "target_cm": [
+        -6950,
+        12200,
+        193.2077229724573
+      ],
+      "azimuth_deg": 335,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "parking_SUV_parked_1",
+      "zone": "parking",
+      "focus": "Combined_parking_SUV_parked",
+      "position_cm": [
+        -6769.15,
+        11626.42,
+        563.21
+      ],
+      "target_cm": [
+        -5950,
+        12200,
+        163.2077229724573
+      ],
+      "azimuth_deg": 215,
+      "elevation_deg": 21.802
+    },
+    {
+      "id": "parking_SUV_parked_2",
+      "zone": "parking",
+      "focus": "Combined_parking_SUV_parked",
+      "position_cm": [
+        -4907.75,
+        11713.99,
+        763.21
+      ],
+      "target_cm": [
+        -5950,
+        12200,
+        163.2077229724573
+      ],
+      "azimuth_deg": 335,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "parking_Hatchback_cooling_1",
+      "zone": "parking",
+      "focus": "Combined_parking_Hatchback_cooling",
+      "position_cm": [
+        -8519.15,
+        11626.42,
+        584.83
+      ],
+      "target_cm": [
+        -7700,
+        12200,
+        184.83382415771484
+      ],
+      "azimuth_deg": 215,
+      "elevation_deg": 21.801
+    },
+    {
+      "id": "parking_Hatchback_cooling_2",
+      "zone": "parking",
+      "focus": "Combined_parking_Hatchback_cooling",
+      "position_cm": [
+        -6657.75,
+        11713.99,
+        784.83
+      ],
+      "target_cm": [
+        -7700,
+        12200,
+        184.83382415771484
+      ],
+      "azimuth_deg": 335,
+      "elevation_deg": 27.553
+    },
+    {
+      "id": "parking_wide_1",
+      "zone": "parking",
+      "focus": "zone_overview",
+      "position_cm": [
+        -4915.49,
+        12272.02,
+        1020
+      ],
+      "target_cm": [
+        -7000,
+        11300,
+        220
+      ],
+      "azimuth_deg": 25,
+      "elevation_deg": 19.179
+    },
+    {
+      "id": "parking_wide_2",
+      "zone": "parking",
+      "focus": "zone_overview",
+      "position_cm": [
+        -8884.05,
+        12619.23,
+        1520
+      ],
+      "target_cm": [
+        -7000,
+        11300,
+        220
+      ],
+      "azimuth_deg": 145,
+      "elevation_deg": 29.476
+    },
+    {
+      "id": "parking_wide_3",
+      "zone": "parking",
+      "focus": "zone_overview",
+      "position_cm": [
+        -7595.28,
+        9078.37,
+        1920
+      ],
+      "target_cm": [
+        -7000,
+        11300,
+        220
+      ],
+      "azimuth_deg": 255,
+      "elevation_deg": 36.469
+    },
+    {
+      "id": "parking_high",
+      "zone": "parking",
+      "focus": "zone_overview",
+      "position_cm": [
+        -5585.79,
+        9885.79,
+        2520
+      ],
+      "target_cm": [
+        -7000,
+        11300,
+        220
+      ],
+      "azimuth_deg": 315,
+      "elevation_deg": 48.991
+    }
+  ]
+}

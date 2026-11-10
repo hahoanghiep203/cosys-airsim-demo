@@ -1,2 +1,2 @@
 @echo off
-"D:\WIP\UE editor\UE_5.7\Engine\Binaries\Win64\UnrealEditor.exe" "%~dp0Cosys_Airsim.uproject" "/Game/CityPark/Maps/Showcase_CoordinateCrop" -settings="%~dp0Config\Thermal\settings_scene.json" -ResX=1280 -ResY=720 -ExecCmds="sg.ShadowQuality 1,sg.PostProcessQuality 1,sg.EffectsQuality 1,sg.ReflectionQuality 1,sg.GlobalIlluminationQuality 1,r.Streaming.PoolSize 3072,airsim.Rendering.PlanarReflectionBudget 1,airsim.Thermal.GpuPreview 1,airsim.Thermal.LiveHz 30,airsim.Camera.RgbPreviewHz 30"
+call "%~dp0Open_Thermal_CombinedEnvironment.cmd" %*

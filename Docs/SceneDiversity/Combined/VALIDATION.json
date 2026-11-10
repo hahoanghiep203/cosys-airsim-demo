@@ -1,0 +1,111 @@
+{
+  "status": "passed_for_combined_environment_and_still_capture",
+  "map": "/Game/CityPark/Maps/ThermalDiversity_05_CombinedEnvironment",
+  "audit": {
+    "status": "passed",
+    "scene": "05_combined_environment",
+    "map": "/Game/CityPark/Maps/ThermalDiversity_05_CombinedEnvironment",
+    "capture_mode": "independent_viewpoints",
+    "expected_count": 50,
+    "pair_count": 50,
+    "unique_actual_positions": 50,
+    "unique_actual_orientations": 15,
+    "unique_image_hashes": {
+      "rgb": 50,
+      "ir": 50
+    },
+    "camera_origin_spread_cm": 0.0014370310531461698,
+    "maximum_aim_error_deg": 0.023724817409975462,
+    "azimuth_bins_per_zone": {
+      "cafe": 7,
+      "service": 7,
+      "market": 7,
+      "parking": 5
+    },
+    "contact_sheet": "contact_sheet.jpg",
+    "errors": []
+  },
+  "python_files_compiled": 12,
+  "fixture_checks": [
+    {
+      "fixture": "Combined_service_WarmLamp_-1",
+      "expected_k": 333.15,
+      "actual_k": [
+        333.1499938964844
+      ],
+      "passed": true
+    },
+    {
+      "fixture": "Combined_service_WarmLamp_1",
+      "expected_k": 333.15,
+      "actual_k": [
+        333.1499938964844
+      ],
+      "passed": true
+    },
+    {
+      "fixture": "Combined_market_WarmLamp_-1",
+      "expected_k": 338.15,
+      "actual_k": [
+        338.1499938964844
+      ],
+      "passed": true
+    },
+    {
+      "fixture": "Combined_market_WarmLamp_1",
+      "expected_k": 338.15,
+      "actual_k": [
+        338.1499938964844
+      ],
+      "passed": true
+    },
+    {
+      "fixture": "Combined_parking_WarmLamp_-1",
+      "expected_k": 313.15,
+      "actual_k": [
+        313.1499938964844
+      ],
+      "passed": true
+    },
+    {
+      "fixture": "Combined_parking_WarmLamp_1",
+      "expected_k": 313.15,
+      "actual_k": [
+        313.1499938964844
+      ],
+      "passed": true
+    },
+    {
+      "fixture": "Combined_market_HotCounter",
+      "expected_k": 383.15,
+      "actual_k": [
+        383.1499938964844
+      ],
+      "passed": true
+    }
+  ],
+  "protected_maps": {
+    "Content/CityPark/Maps/Showcase.umap": true,
+    "Content/CityPark/Maps/Showcase_CoordinateCrop.umap": true,
+    "Content/CityPark/Maps/Showcase_EveningSample.umap": true
+  },
+  "vehicles_checked": 13,
+  "source_count": 105,
+  "attachment_max_error_cm": 0.0,
+  "rim_max_error_k": 6.1035156022626325e-06,
+  "parked_tire_max_error_k": 6.1035156022626325e-06,
+  "performance": {
+    "seconds": 70.1594482999999,
+    "wall_tick_hz": 4.404253560813711,
+    "ir_dispatch_hz": 4.390000313044087,
+    "median_ms": 212.84860000014305,
+    "p95_ms": 245.3230999999505,
+    "max_ms": 2868.8523999999234,
+    "over_100ms": 309,
+    "over_500ms": 1
+  },
+  "performance_limit": "30Hz not achieved. Combined thermal solver has 1782534 samples; CSV game thread mean218.801ms, tickables131.475ms, actors62.235ms. Measured engineFPS4.4046.",
+  "preserved_prior_maps_and_datasets": true,
+  "production_cpp_changed_this_continuation": false,
+  "scope": "UE editor PIE 1280x720, offscreen normal and IR preview. Separate viewpoints with frozen poses/source settings; native surface fields may settle between shots. Not packaged flight, physical calibration or continuous recording."
+}

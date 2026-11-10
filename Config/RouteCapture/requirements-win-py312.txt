@@ -1,0 +1,14 @@
+airsim==1.8.1
+attrs==26.1.0
+backports.ssl_match_hostname==3.7.0.1
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+msgpack-python==0.5.6
+msgpack-rpc-python==0.4.1
+numpy==2.5.3
+opencv-contrib-python==5.0.0.93
+pillow==12.3.0
+referencing==0.37.0
+rpds-py==2026.9.1
+tornado==4.5.3
+typing_extensions==4.16.0

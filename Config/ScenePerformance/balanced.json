@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "map": "/Game/CityPark/Maps/Showcase",
+  "profile": "balanced",
+  "distance_unit": "m",
+  "draw_distances": {
+    "grass": 40,
+    "bush": 90,
+    "tree": 220,
+    "small_prop": 80,
+    "prop": 150
+  },
+  "static_mesh_lod_distance_scale": 1.5,
+  "console_variables": {"r.Streaming.PoolSize": 6144, "r.Streaming.LimitPoolSizeToVRAM": 1},
+  "protect_actor_or_component_tags": ["ScenePerformanceKeep", "RouteCaptureTarget"],
+  "notes": "Session-only scenery settings. Existing shorter cull distances are preserved. Instanced foliage uses per-instance ranges. Vehicles, non-CityPark meshes, roads, terrain and major structures retain their existing draw distances. Baseline restores original values. Validate sensor images at mission ranges before dataset capture."
+}

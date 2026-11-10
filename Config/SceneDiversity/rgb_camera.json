@@ -1,0 +1,11 @@
+{
+  "enabled": true,
+  "scene": "05_combined_environment",
+  "name": "night_physical_exposure",
+  "iso": 25600,
+  "shutter_denominator": 30,
+  "f_stop": 1.4,
+  "exposure_compensation": 1.0,
+  "film_grain_intensity": 0.0,
+  "note": "Manual physical RGB camera exposure; no scene-light or thermal changes. ISO is exposure gain, not a calibrated sensor noise model."
+}

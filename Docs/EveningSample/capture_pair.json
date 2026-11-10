@@ -1,0 +1,22 @@
+[
+  {
+    "channel": "rgb",
+    "size": [
+      1280,
+      720
+    ],
+    "camera_position": "<Vector3r> {   'x_val': 0.0,\n    'y_val': 0.0,\n    'z_val': -7.299999713897705}",
+    "camera_orientation": "<Quaternionr> {   'w_val': 0.9676988124847412,\n    'x_val': -0.03020518273115158,\n    'y_val': -0.14164525270462036,\n    'z_val': -0.2063571959733963}",
+    "time_stamp": 1792587909306472192
+  },
+  {
+    "channel": "ir",
+    "size": [
+      1280,
+      720
+    ],
+    "camera_position": "<Vector3r> {   'x_val': 0.0,\n    'y_val': 0.0,\n    'z_val': -7.299999713897705}",
+    "camera_orientation": "<Quaternionr> {   'w_val': 0.9676988124847412,\n    'x_val': -0.03020518273115158,\n    'y_val': -0.14164525270462036,\n    'z_val': -0.2063571959733963}",
+    "time_stamp": 1792587909306472192
+  }
+]

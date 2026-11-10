@@ -1,0 +1,23 @@
+{
+  "scene": "02_bluehour_service",
+  "mae_uint8": 0.0,
+  "p95_uint8": 0.0,
+  "max_uint8": 0.0,
+  "size": [
+    1280,
+    720
+  ],
+  "gpu": {
+    "submitted": 4565,
+    "dispatched": 4565,
+    "skipped": 0,
+    "geometry_uploads": 33,
+    "temperature_uploads": 1797,
+    "gpu_data_bytes": 110227816,
+    "input_captures": 4566,
+    "profile_groups": 49,
+    "main_width": 1280,
+    "main_height": 720
+  },
+  "scope": "Independent CPU surface/radiance arithmetic using the same opaque/masked camera geometry inputs. Not physical calibration."
+}

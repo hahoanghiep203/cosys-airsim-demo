@@ -1,0 +1,99 @@
+{
+  "SettingsVersion": 1.2,
+  "SimMode": "Multirotor",
+  "EnableRpc": true,
+  "ApiServerPort": 41469,
+  "LocalHostIp": "127.0.0.1",
+  "MoveWorldOrigin": false,
+  "ClockSpeed": 1,
+  "LogMessagesVisible": false,
+  "ViewMode": "NoDisplay",
+  "Vehicles": {
+    "RouteDrone": {
+      "VehicleType": "SimpleFlight",
+      "AutoCreate": true,
+      "X": -8,
+      "Y": -6.5,
+      "Z": -0.2,
+      "Cameras": {
+        "0": {
+          "X": 0,
+          "Y": 0,
+          "Z": 0.6,
+          "Pitch": -25,
+          "Roll": 0,
+          "Yaw": 0,
+          "CaptureSettings": [
+            {
+              "ImageType": -1,
+              "FOV_Degrees": 65,
+              "AutoExposureMinBrightness": 1,
+              "AutoExposureMaxBrightness": 1,
+              "MotionBlurAmount": 0
+            },
+            {
+              "ImageType": 0,
+              "Width": 640,
+              "Height": 480,
+              "FOV_Degrees": 65,
+              "AutoExposureSpeed": 100,
+              "AutoExposureMinBrightness": 1,
+              "AutoExposureMaxBrightness": 1,
+              "MotionBlurAmount": 0
+            },
+            {
+              "ImageType": 1,
+              "Width": 640,
+              "Height": 480,
+              "FOV_Degrees": 65
+            },
+            {
+              "ImageType": 5,
+              "Width": 640,
+              "Height": 480,
+              "FOV_Degrees": 65
+            },
+            {
+              "ImageType": 6,
+              "Width": 640,
+              "Height": 480,
+              "FOV_Degrees": 65
+            }
+          ]
+        }
+      }
+    }
+  },
+  "SubWindows": [
+    {
+      "WindowID": 0,
+      "Visible": false,
+      "ImageType": 3
+    },
+    {
+      "WindowID": 1,
+      "Visible": false,
+      "ImageType": 5
+    },
+    {
+      "WindowID": 2,
+      "Visible": false,
+      "ImageType": 0
+    },
+    {
+      "WindowID": 3,
+      "Visible": false,
+      "ImageType": 12
+    }
+  ],
+  "SyntheticCameraSettings": {
+    "ThermalIR": {
+      "TempMin": 280,
+      "TempMax": 600,
+      "DisplayTempMin": 280,
+      "DisplayTempMax": 380,
+      "DepthAttenuation": 0.001,
+      "Overrides": []
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "03_night_market",
+  "map": "/Game/CityPark/Maps/ThermalDiversity_03_NightMarket",
+  "new_objects": [
+    {
+      "label": "Diversity_Pickup_Driving",
+      "asset": "/Game/Thermal/SceneDiversity/BP_Thermal_Pickup",
+      "state": "driving"
+    },
+    {
+      "label": "Diversity_Hatchback_Parked",
+      "asset": "/Game/Thermal/SceneDiversity/BP_Thermal_Hatchback",
+      "state": "parked"
+    },
+    {
+      "label": "Diversity_SUV_Cooling",
+      "asset": "/Game/Thermal/SceneDiversity/BP_Thermal_SUV",
+      "state": "cooling"
+    },
+    {
+      "label": "Diversity_SM_FoodStalls04_0",
+      "asset": "SM_FoodStalls04"
+    },
+    {
+      "label": "Diversity_SM_CafeTableCloth01_1",
+      "asset": "SM_CafeTableCloth01"
+    },
+    {
+      "label": "Diversity_SM_CafeTable03_2",
+      "asset": "SM_CafeTable03"
+    },
+    {
+      "label": "Diversity_SM_CafeChair03_3",
+      "asset": "SM_CafeChair03"
+    },
+    {
+      "label": "Diversity_SM_CafeChair01_4",
+      "asset": "SM_CafeChair01"
+    },
+    {
+      "label": "Diversity_SM_TrashCan02_5",
+      "asset": "SM_TrashCan02"
+    },
+    {
+      "label": "Diversity_SM_ParkFence01_6",
+      "asset": "SM_ParkFence01"
+    },
+    {
+      "label": "Diversity_SM_TrashCan01_7",
+      "asset": "SM_TrashCan01"
+    }
+  ],
+  "protected_maps_unchanged": true
+}

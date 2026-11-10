@@ -79,6 +79,81 @@ bool FThermalGpuFrameTest::RunTest(const FString&)
     World->DestroyWorld(false);
     return true;
 }
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FThermalMovingAnnulusTest, "AirSim.Thermal.MovingAttachedTireField",
+    EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
+bool FThermalMovingAnnulusTest::RunTest(const FString&)
+{
+    auto* Cube = LoadObject<UStaticMesh>(nullptr, TEXT("/Engine/BasicShapes/Cube.Cube"));
+    if (!TestNotNull(TEXT("Moving receiver fixture mesh"), Cube)) return false;
+    auto* World = UWorld::CreateWorld(EWorldType::Game, false);
+    auto* Actor = World->SpawnActor<AActor>();
+    auto* Mesh = NewObject<UStaticMeshComponent>(Actor);
+    Actor->SetRootComponent(Mesh); Actor->AddInstanceComponent(Mesh);
+    Mesh->SetMobility(EComponentMobility::Movable);
+    Mesh->SetStaticMesh(Cube); Mesh->RegisterComponent();
+    auto* Source = World->SpawnActor<AThermalSource>();
+    Source->GetRootComponent()->SetMobility(EComponentMobility::Movable);
+    Source->AttachToActor(Actor, FAttachmentTransformRules::KeepRelativeTransform);
+    Source->SetActorRelativeLocation(FVector::ZeroVector);
+    Source->TemperatureKelvin = 350;
+    Source->RangeCm = 1; // Isolate bounded parent contact from nearby radiation.
+    Source->Occlusion = false;
+    Source->ParentConductance = 200;
+    Source->ParentContactRegion = EThermalContactRegion::FiniteCylinder;
+    Source->ParentContactInnerRadiusCm = 30;
+    Source->ParentContactOuterRadiusCm = 60;
+    Source->ParentContactHalfLengthCm = 55;
+    Source->ParentMaterialIndices = { 0 };
+    auto* System = World->GetSubsystem<UThermalWorldSubsystem>();
+    System->RegisterSource(Source); System->Prewarm(20);
+
+    // The cube is a deterministic surface fixture: one point in the annulus,
+    // one in the excluded central bore, on the same material and outward face.
+    const FVector TreadLocal(50, 40, 0), RimLocal(50, 0, 0);
+    const float Hot = System->GetSurfaceTemperature(TreadLocal, FVector::ForwardVector);
+    const float Rim = System->GetSurfaceTemperature(RimLocal, FVector::ForwardVector);
+    TestTrue(TEXT("Contact heats the selected annulus"), Hot > 315);
+    TestTrue(TEXT("Annular bore remains at ambient"), FMath::IsNearlyEqual(Rim, 295.f, .01f));
+    const auto OldSnapshot = System->MakeSnapshot();
+    const auto OldGpu = System->MakeGpuFrame();
+
+    const FTransform MovedTransform(FRotator(10, 90, 20), FVector(1300, -900, 200));
+    Actor->SetActorTransform(MovedTransform);
+    const FVector TreadWorld = MovedTransform.TransformPosition(TreadLocal);
+    const FVector RimWorld = MovedTransform.TransformPosition(RimLocal);
+    const FVector Normal = MovedTransform.TransformVectorNoScale(FVector::ForwardVector);
+    TestTrue(TEXT("Child heat source follows car translation and rotation"), Source->GetActorTransform().Equals(MovedTransform, .001));
+    TestEqual(TEXT("Attached contact follows the moved tire"), Source->GetContactWeight(TreadWorld), 1.0);
+    TestEqual(TEXT("Moved rim remains outside parent contact"), Source->GetContactWeight(RimWorld), 0.0);
+    TestTrue(TEXT("Existing hot surface follows movement without another heat step"),
+        FMath::IsNearlyEqual(System->GetSurfaceTemperature(TreadWorld, Normal), Hot, .01f));
+    TestTrue(TEXT("Excluded rim remains cold after translation and rotation"),
+        FMath::IsNearlyEqual(System->GetSurfaceTemperature(RimWorld, Normal), Rim, .01f));
+    TestEqual(TEXT("No detached heat field is left at the old tire position"), System->GetSurfaceTemperature(TreadLocal), -1.f);
+    float OldTemperature = 0, OldEmissivity = 0;
+    TestTrue(TEXT("A previously captured CPU frame retains its original pose and temperature"),
+        OldSnapshot.Sample(TreadLocal, OldTemperature, OldEmissivity, FVector::ForwardVector) && FMath::IsNearlyEqual(OldTemperature, Hot, .01f));
+
+    const auto MovedGpu = System->MakeGpuFrame();
+    TestTrue(TEXT("Movement reuses local GPU geometry"), OldGpu.Topology == MovedGpu.Topology);
+    TestTrue(TEXT("Movement alone preserves persistent GPU temperatures"), OldGpu.Temperatures == MovedGpu.Temperatures);
+    if (TestEqual(TEXT("Moving fixture has one GPU receiver"), MovedGpu.Receivers.Num(), 1)) {
+        const FVector4f PackedWorld = MovedGpu.Receivers[0].LocalToWorld.TransformPosition(FVector3f(TreadLocal));
+        TestTrue(TEXT("Current GPU receiver matrix places heat at the moved tire"),
+            FVector(PackedWorld.X, PackedWorld.Y, PackedWorld.Z).Equals(TreadWorld, .01));
+        const FVector4f PackedLocal = MovedGpu.Receivers[0].WorldToLocal.TransformPosition(FVector3f(TreadWorld));
+        TestTrue(TEXT("Current GPU inverse matrix resolves the moved tire back to its local field"),
+            FVector(PackedLocal.X, PackedLocal.Y, PackedLocal.Z).Equals(TreadLocal, .01));
+    }
+    Source->SetSourceEnabled(false);
+    System->Prewarm(10);
+    const float Cooling = System->GetSurfaceTemperature(TreadWorld, Normal);
+    TestTrue(TEXT("A moved tire keeps residual heat and cools after its source is disabled"), Cooling < Hot && Cooling > 295.f);
+    TestTrue(TEXT("Cooling does not heat the excluded rim"),
+        FMath::IsNearlyEqual(System->GetSurfaceTemperature(RimWorld, Normal), Rim, .01f));
+    World->DestroyWorld(false);
+    return true;
+}
 IMPLEMENT_SIMPLE_AUTOMATION_TEST(FThermalAnnotatedReceiverTest, "AirSim.Thermal.AnnotationRestrictsSurfaceLookup",
     EAutomationTestFlags::EditorContext | EAutomationTestFlags::EngineFilter)
 bool FThermalAnnotatedReceiverTest::RunTest(const FString&)

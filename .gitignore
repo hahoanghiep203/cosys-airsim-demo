@@ -22,3 +22,9 @@ Saved/
 Thumbs.db
 Desktop.ini
 
+
+# Local capture runtime and reversible asset archive
+.venv/
+AssetArchive/
+__pycache__/
+*.pyc

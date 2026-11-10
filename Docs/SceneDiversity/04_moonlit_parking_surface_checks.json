@@ -1,0 +1,415 @@
+{
+  "id": "04_moonlit_parking",
+  "elapsed": 164.31588454917073,
+  "source_count": 33,
+  "vehicles": [
+    {
+      "label": "Diversity_SportsCar_Driving",
+      "model": "SportsCar",
+      "state": "driving",
+      "tires": [
+        {
+          "tire": 0,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            305.7075500488281,
+            305.7075500488281,
+            305.7075500488281,
+            305.7075500488281
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 308.1448669433594,
+          "rim_probe_local_cm": [
+            -135.103592,
+            89.841522,
+            34.114567
+          ],
+          "inner_radius_cm": 27.100000381469727,
+          "outer_radius_cm": 36.80974197387695
+        },
+        {
+          "tire": 1,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            305.7075500488281,
+            305.7075500488281,
+            305.7075500488281,
+            305.7075500488281
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 308.1448669433594,
+          "rim_probe_local_cm": [
+            -135.103592,
+            -91.585754,
+            34.114567
+          ],
+          "inner_radius_cm": 27.100000381469727,
+          "outer_radius_cm": 36.80974578857422
+        },
+        {
+          "tire": 2,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            305.7075500488281,
+            305.7075500488281,
+            305.7075500488281,
+            305.7075500488281
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 308.1448669433594,
+          "rim_probe_local_cm": [
+            119.25853,
+            85.909561,
+            30.21785
+          ],
+          "inner_radius_cm": 27.100000381469727,
+          "outer_radius_cm": 33.013092041015625
+        },
+        {
+          "tire": 3,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            305.7075500488281,
+            305.7075500488281,
+            305.7075500488281,
+            305.7075500488281
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 308.1448669433594,
+          "rim_probe_local_cm": [
+            119.25853,
+            -87.653786,
+            30.21785
+          ],
+          "inner_radius_cm": 27.100000381469727,
+          "outer_radius_cm": 33.01308822631836
+        }
+      ]
+    },
+    {
+      "label": "Diversity_Truck_Box_Parked",
+      "model": "Truck_Box",
+      "state": "parked",
+      "tires": [
+        {
+          "tire": 0,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 286.1499938964844,
+          "rim_probe_local_cm": [
+            -162.6464235,
+            -81.465523,
+            43.420066999999996
+          ],
+          "inner_radius_cm": 28.200000762939453,
+          "outer_radius_cm": 43.9711799621582
+        },
+        {
+          "tire": 1,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 286.1499938964844,
+          "rim_probe_local_cm": [
+            -162.586548,
+            108.270378,
+            43.4586485
+          ],
+          "inner_radius_cm": 28.200000762939453,
+          "outer_radius_cm": 43.96175765991211
+        },
+        {
+          "tire": 2,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 286.1499938964844,
+          "rim_probe_local_cm": [
+            -162.5405885,
+            -106.382622,
+            43.444313
+          ],
+          "inner_radius_cm": 28.200000762939453,
+          "outer_radius_cm": 43.95090103149414
+        },
+        {
+          "tire": 3,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 286.1499938964844,
+          "rim_probe_local_cm": [
+            -162.5405275,
+            85.19915,
+            43.444485
+          ],
+          "inner_radius_cm": 28.200000762939453,
+          "outer_radius_cm": 43.95482635498047
+        },
+        {
+          "tire": 4,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 286.1499938964844,
+          "rim_probe_local_cm": [
+            233.743515,
+            -99.473442,
+            43.44442
+          ],
+          "inner_radius_cm": 28.200000762939453,
+          "outer_radius_cm": 43.97719955444336
+        },
+        {
+          "tire": 5,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 286.1499938964844,
+          "rim_probe_local_cm": [
+            233.7814485,
+            102.109261,
+            43.432617
+          ],
+          "inner_radius_cm": 28.200000762939453,
+          "outer_radius_cm": 43.91604232788086
+        }
+      ]
+    },
+    {
+      "label": "Diversity_SUV_Parked",
+      "model": "SUV",
+      "state": "parked",
+      "tires": [
+        {
+          "tire": 0,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 286.1499938964844,
+          "rim_probe_local_cm": [
+            -114.139763,
+            -89.594643,
+            37.6196945
+          ],
+          "inner_radius_cm": 24.0,
+          "outer_radius_cm": 35.948036193847656
+        },
+        {
+          "tire": 1,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 286.1499938964844,
+          "rim_probe_local_cm": [
+            -114.139763,
+            89.594643,
+            37.6196935
+          ],
+          "inner_radius_cm": 24.0,
+          "outer_radius_cm": 35.948036193847656
+        },
+        {
+          "tire": 2,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 286.1499938964844,
+          "rim_probe_local_cm": [
+            150.4262275,
+            -89.594643,
+            37.6196935
+          ],
+          "inner_radius_cm": 24.0,
+          "outer_radius_cm": 35.948036193847656
+        },
+        {
+          "tire": 3,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844,
+            286.1499938964844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 286.1499938964844,
+          "rim_probe_local_cm": [
+            150.4262275,
+            89.594643,
+            37.6196935
+          ],
+          "inner_radius_cm": 24.0,
+          "outer_radius_cm": 35.948036193847656
+        }
+      ]
+    },
+    {
+      "label": "Diversity_Hatchback_Cooling",
+      "model": "Hatchback",
+      "state": "cooling",
+      "tires": [
+        {
+          "tire": 0,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            288.4026794433594,
+            288.3896179199219,
+            288.4026794433594,
+            288.3708190917969
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 288.4053955078125,
+          "rim_probe_local_cm": [
+            -120.043171,
+            79.102364,
+            26.8046975
+          ],
+          "inner_radius_cm": 19.600000381469727,
+          "outer_radius_cm": 27.596384048461914
+        },
+        {
+          "tire": 1,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            288.4026794433594,
+            288.3661193847656,
+            288.4026794433594,
+            288.3316345214844
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 288.4053955078125,
+          "rim_probe_local_cm": [
+            -120.04316750000001,
+            -77.256004,
+            26.8046975
+          ],
+          "inner_radius_cm": 19.600000381469727,
+          "outer_radius_cm": 27.596384048461914
+        },
+        {
+          "tire": 2,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            288.4027099609375,
+            289.1136779785156,
+            288.2916564941406,
+            288.3393249511719
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 288.4053955078125,
+          "rim_probe_local_cm": [
+            118.464733,
+            -77.256004,
+            26.804698
+          ],
+          "inner_radius_cm": 19.600000381469727,
+          "outer_radius_cm": 27.596384048461914
+        },
+        {
+          "tire": 3,
+          "source_attachment_error_cm": 0.0,
+          "tread_surface_k": [
+            288.4026794433594,
+            288.9873962402344,
+            288.3186950683594,
+            288.3141784667969
+          ],
+          "rim_surface_k": 286.1499938964844,
+          "source_k": 288.4053955078125,
+          "rim_probe_local_cm": [
+            118.464733,
+            79.102371,
+            26.804698
+          ],
+          "inner_radius_cm": 19.600000381469727,
+          "outer_radius_cm": 27.596384048461914
+        }
+      ]
+    }
+  ],
+  "lights": [
+    {
+      "actor": "Light Source",
+      "class": "DirectionalLight",
+      "intensity": 0.03500000014901161
+    },
+    {
+      "actor": "SkyLight",
+      "class": "SkyLight",
+      "intensity": 0.11999999731779099
+    },
+    {
+      "actor": "Sample_WarmLamp_A",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "temperature_k": 5000.0
+    },
+    {
+      "actor": "Sample_WarmLamp_B",
+      "class": "PointLightComponent",
+      "intensity": 95.0,
+      "temperature_k": 5000.0
+    }
+  ],
+  "environment_emitters": [
+    {
+      "class": "BP_SampleLampHeat_C",
+      "temperature_k": 313.1499938964844
+    },
+    {
+      "class": "BP_SampleLampHeat_C",
+      "temperature_k": 313.1499938964844
+    },
+    {
+      "class": "BP_SampleCounterHeat_C",
+      "temperature_k": 303.1499938964844
+    }
+  ]
+}

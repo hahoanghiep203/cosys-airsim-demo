@@ -1,0 +1,826 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:airsim-route-capture:mission:1.0.0",
+  "title": "AirSim Route Capture mission format 1.0.0",
+  "description": "Project-specific proposed mission contract, not an AirSim settings.json file. Structural validation must be followed by the semantic and runtime preflight checks in JSON_STANDARD.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional local editor hint, normally ./mission.schema.json."
+    },
+    "format": {
+      "const": "airsim-route-capture"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "mission_id": {
+      "$ref": "#/$defs/id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "map_asset": {
+      "type": "string",
+      "pattern": "^/Game/[^\\s]+$"
+    },
+    "coordinates": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "const": "unreal_world"
+        },
+        "position_unit": {
+          "const": "cm"
+        },
+        "angle_unit": {
+          "const": "deg"
+        },
+        "world_origin_rebasing": {
+          "const": "reject"
+        }
+      },
+      "required": [
+        "frame",
+        "position_unit",
+        "angle_unit",
+        "world_origin_rebasing"
+      ]
+    },
+    "connection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "enum": [
+            "127.0.0.1",
+            "localhost",
+            "::1"
+          ]
+        },
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "vehicle_name": {
+          "type": "string"
+        },
+        "camera_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rpc_timeout_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "host",
+        "port",
+        "vehicle_name",
+        "camera_name",
+        "rpc_timeout_s"
+      ]
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "configuration_policy": {
+          "const": "require_active_match"
+        },
+        "projection": {
+          "const": "perspective"
+        },
+        "width_px": {
+          "type": "integer",
+          "minimum": 16,
+          "maximum": 16384
+        },
+        "height_px": {
+          "type": "integer",
+          "minimum": 16,
+          "maximum": 16384
+        },
+        "horizontal_fov_deg": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 180
+        },
+        "rgb_image_type": {
+          "const": 0
+        },
+        "aim": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "mode": {
+                  "const": "marker_rotation"
+                },
+                "interpolation": {
+                  "const": "slerp"
+                },
+                "max_rate_deg_s": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                }
+              },
+              "required": [
+                "mode",
+                "interpolation",
+                "max_rate_deg_s"
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "mode": {
+                  "const": "fixed_body_rotation"
+                },
+                "rotation_deg": {
+                  "$ref": "#/$defs/rotation"
+                },
+                "max_rate_deg_s": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                }
+              },
+              "required": [
+                "mode",
+                "rotation_deg",
+                "max_rate_deg_s"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "configuration_policy",
+        "projection",
+        "width_px",
+        "height_px",
+        "horizontal_fov_deg",
+        "rgb_image_type",
+        "aim"
+      ]
+    },
+    "thermal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "image_type": {
+          "const": 12
+        },
+        "warmup_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "display_window_k": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "min": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "max": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ]
+        },
+        "configuration_policy": {
+          "const": "require_active_match"
+        }
+      },
+      "required": [
+        "image_type",
+        "warmup_ms",
+        "display_window_k",
+        "configuration_policy"
+      ]
+    },
+    "flight": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "takeoff": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "const": "if_landed"
+            },
+            "height_above_takeoff_m": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "timeout_s": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "required": [
+            "mode",
+            "height_above_takeoff_m",
+            "timeout_s"
+          ]
+        },
+        "entry_leg": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "speed_mps": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "timeout_s": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "required": [
+            "speed_mps",
+            "timeout_s"
+          ]
+        },
+        "on_complete": {
+          "enum": ["hover", "land_here"]
+        },
+        "on_error": {
+          "const": "cancel_then_hover"
+        },
+        "api_control_after_hover": {
+          "const": "retain_until_handoff"
+        }
+      },
+      "required": [
+        "takeoff",
+        "entry_leg",
+        "on_complete",
+        "on_error",
+        "api_control_after_hover"
+      ]
+    },
+    "defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "node": {
+          "$ref": "#/$defs/nodeSettings"
+        },
+        "segment": {
+          "$ref": "#/$defs/segmentSettings"
+        }
+      },
+      "required": [
+        "node",
+        "segment"
+      ]
+    },
+    "acquisition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "cadence_clock": {
+          "const": "unpaused_simulation_time"
+        },
+        "pair_policy": {
+          "const": "freeze_simulation"
+        },
+        "capture_timeout_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_pair_position_delta_m": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_pair_angle_delta_deg": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 180
+        },
+        "max_pending_writes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1024
+        },
+        "on_interval_overload": {
+          "enum": [
+            "skip_and_log",
+            "stop_mission"
+          ]
+        },
+        "abort_after_consecutive_missed_triggers": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "abort_after_consecutive_bad_pairs": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "cadence_clock",
+        "pair_policy",
+        "capture_timeout_ms",
+        "max_pair_position_delta_m",
+        "max_pair_angle_delta_deg",
+        "max_pending_writes",
+        "on_interval_overload",
+        "abort_after_consecutive_missed_triggers",
+        "abort_after_consecutive_bad_pairs"
+      ]
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_duration_wall_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_pairs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "min_free_disk_mb": {
+          "type": "number",
+          "minimum": 0
+        },
+        "obstacle_clearance_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_cross_track_error_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "cross_track_grace_ms": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "max_duration_wall_s",
+        "max_pairs",
+        "min_free_disk_mb",
+        "obstacle_clearance_m",
+        "max_cross_track_error_m",
+        "cross_track_grace_ms"
+      ]
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "root": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image_format": {
+          "const": "png"
+        },
+        "write_pair_records": {
+          "const": true
+        },
+        "write_summary": {
+          "const": true
+        }
+      },
+      "required": [
+        "root",
+        "image_format",
+        "write_pair_records",
+        "write_summary"
+      ]
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "telemetry_interval_ms": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "record_image_quality": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "telemetry_interval_ms",
+        "record_image_quality"
+      ]
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    },
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 9999,
+      "items": {
+        "$ref": "#/$defs/segment"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Only free-form extension area. Metadata cannot alter execution behavior."
+    }
+  },
+  "required": [
+    "format",
+    "schema_version",
+    "mission_id",
+    "name",
+    "map_asset",
+    "coordinates",
+    "connection",
+    "camera",
+    "thermal",
+    "flight",
+    "defaults",
+    "acquisition",
+    "limits",
+    "output",
+    "metrics",
+    "nodes",
+    "segments"
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "pattern": "^[A-Za-z][A-Za-z0-9_-]*$"
+    },
+    "vec3": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "z"
+      ]
+    },
+    "rotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pitch": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "yaw": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "roll": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      },
+      "required": [
+        "pitch",
+        "yaw",
+        "roll"
+      ]
+    },
+    "travelCapture": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "const": "off"
+            }
+          },
+          "required": [
+            "mode"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "const": "time_interval"
+            },
+            "interval_ms": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "mode",
+            "interval_ms"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "const": "distance_interval"
+            },
+            "interval_m": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "required": [
+            "mode",
+            "interval_m"
+          ]
+        }
+      ],
+      "description": "Travel-only triggers. Each time interval is in milliseconds of unpaused simulation time; 100 means a target 10 complete RGB+IR pairs/s."
+    },
+    "nodeCapture": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "const": "off"
+            }
+          },
+          "required": [
+            "mode"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "const": "single"
+            },
+            "delay_ms": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "mode",
+            "delay_ms"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "const": "burst"
+            },
+            "delay_ms": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "count": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 10000
+            },
+            "interval_ms": {
+              "type": "integer",
+              "minimum": 1
+            }
+          },
+          "required": [
+            "mode",
+            "delay_ms",
+            "count",
+            "interval_ms"
+          ]
+        }
+      ],
+      "description": "Node captures require a stop and settling. A burst is finite; interval_ms uses simulation time."
+    },
+    "segmentSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "speed_mps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "acceleration_mps2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "deceleration_mps2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "timeout_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "capture": {
+          "$ref": "#/$defs/travelCapture"
+        }
+      },
+      "required": [
+        "speed_mps",
+        "acceleration_mps2",
+        "deceleration_mps2",
+        "timeout_s",
+        "capture"
+      ]
+    },
+    "segmentOverrides": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "speed_mps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "acceleration_mps2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "deceleration_mps2": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "timeout_s": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "capture": {
+          "$ref": "#/$defs/travelCapture"
+        }
+      },
+      "minProperties": 1
+    },
+    "nodeSettings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "behavior": {
+          "enum": [
+            "stop",
+            "fly_through"
+          ]
+        },
+        "arrival_radius_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_settled_speed_mps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "aim_tolerance_deg": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 180
+        },
+        "settle_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "extra_hold_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "capture": {
+          "$ref": "#/$defs/nodeCapture"
+        }
+      },
+      "required": [
+        "behavior",
+        "arrival_radius_m",
+        "max_settled_speed_mps",
+        "aim_tolerance_deg",
+        "settle_time_ms",
+        "extra_hold_ms",
+        "capture"
+      ]
+    },
+    "nodeOverrides": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "behavior": {
+          "enum": [
+            "stop",
+            "fly_through"
+          ]
+        },
+        "arrival_radius_m": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "max_settled_speed_mps": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "aim_tolerance_deg": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 180
+        },
+        "settle_time_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "extra_hold_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "capture": {
+          "$ref": "#/$defs/nodeCapture"
+        }
+      },
+      "minProperties": 1
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "position_cm": {
+          "$ref": "#/$defs/vec3"
+        },
+        "camera_rotation_deg": {
+          "$ref": "#/$defs/rotation"
+        },
+        "settings": {
+          "$ref": "#/$defs/nodeOverrides"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "position_cm",
+        "camera_rotation_deg"
+      ]
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "from": {
+          "$ref": "#/$defs/id"
+        },
+        "to": {
+          "$ref": "#/$defs/id"
+        },
+        "settings": {
+          "$ref": "#/$defs/segmentOverrides"
+        }
+      },
+      "required": [
+        "id",
+        "from",
+        "to"
+      ]
+    }
+  }
+}
