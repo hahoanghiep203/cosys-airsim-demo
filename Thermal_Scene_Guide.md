@@ -1,3 +1,5 @@
+> **Current guidance:** Start with the [documentation index](Docs/README.md) and [illustrated heat-source tutorial](Docs/Thermal/APPLY_HEAT_SOURCE.md). This reference was written for the archived `Showcase_CoordinateCrop` scene; its scene-specific launcher, map, measurements and screenshots are historical. `Open_Thermal_Scene.cmd` now opens the combined environment using its own settings.
+
 Current main environment: see [project guide](Docs/ProjectMaintenance/MAIN_PROJECT.md) and [measured validation](Docs/ProjectMaintenance/VALIDATION.md).
 
 # Thermal temperatures in Showcase_CoordinateCrop

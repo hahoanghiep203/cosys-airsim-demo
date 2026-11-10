@@ -1,3 +1,5 @@
+> **Historical sample:** This map and its top-level launcher were archived. For the current workflow, use the [illustrated heat-source tutorial](../Thermal/APPLY_HEAT_SOURCE.md) and [combined environment guide](../SceneDiversity/COMBINED_ENVIRONMENT.md). The images below remain available as reference.
+
 # Evening thermal sample
 
 Open `Open_Evening_Sample.cmd` in the canonical **Cosys_Airsim** folder, then press **Play**. The sample opens `/Game/CityPark/Maps/Showcase_EveningSample`. Allow startup and thermal prewarming to finish before judging the image. The launcher applies the balanced distance/LOD profile and opens RGB plus thermal preview at 1280 x 720. Local inference must be unloaded first. The launcher refuses a duplicate AirSim editor; close the existing one yourself when appropriate.

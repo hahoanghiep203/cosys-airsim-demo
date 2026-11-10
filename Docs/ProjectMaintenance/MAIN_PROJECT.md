@@ -37,7 +37,7 @@ The native project module and newer route-capture plugin are now installed here.
 
 ## Adding whole-object temperature or heat sources
 
-See `Thermal_Scene_Guide.md` for the existing Blueprint properties and units. Use receiver/whole-object temperature settings for tree, grass, road and other baseline surfaces. Use `BP_ThermalSource` child actors for localized heating, choose the appropriate source shape, and align its contact region to the hood or tire rubber. Do not put sources on decorative water planes; they remain excluded from thermal heating. Visible lights and IR heat are configured independently.
+Start with the [illustrated heat-source tutorial](../Thermal/APPLY_HEAT_SOURCE.md) for Blueprint properties, units and examples. Use receiver/whole-object temperature settings for tree, grass, road and other baseline surfaces. Use `BP_ThermalSource` child actors for localized heating, choose the appropriate source shape, and align its contact region to the hood or tire rubber. Do not put sources on decorative water planes; they remain excluded from thermal heating. Visible lights and IR heat are configured independently.
 
 Keep new scene diversity sparse: start with3–5 vehicles and10–20 nearby benches, bins, rocks or barriers using existing libraries. Profile a representative RGB/IR route before adding dense foliage. Check visibility and thermal labels at the actual recording distance; the balanced profile does not establish dataset equivalence.
 

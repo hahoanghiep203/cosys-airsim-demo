@@ -1196,6 +1196,13 @@ void FObjectAnnotator::UpdateAnnotationComponents(UWorld* World)
 	EInternalObjectFlags ExclusionInternalFlags = EInternalObjectFlags::None;
 	GetObjectsOfClass(UAnnotationComponent::StaticClass(), UObjectList, bIncludeDerivedClasses, ExclusionFlags, ExclusionInternalFlags);
 
+	TSet<TWeakObjectPtr<UPrimitiveComponent>> KnownComponents;
+	KnownComponents.Reserve(annotation_component_list_.Num() + UObjectList.Num());
+	for (const auto& Component : annotation_component_list_)
+	{
+		KnownComponents.Add(Component);
+	}
+
 	for (UObject* Object : UObjectList)
 	{
 		if (!IsValid(Object)) continue;
@@ -1204,11 +1211,12 @@ void FObjectAnnotator::UpdateAnnotationComponents(UWorld* World)
 		FName componentFName = *Component->GetName();
 		FString componentName = componentFName.ToString();
 		if (Component->GetWorld() == World
-			&& !annotation_component_list_.Contains(Component)
+			&& !KnownComponents.Contains(Component)
 			&& componentName.Contains(name_)
 			&& !componentName.Contains("annotation_sphere"))
 		{
 			annotation_component_list_.Add(Component);
+			KnownComponents.Add(Component);
 		}
 	}
 

@@ -533,15 +533,32 @@ void APIPCamera::setDistortionParam(const std::string& param_name, float value)
     distortion_param_instance_->SetScalarParameterValue(FName(param_name.c_str()), value);
 }
 
+namespace {
+// Preserve the array order and existing entries while avoiding quadratic AddUnique scans.
+void AppendUniqueAnnotationComponents(TArray<TWeakObjectPtr<UPrimitiveComponent>>& Target,
+                                      const TArray<TWeakObjectPtr<UPrimitiveComponent>>& Components)
+{
+    TSet<TWeakObjectPtr<UPrimitiveComponent>> Existing;
+    Existing.Reserve(Target.Num() + Components.Num());
+    for (const auto& Component : Target)
+        Existing.Add(Component);
+    for (const auto& Component : Components) {
+        if (!Existing.Contains(Component)) {
+            Existing.Add(Component);
+            Target.Add(Component);
+        }
+    }
+}
+}
+
 void APIPCamera::updateInstanceSegmentationAnnotation(TArray<TWeakObjectPtr<UPrimitiveComponent> >& ComponentList, bool only_hide) {
     if(!only_hide)
         captures_[Utils::toNumeric(ImageType::Segmentation)]->ShowOnlyComponents = ComponentList;
     APlayerController* controller = this->GetWorld()->GetFirstPlayerController();
-    for(TWeakObjectPtr<UPrimitiveComponent> component : ComponentList) {
-        captures_[Utils::toNumeric(ImageType::Scene)]->HiddenComponents.AddUnique(component);
-        captures_[Utils::toNumeric(ImageType::Lighting)]->HiddenComponents.AddUnique(component);
-        controller->HiddenPrimitiveComponents.AddUnique(component);
-	}
+    AppendUniqueAnnotationComponents(captures_[Utils::toNumeric(ImageType::Scene)]->HiddenComponents, ComponentList);
+    AppendUniqueAnnotationComponents(captures_[Utils::toNumeric(ImageType::Lighting)]->HiddenComponents, ComponentList);
+    if (controller)
+        AppendUniqueAnnotationComponents(controller->HiddenPrimitiveComponents, ComponentList);
 }
 
 void APIPCamera::updateAnnotation(TArray<TWeakObjectPtr<UPrimitiveComponent> >& ComponentList, FString annotation_name, bool only_hide) {
@@ -555,11 +572,10 @@ void APIPCamera::updateAnnotation(TArray<TWeakObjectPtr<UPrimitiveComponent> >& 
             captures_[annotator_name_to_index_map_[annotation_name]]->ShowOnlyComponents.Add(sphere_annotation_component_map_[annotation_name]);
     }
     APlayerController* controller = this->GetWorld()->GetFirstPlayerController();
-    for (TWeakObjectPtr<UPrimitiveComponent> component : ComponentList) {
-        captures_[Utils::toNumeric(ImageType::Scene)]->HiddenComponents.AddUnique(component);
-        captures_[Utils::toNumeric(ImageType::Lighting)]->HiddenComponents.AddUnique(component);
-        controller->HiddenPrimitiveComponents.AddUnique(component);
-    }
+    AppendUniqueAnnotationComponents(captures_[Utils::toNumeric(ImageType::Scene)]->HiddenComponents, ComponentList);
+    AppendUniqueAnnotationComponents(captures_[Utils::toNumeric(ImageType::Lighting)]->HiddenComponents, ComponentList);
+    if (controller)
+        AppendUniqueAnnotationComponents(controller->HiddenPrimitiveComponents, ComponentList);
 }
 
 void APIPCamera::addAnnotationCamera(FString name, FObjectAnnotator::AnnotatorType type, float max_view_distance)
