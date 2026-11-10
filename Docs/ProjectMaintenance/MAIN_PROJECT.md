@@ -1,3 +1,5 @@
+> **Map cleanup (2026-11-10):** The active project retains Showcase, Showcase_NotOptimized, and ThermalDiversity_05_CombinedEnvironment. Other maps were archived outside the project. References below to removed maps and launchers are historical. Use `Open_Cosys_Airsim.cmd`, `Open_Showcase_NotOptimized.cmd`, or `Open_Thermal_CombinedEnvironment.cmd`.
+
 # Main Unreal project
 
 Use **D:/F1/UE prj/airsim_test/Cosys_Airsim/Cosys_Airsim.uproject**. The older `AirSim_test` directory is retained as recovery/history; its original-map and route-demo shortcuts now forward here. Its `Repair_Showcase_SavePermissions.cmd` repairs only the **old** map. The canonical original map already has Admin Full Control; do not run the old repair for this project.

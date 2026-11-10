@@ -1,4 +1,4 @@
-param([ValidateRange(1,5)][int]$Scene=5,[switch]$Offscreen)
+param([ValidateSet(5)][int]$Scene=5,[switch]$Offscreen)
 $ErrorActionPreference='Stop'
 $diversityRoot=(Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../..')).Path
 if(Get-Process -Name 'llama-server*','prism*' -ErrorAction SilentlyContinue){throw 'Unload local inference before opening Unreal.'}

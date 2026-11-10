@@ -1,3 +1,5 @@
+> **Map cleanup (2026-11-10):** Only the combined environment remains in the active project. References below to individual maps and their launchers are historical.
+
 # Thermal capture environments
 
 Latest: [whole-environment temperature audit and added props](TEMPERATURE_AUDIT.md), with a [refreshed verified gallery](TemperatureAudit/INDEX.html). Earlier collections below remain preserved.
